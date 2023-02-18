@@ -1,4 +1,4 @@
-# [Team name] Reflection
+# Michael Potocar Reflection
 
 ## Instructions
 

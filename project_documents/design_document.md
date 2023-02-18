@@ -1,4 +1,4 @@
-# [team name] Design Document
+# Project Kitty Design Document
 
 ## Instructions
 

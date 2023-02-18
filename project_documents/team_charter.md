@@ -1,4 +1,4 @@
-# [team name] Team Charter
+# Project Kitty Team Charter
 
 ## Instructions
 
@@ -33,12 +33,12 @@ These resources may be helpful as you fill out your team charter. They are optio
 
 ### Administrative Information:
 
-|Name            |Preferred Contact Method (Zoom, Slack, email, etc.) |
-|---	           |---                                           |
-|Team Member (a) |                                              |
-|Team Member (b) |                                              |
-|Team Member (c) |                                              |
-|Team Member (d) |                                              |
+|Name            | Preferred Contact Method (Zoom, Slack, email, etc.) |
+|---	           |-----------------------------------------------------|
+|Team Member (a) | Michael Potocar                                     |
+|Team Member (b) |                                                     |
+|Team Member (c) |                                                     |
+|Team Member (d) |                                                     |
 
 ### Psychological safety
 
@@ -106,7 +106,7 @@ These resources may be helpful as you fill out your team charter. They are optio
 **What is personally important for each team member about joining BloomTech? About
 becoming an software engineer?**
 
-* *Team member name*:
+* *Michael Potocar*: I have programming skills, but I want to be able to piece them together to provide a full stack service 
 * *Team member name*:
 * *Team member name*:
 * *Team member name*:
@@ -115,7 +115,7 @@ becoming an software engineer?**
 project management skills, develop public speaking skills, speak up more, speak
 up less, etc.**
 
-* *Team member name*:
+* *Michael Potocar*: I want to learn skills including: user authentication, implementing and verifying encryption along the connection, and deploy the entire stack using the AWS cloud development kit
 * *Team member name*:
 * *Team member name*:
 * *Team member name*:
@@ -138,7 +138,7 @@ rotating or permanent roles as you go.*
 
 **I agree to the terms and conditions of these team agreements:**
 
-* Team member (a) Name & Date:
+* Team member (a) Name & Date: Michael Potocar 2/18/2023
 * Team member (b) Name & Date:
 * Team member (c) Name & Date:
 * Team member (d) Name & Date:

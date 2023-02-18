@@ -1,4 +1,4 @@
-# [Your Name] - [Team name] Accomplishment Tracking
+# Michael Potocar - Project Kitty Accomplishment Tracking
 
 Each team member should have their own version of this document.
 
