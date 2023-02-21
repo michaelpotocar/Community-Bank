@@ -1,0 +1,24 @@
+@startuml
+title Accept Pending Payment
+
+actor User
+participant PendingPaymentsPage
+participant RetrievePendingPaymentsActivity
+participant SubmitPendingPaymentsActivity
+database DynamoDB
+
+User -> PendingPaymentsPage : Visit Page
+PendingPaymentsPage -> RetrievePendingPaymentsActivity : GET /customers/pendingpayments
+RetrievePendingPaymentsActivity -> DynamoDB : Request Pending Payment Details
+DynamoDB -> RetrievePendingPaymentsActivity : Response
+RetrievePendingPaymentsActivity -> PendingPaymentsPage : Response
+PendingPaymentsPage -> User : Present Pending Payments
+
+User -> PendingPaymentsPage : Accept Payment
+PendingPaymentsPage -> SubmitPendingPaymentsActivity : PUT /customers/pendingpayments
+SubmitPendingPaymentsActivity -> DynamoDB : Update Payment & Create Transaction
+DynamoDB -> SubmitPendingPaymentsActivity : Response
+SubmitPendingPaymentsActivity -> PendingPaymentsPage : Response
+PendingPaymentsPage -> User : Confirmation
+
+@enduml

@@ -1,0 +1,29 @@
+@startuml
+title Create Payment
+
+actor User
+participant CreatePaymentPage
+participant GetAccountsActivity
+participant GetContactsActivity
+participant CreatePaymentActivity
+database DynamoDB
+
+User -> CreatePaymentPage : Visit Page
+CreatePaymentPage -> GetAccountsActivity : GET /customers/accounts
+GetAccountsActivity -> DynamoDB : Retrieve Accounts
+DynamoDB -> GetAccountsActivity : Accounts Response
+GetAccountsActivity -> CreatePaymentPage : Response
+CreatePaymentPage -> GetContactsActivity : GET /customers/contacts
+GetContactsActivity -> DynamoDB : Retrieve Contacts
+DynamoDB -> GetContactsActivity : Contacts Response
+GetContactsActivity -> CreatePaymentPage : Response
+CreatePaymentPage -> User : Present Accounts and Contacts
+
+User -> CreatePaymentPage : Submit Payment
+CreatePaymentPage -> CreatePaymentActivity : POST /customers/payments
+CreatePaymentActivity -> DynamoDB : Create Payment
+DynamoDB -> CreatePaymentActivity : Create Payment Response
+CreatePaymentActivity -> CreatePaymentPage : Response
+CreatePaymentPage -> User : Confirmation
+
+@enduml

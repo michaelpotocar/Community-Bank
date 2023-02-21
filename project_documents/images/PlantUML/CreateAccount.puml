@@ -1,0 +1,16 @@
+@startuml
+title Create Account
+
+actor User
+participant CreateAccountPage
+participant CreateAccountActivity
+database DynamoDB
+
+User -> CreateAccountPage : Submit New Account
+CreateAccountPage -> CreateAccountActivity : POST /customers/accounts
+CreateAccountActivity -> DynamoDB : Create Account
+DynamoDB -> CreateAccountActivity : Response
+CreateAccountActivity -> CreateAccountPage : Response
+CreateAccountPage -> User : Confirmation
+
+@enduml

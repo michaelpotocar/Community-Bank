@@ -1,0 +1,16 @@
+@startuml
+title Get Account Summary
+
+actor User
+participant AccountSummaryPage
+participant GetAccountSummaryActivity
+database DynamoDB
+
+User -> AccountSummaryPage : Visit Page
+AccountSummaryPage -> GetAccountSummaryActivity : GET /customers/accounts
+GetAccountSummaryActivity -> DynamoDB : Request Data
+DynamoDB -> GetAccountSummaryActivity : Account Summary Response
+GetAccountSummaryActivity -> AccountSummaryPage : Response
+AccountSummaryPage -> User : Present Account Summary
+
+@enduml

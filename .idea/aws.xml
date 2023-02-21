@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="accountSettings">
+    <option name="activeRegion" value="us-east-1" />
+    <option name="recentlyUsedProfiles">
+      <list>
+        <option value="profile:bt" />
+        <option value="profile:mp" />
+      </list>
+    </option>
+    <option name="recentlyUsedRegions">
+      <list>
+        <option value="us-east-1" />
+        <option value="us-west-2" />
+        <option value="eu-south-2" />
+        <option value="ap-southeast-4" />
+      </list>
+    </option>
+  </component>
+</project>

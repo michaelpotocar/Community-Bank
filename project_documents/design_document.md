@@ -1,121 +1,280 @@
 # Project Kitty Design Document
 
-## Instructions
-
-*Save a copy of this template for your team in the same folder that contains
-this template.*
-
-*Replace italicized text (including this text!) with details of the design you
-are proposing for your team project. (Your replacement text shouldn't be in
-italics)*
-
-*You should take a look at the example design document in the same folder as
-this template for more guidance on the types of information to capture, and the
-level of detail to aim for.*
-
-## *Project Title* Design
-
 ## 1. Problem Statement
 
-*Explain clearly what problem you are trying to solve.*
+Traditional banking institutions have long been criticized for their lack of transparency, high fees, and outdated technology. Customers are often frustrated by the slow and bureaucratic processes involved in opening and managing their bank accounts, and the opaque fee structures that can make it difficult to understand the true cost of their financial transactions. Furthermore, many people are excluded from the traditional banking system altogether, either because they lack the necessary credit history or because they cannot meet the minimum balance requirements or other restrictions.
 
+Project Kitty aims to solve these problems by providing a modern, transparent, and inclusive banking experience that is accessible to everyone. Through its innovative technology, Project Kitty will streamline account opening and management processes, making it easier for customers to understand and control their finances. In addition, Project Kitty will also offer an innovative peer-to-peer payments service. 
 
 ## 2. Top Questions to Resolve in Review
 
-*List the most important questions you have about your design, or things that
-you are still debating internally that you might like help working through.*
+1. What parameters are sensitive and need to be sent in the request body?
 
-1.   
-2.   
-3.  
+2. Which java classes can be combined in DynamoDB under a common table?
+
+3. If GET request body cannot be used for transmitting sensitive data, should we use POST/PUT requests? 
 
 ## 3. Use Cases
 
-*This is where we work backwards from the customer and define what our customers
-would like to do (and why). You may also include use cases for yourselves, or
-for the organization providing the product to customers.*
+1. As a customer, I want to create new accounts including checking, savings, and up to one credit account with a given nickname.
 
-U1. *As a [product] customer, I want to `<result>` when I `<action>`*
+2. As a customer, I want to add external accounts with given checking and routing numbers.
 
-U2. *As a [product] customer, I want to view my grocery list when I log into the
-grocery list page*
-    
-U3. ...
+3. As a customer, I want to see a summary of my checking, savings and credit accounts.
+
+4. As a customer, I want to see balances and transactions with a given accountID.
+
+5. As a customer, I want to make and schedule payments/transfers between checking accounts, savings accounts, credit accounts, external accounts, and friends with a given source account ID, a destination account type, and a destination account ID or account holder ID.
+
+6. As a customer, I want to deposit pending payments from my friends into my account with a given payment ID and account ID.
 
 ## 4. Project Scope
 
-*Clarify which parts of the problem you intend to solve. It helps reviewers know
-what questions to ask to make sure you are solving for what you say and stops
-discussions from getting sidetracked by aspects you do not intend to handle in
-your design.*
-
 ### 4.1. In Scope
 
-*Which parts of the problem defined in Sections 1 and 3 will you solve with this
-design?*
+* Viewing account and transaction history information
+* Create internal accounts and link external accounts
+* Making transfers to checking, savings, credit, external accounts, and friends
+* Accepting pending transfers from friends
 
 ### 4.2. Out of Scope
 
-*Based on your problem description in Sections 1 and 3, are there any aspects
-you are not planning to solve? Do potential expansions or related problems occur
-to you that you want to explicitly say you are not worrying about now? Feel free
-to put anything here that you think your team can't accomplish in the unit, but
-would love to do with more time.*
+* Adding new customers
+* Changing customer information
+* Adding/Removing friends
+* Depositing funds from external accounts
+* Process payments that have been scheduled for a later date
 
 # 5. Proposed Architecture Overview
 
-*Describe broadly how you are proposing to solve for the requirements you
-described in Section 3.*
+This initial iteration will provide the minimum lovable product (MLP) including  creating and retrieving Accounts, viewing their details, making payments, and accepting pending payments.
 
-*This may include class diagram(s) showing what components you are planning to
-build.*
+We will use API Gateway and Lambda to create seven endpoints (`Get Accounts`, `Post Accounts` `Get Transactions`, `Get Contacts`, `Get PendingPayments`, `Post Payment` and `Put PendingPayments`) that will handle the creation, update and retrieval of accounts and payments to satisfy our requirements.
 
-*You should argue why this architecture (organization of components) is
-reasonable. That is, why it represents a good data flow and a good separation of
-concerns. Where applicable, argue why this architecture satisfies the stated
-requirements.*
+We will store customers, accounts, transactions, and pending payments in a tables in DynamoDB. 
+
+Project Kitty will also provide a web interface for users to manage their accounts. A main page will provide a summary view of their accounts, with links to get more details let them create new accounts, submit payments, and accept pending payments.
 
 # 6. API
 
 ## 6.1. Public Models
 
-*Define the data models your service will expose in its responses via your
-*`-Model`* package. These will be equivalent to the *`PlaylistModel`* and
-*`SongModel`* from the Unit 3 project.*
+```
+// Customer
 
-## 6.2. *First Endpoint*
+String name;
+List<InternalAccount> internalAccounts;
+InternalAccount creditAcount;
+List<ExternalAccount> externalAccounts;
+List<Customer> friends;
+```
 
-*Describe the behavior of the first endpoint you will build into your service
-API. This should include what data it requires, what data it returns, and how it
-will handle any known failure cases. You should also include a sequence diagram
-showing how a user interaction goes from user to website to service to database,
-and back. This first endpoint can serve as a template for subsequent endpoints.
-(If there is a significant difference on a subsequent endpoint, review that with
-your team before building it!)*
+```
+// InternalAccount
 
-*(You should have a separate section for each of the endpoints you are expecting
-to build...)*
+Customer customer;
+Integer accountNumber;
+String type;
+String nickName;
+List<Transaction> transactions;
+```
 
-## 6.3 *Second Endpoint*
+```
+// CreditAccount
 
-*(repeat, but you can use shorthand here, indicating what is different, likely
-primarily the data in/out and error conditions. If the sequence diagram is
-nearly identical, you can say in a few words how it is the same/different from
-the first endpoint)*
+Customer customer;
+Integer accountNumber;
+Integer creditLimit;
+String nickName;
+List<Transaction> transactions;
+```
+
+```
+// ExternalAccount
+
+Customer customer;
+Integer accountNumber;
+Integer routingNumber;
+String nickName;
+```
+
+```
+// Transaction
+
+Account account;
+Integer submittedDateTime;
+Integer completedDateTime;
+Double amount;
+String memo;
+```
+
+```
+// Transfer
+
+Customer customer;
+Account sourceAccount;
+Account destinationAccount;
+Integer submittedDateTime;
+Integer completedDateTime;
+Double amount;
+String memo;
+```
+
+```
+// PendingPayment
+
+Customer fromCustomer;
+Customer toCustomer;
+Account fromAccount;
+Account toAccount;
+Integer submittedDateTime;
+Integer completedDateTime;
+Double amount;
+String memo;
+```
+
+## 6.1 *Get Accounts Endpoint*
+
+* Accepts `GET` requests to `/customers/accounts`
+* Accepts a request body customer ID and returns the related accounts.
+    * If the given customer ID is not found, will throw a
+      `CustomerNotFoundException`
+
+![](images/PlantUML/GetAccountSummary.png)
+
+## 6.2 *Post Accounts Endpoint*
+
+* Accepts `POST` requests to `/customers/accounts`
+* Accepts a request body customer ID, nickname, type, and routing/account number if type == 'external' and creates a related account.
+    * If the given customer ID is not found, will throw a
+      `CustomerNotFoundException`
+    * If the given account nickname already exists, will throw a
+      `AccountNameAlreadyExistsException`
+    * If the given type is not valid, will throw a
+      `InvalidTypeException`
+    * If type == 'external' and missing routing/account number, will throw a
+      `MissingRoutingOrAccountNumberException`
+    * If type == 'credit' and a credit account already exists, will throw a
+      `CreditAccountAlreadyExistsException`
+
+![](images/PlantUML/CreateAccount.png)
+
+## 6.3 *Get Transactions Endpoint*
+
+* Accepts `GET` requests to `/customers/accounts/transactions`
+* Accepts a request body customer ID and account ID and returns the related transactions.
+    * If the given customer ID is not found, will throw a
+      `CustomerNotFoundException`
+    * If the given account ID is not found, will throw a
+      `AccountNotFoundException`
+
+![](images/PlantUML/GetAccountDetails.png)
+
+## 6.4 *Get Contacts Endpoint*
+
+* Accepts `GET` requests to `/customers/contacts`
+* Accepts a request body customer ID and returns the related contacts.
+    * If the given customer ID is not found, will throw a
+      `CustomerNotFoundException`
+
+## 6.5 *Get PendingPayments Endpoint*
+
+* Accepts `GET` requests to `/customers/pendingpayments`
+* Accepts a request body customer ID and returns the pending peer to peer payments.
+    * If the given customer ID is not found, will throw a
+      `CustomerNotFoundException`
+
+![](images/PlantUML/AcceptPendingPayments.png)
+
+## 6.6 *Post Payment Endpoint*
+
+* Accepts `POST` requests to `/customers/payments`
+* Accepts a request body sender customer ID, source account ID, amount, type, memo, and recipient customer ID if type == 'peertopeer' to submit a payment.
+    * If the given sender customer ID is not found, will throw a
+      `SenderNotFoundException`
+    * If the given account ID is not found, will throw a
+      `AccountNotFoundException`
+    * If the given recipient customer ID is not found, will throw a
+      `RecipientNotFoundException`
+    * If the given type is not valid, will throw a
+      `InvalidTypeException`
+    * If the given recipient is not a contact of the sender, will throw a
+      `RecipientNotAContactException`
+
+![](images/PlantUML/CreatePayment.png)
+
+## 6.7 *Put PendingPayments Endpoint*
+
+* Accepts `PUT` requests to `/customers/pendingpayments`
+* Accepts a request body payment ID and account ID to accept a peer to peer transfer.
+    * If the given customer ID is not found, will throw a
+      `CustomerNotFoundException` 
+    * If the given payment ID is not found, will throw a
+      `PaymentNotFoundException`
+    * If the given payment has already been accepted, will throw a
+      `PaymentAlreadyAcceptedException`
+
+![](images/PlantUML/AcceptPendingPayments.png)
 
 # 7. Tables
 
-*Define the DynamoDB tables you will need for the data your service will use. It
-may be helpful to first think of what objects your service will need, then
-translate that to a table structure, like with the *`Playlist` POJO* versus the
-`playlists` table in the Unit 3 project.*
+### 7.1 `Customers`
+
+```
+customerId // partition key, string
+internalAccounts // list
+creditAcount // list
+externalAccounts // list
+friends // list
+```
+
+### 7.2 `Account`
+
+```
+customer // partition key, string
+accountNumber // sort key, string
+type // string
+nickName // string
+creditLimit // number
+```
+
+### 7.3 `Transaction`
+
+```
+account // partition key, string 
+submittedDateTime // sort key, number
+completedDateTime // number
+amount // number
+memo // string
+```
+
+### 7.4 `Transfer`
+
+```
+destinationCustomerID // partition key, string
+sourceCustomerID // sort key, string
+destinationAccount // string
+sourceAccount // string
+submittedDateTime // number
+completedDateTime // number
+amount // number
+memo // string
+```
 
 # 8. Pages
 
-*Include mock-ups of the web pages you expect to build. These can be as
-sophisticated as mockups/wireframes using drawing software, or as simple as
-hand-drawn pictures that represent the key customer-facing components of the
-pages. It should be clear what the interactions will be on the page, especially
-where customers enter and submit data. You may want to accompany the mockups
-with some description of behaviors of the page (e.g. “When customer submits the
-submit-dog-photo button, the customer is sent to the doggie detail page”)*
+![](images/GUI/Slide1.png)
+
+![](images/GUI/Slide2.png)
+
+![](images/GUI/Slide3.png)
+
+![](images/GUI/Slide4.png)
+
+![](images/GUI/Slide5.png)
+
+![](images/GUI/Slide6.png)
+
+![](images/GUI/Slide7.png)
+
+![](images/GUI/Slide8.png)
