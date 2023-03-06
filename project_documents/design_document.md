@@ -140,7 +140,7 @@ String memo;
     * If the given customer ID is not found, will throw a
       `CustomerNotFoundException`
 
-![](ProjectKitty/PlantUML/GetAccountSummary.png)
+![](PlantUML/GetAccountSummary.png)
 
 ## 6.2 *Post Accounts Endpoint*
 
@@ -157,7 +157,7 @@ String memo;
     * If type == 'credit' and a credit account already exists, will throw a
       `CreditAccountAlreadyExistsException`
 
-![](ProjectKitty/PlantUML/CreateAccount.png)
+![](PlantUML/CreateAccount.png)
 
 ## 6.3 *Get Transactions Endpoint*
 
@@ -168,7 +168,7 @@ String memo;
     * If the given account ID is not found, will throw a
       `AccountNotFoundException`
 
-![](ProjectKitty/PlantUML/GetAccountDetails.png)
+![](PlantUML/GetAccountDetails.png)
 
 ## 6.4 *Get Contacts Endpoint*
 
@@ -184,7 +184,7 @@ String memo;
     * If the given customer ID is not found, will throw a
       `CustomerNotFoundException`
 
-![](ProjectKitty/PlantUML/AcceptPendingPayments.png)
+![](PlantUML/AcceptPendingPayments.png)
 
 ## 6.6 *Post Payment Endpoint*
 
@@ -201,7 +201,7 @@ String memo;
     * If the given recipient is not a contact of the sender, will throw a
       `RecipientNotAContactException`
 
-![](ProjectKitty/PlantUML/CreatePayment.png)
+![](PlantUML/CreatePayment.png)
 
 ## 6.7 *Put PendingPayments Endpoint*
 
@@ -214,7 +214,7 @@ String memo;
     * If the given payment has already been accepted, will throw a
       `PaymentAlreadyAcceptedException`
 
-![](ProjectKitty/PlantUML/AcceptPendingPayments.png)
+![](PlantUML/AcceptPendingPayments.png)
 
 # 7. Tables
 
@@ -263,18 +263,18 @@ memo // string
 
 # 8. Pages
 
-![](images/GUI/Slide1.png)
+![](GUI/Slide1.png)
 
-![](images/GUI/Slide2.png)
+![](GUI/Slide2.png)
 
-![](images/GUI/Slide3.png)
+![](GUI/Slide3.png)
 
-![](images/GUI/Slide4.png)
+![](GUI/Slide4.png)
 
-![](images/GUI/Slide5.png)
+![](GUI/Slide5.png)
 
-![](images/GUI/Slide6.png)
+![](GUI/Slide6.png)
 
-![](images/GUI/Slide7.png)
+![](GUI/Slide7.png)
 
-![](images/GUI/Slide8.png)
+![](GUI/Slide8.png)
