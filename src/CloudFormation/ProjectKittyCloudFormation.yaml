@@ -1,0 +1,164 @@
+Resources:
+  ProjectKittyCustomers:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      AttributeDefinitions:
+        - AttributeName: "id"
+          AttributeType: "N"
+      KeySchema:
+        - AttributeName: "id"
+          KeyType: "HASH"
+      BillingMode: PAY_PER_REQUEST
+      TableName: "ProjectKittyCustomers"
+  ProjectKittyAccounts:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      AttributeDefinitions:
+        - AttributeName: "accountNumber"
+          AttributeType: "N"
+        - AttributeName: "routingNumber"
+          AttributeType: "N"
+      KeySchema:
+        - AttributeName: "accountNumber"
+          KeyType: "HASH"
+        - AttributeName: "routingNumber"
+          KeyType: "RANGE"
+      BillingMode: PAY_PER_REQUEST
+      TableName: "ProjectKittyAccounts"
+  ProjectKittyTransactions:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      AttributeDefinitions:
+        - AttributeName: "accountNumber"
+          AttributeType: "N"
+        - AttributeName: "submittedDateTime"
+          AttributeType: "N"
+      KeySchema:
+        - AttributeName: "accountNumber"
+          KeyType: "HASH"
+        - AttributeName: "submittedDateTime"
+          KeyType: "RANGE"
+      BillingMode: PAY_PER_REQUEST
+      TableName: "ProjectKittyTransactions"
+  ProjectKittyPeerToPeer:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      AttributeDefinitions:
+        - AttributeName: "sourceCustomerID"
+          AttributeType: "N"
+        - AttributeName: "destinationCustomerID"
+          AttributeType: "N"
+      KeySchema:
+        - AttributeName: "sourceCustomerID"
+          KeyType: "HASH"
+        - AttributeName: "destinationCustomerID"
+          KeyType: "RANGE"
+      BillingMode: PAY_PER_REQUEST
+      TableName: "ProjectKittyPeerToPeer"
+  ProjectKittyPopulateRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - lambda.amazonaws.com
+            Action:
+              - sts:AssumeRole
+      Path: "/"
+      Policies:
+        - PolicyName: dynamodbAccessRole
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action:
+                  - dynamodb:*
+                Resource: "*"
+              - Effect: Allow
+                Action:
+                  - logs:*
+                Resource: "*"
+  PopulateTables:
+    Type: AWS::Lambda::Function
+    Properties:
+      Code:
+        ZipFile: >
+          const AWS = require("aws-sdk");
+          const response = require('./cfn-response');
+          const docClient = new AWS.DynamoDB.DocumentClient();
+          exports.handler = function(event, context) {
+            console.log(JSON.stringify(event,null,2));
+            var params = {
+              RequestItems: {
+                "ProjectKittyCustomers": [
+                  {
+                    PutRequest: {
+                      Item: {
+                        id: 1,
+                        name: "Michael Potocar",
+                        accounts: [{ accountNumber: 1, routingNumber: 1 }],
+                      }
+                    }
+                  },
+                ],
+                "ProjectKittyAccounts": [
+                  {
+                    PutRequest: {
+                      Item: {
+                        accountNumber: 1,
+                        routingNumber: 1,
+                        customerId: 1,
+                      }
+                    }
+                  },
+                ],
+                "ProjectKittyTransactions": [
+                  { "PutRequest": { "Item": { "accountNumber": 598917005925, "submittedDateTime": 1641071836, "completedDateTime": 1641081600, "amount": 59.99, "memo": "Microsoft Redmond WA null XXXXXXXXXXXX6681" }}},
+                  { "PutRequest": { "Item": { "accountNumber": 359991678203, "submittedDateTime": 1641133660, "completedDateTime": 1641168000, "amount": 13.88, "memo": "PENN STATION 10 CINCINNATI OH" }}},
+                  { "PutRequest": { "Item": { "accountNumber": 598917005925, "submittedDateTime": 1641167662, "completedDateTime": 1641168000, "amount": 20.38, "memo": "DOUBLE DRAGON II CINCINNATI OH" }}},
+                  { "PutRequest": { "Item": { "accountNumber": 732504662515, "submittedDateTime": 1641310152, "completedDateTime": 1641340800, "amount": 11.64, "memo": "35 PIADA FLORENCE FLORENCE KY" }}},
+                  { "PutRequest": { "Item": { "accountNumber": 826711618850, "submittedDateTime": 1641325329, "completedDateTime": 1641340800, "amount": 240.43, "memo": "SPI*DUKE-ENERGY 800-777-9898 NC" }}},
+                  { "PutRequest": { "Item": { "accountNumber": 399061551780, "submittedDateTime": 1641402893, "completedDateTime": 1641427200, "amount": -49.53, "memo": "THE HOME DEPOT #3832 CINCINNATI OH" }}},
+                  { "PutRequest": { "Item": { "accountNumber": 826711618850, "submittedDateTime": 1641393180, "completedDateTime": 1641427200, "amount": -59.44, "memo": "THE HOME DEPOT #3832 CINCINNATI OH" }}},
+                  { "PutRequest": { "Item": { "accountNumber": 498511217783, "submittedDateTime": 1641378656, "completedDateTime": 1641427200, "amount": 65.91, "memo": "CIN BELL ELEC PAY 513-5652210 OH" }}},
+                  { "PutRequest": { "Item": { "accountNumber": 826711618850, "submittedDateTime": 1641344705, "completedDateTime": 1641427200, "amount": 452.49, "memo": "CAPITAL GRILLE 0138052 CINCINNATI OH" }}},
+                  { "PutRequest": { "Item": { "accountNumber": 669914345717, "submittedDateTime": 1641477555, "completedDateTime": 1641513600, "amount": -2418.36, "memo": "ONLINE PAYMENT, THANK YOU" }}},
+                  { "PutRequest": { "Item": { "accountNumber": 669914345717, "submittedDateTime": 1641655165, "completedDateTime": 1641686400, "amount": 30, "memo": "VISIBLE 8663313527 CO" }}},
+                  { "PutRequest": { "Item": { "accountNumber": 359991678203, "submittedDateTime": 1642047436, "completedDateTime": 1642118400, "amount": 21.95, "memo": "DOUBLE DRAGON II CINCINNATI OH" }}},
+                  { "PutRequest": { "Item": { "accountNumber": 594392737621, "submittedDateTime": 1642591661, "completedDateTime": 1642636800, "amount": 48.08, "memo": "WM SUPERCENTER #2250 CINCINNATI OH" }}},
+                  { "PutRequest": { "Item": { "accountNumber": 669914345717, "submittedDateTime": 1642870963, "completedDateTime": 1642896000, "amount": 16.1, "memo": "CANCUN MEXICAN BAR AND NORWOOD OH" }}},
+                  { "PutRequest": { "Item": { "accountNumber": 749596570472, "submittedDateTime": 1643182863, "completedDateTime": 1643241600, "amount": 17.14, "memo": "FIVE GUYS OH 1056 QSR CINCINNATI OH" }}},
+                  { "PutRequest": { "Item": { "accountNumber": 598917005925, "submittedDateTime": 1643347665, "completedDateTime": 1643414400, "amount": 30.92, "memo": "DOUBLE DRAGON II CINCINNATI OH" }}},
+                  { "PutRequest": { "Item": { "accountNumber": 826711618850, "submittedDateTime": 1643801286, "completedDateTime": 1643846400, "amount": 2.78, "memo": "LOWES #01585* CINCINNATI OH" }}},
+                  { "PutRequest": { "Item": { "accountNumber": 826711618850, "submittedDateTime": 1643969578, "completedDateTime": 1644019200, "amount": -1132.5, "memo": "ONLINE PAYMENT, THANK YOU" }}},
+                  { "PutRequest": { "Item": { "accountNumber": 304160714309, "submittedDateTime": 1644004807, "completedDateTime": 1644019200, "amount": 16.1, "memo": "CANCUN MEXICAN BAR AND NORWOOD OH" }}},
+                  { "PutRequest": { "Item": { "accountNumber": 598917005925, "submittedDateTime": 1644086128, "completedDateTime": 1644105600, "amount": 11.99, "memo": "PENN STATION 10 CINCINNATI OH" }}},
+                  { "PutRequest": { "Item": { "accountNumber": 399061551780, "submittedDateTime": 1644211714, "completedDateTime": 1644278400, "amount": 39.55, "memo": "HOMEDEPOT.COM 800-430-3376 GA" }}},
+                  { "PutRequest": { "Item": { "accountNumber": 359991678203, "submittedDateTime": 1644257108, "completedDateTime": 1644278400, "amount": 11.56, "memo": "TVP INC/LA ROSA S NORW 513-984-3870 OH" }}},
+                  { "PutRequest": { "Item": { "accountNumber": 402123746805, "submittedDateTime": 1644293929, "completedDateTime": 1644364800, "amount": 30, "memo": "VISIBLE 8663313527 CO" }}},
+                ],
+              }
+            };
+            docClient.batchWrite(params, function(err, data) {
+              if (err) {
+                console.log(err);
+                response.send(event, context, "FAILED", {});
+              } else {
+                response.send(event, context, "SUCCESS", {});
+              }
+            });
+          };
+      Handler: index.handler
+      Role:
+        Fn::GetAtt: [ ProjectKittyPopulateRole , "Arn" ]
+      Runtime: nodejs12.x
+      Timeout: 60
+  RunPopulateTables:
+    Type: AWS::CloudFormation::CustomResource
+    DependsOn: ProjectKittyCustomers
+    Properties:
+      ServiceToken:
+        Fn::GetAtt: [ PopulateTables , "Arn" ]
