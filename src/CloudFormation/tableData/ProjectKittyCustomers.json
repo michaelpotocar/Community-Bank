@@ -1,0 +1,8 @@
+[
+  { "id": "710485069", "first_name": "Leigh", "last_name": "Rabier", "friends": [ 496470926, 835087875 ] },
+  { "id": "390980002", "first_name": "Nydia", "last_name": "Perotti", "friends": [ 379458724, 496470926, 323588851 ] },
+  { "id": "379458724", "first_name": "Valentijn", "last_name": "Flintoft", "friends": [ 390980002, 496470926, 323588851 ] },
+  { "id": "496470926", "first_name": "Nelle", "last_name": "Corbin", "friends": [ 710485069, 390980002, 379458724, 323588851 ] },
+  { "id": "323588851", "first_name": "Xerxes", "last_name": "Shutle", "friends": [ 390980002, 379458724, 496470926 ] },
+  { "id": "835087875", "first_name": "Jone", "last_name": "Bartaletti", "friends": [ 710485069 ] }
+]
