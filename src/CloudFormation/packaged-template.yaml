@@ -84,7 +84,67 @@ Resources:
   PopulateTables:
     Type: AWS::Lambda::Function
     Properties:
-      CodeUri: ./persistDynamoDbData/lambda.js
+      Code:
+        ZipFile: "import { S3Client, GetObjectCommand } from \"@aws-sdk/client-s3\"\
+          ; import { DynamoDBClient, BatchWriteItemCommand } from \"@aws-sdk/client-dynamodb\"\
+          ; import { DynamoDBDocumentClient } from \"@aws-sdk/lib-dynamodb\"; import\
+          \ { fromIni } from \"@aws-sdk/credential-provider-ini\"; import { fromEnv\
+          \ } from \"@aws-sdk/credential-provider-env\"; import { loadSharedConfigFiles\
+          \ } from '@aws-sdk/shared-ini-file-loader'; let credentials; let profile\
+          \ = 'bt'; if (process.env.AWS_LAMBDA_FUNCTION_NAME) { credentials = fromEnv();\
+          \ } else {\n  credentials = { credentials: fromIni({ profile }), region:\
+          \ (await loadSharedConfigFiles()).configFile?.[profile]?.region, };\n} let\
+          \ s3Client, ddbClient, ddbDocClient; s3Client = new S3Client(credentials);\
+          \ ddbClient = new DynamoDBClient(credentials); ddbDocClient = DynamoDBDocumentClient.from(ddbClient);\
+          \ const tableData = { ProjectKittyCustomers: { Bucket: \"projectkitty\"\
+          , Key: \"ProjectKittyCustomers.json\" }, ProjectKittyAccounts: { Bucket:\
+          \ \"projectkitty\", Key: \"ProjectKittyAccounts.json\" }, ProjectKittyTransactions:\
+          \ { Bucket: \"projectkitty\", Key: \"ProjectKittyTransactions.json\" },\
+          \ }; export const handler = async function(event, context) {\n  for (const\
+          \ table in tableData) {\n    const bucket = tableData[table].Bucket;\n \
+          \   const key = tableData[table].Key;\n    let str;\n    try {\n      const\
+          \ response = await s3Client.send(new GetObjectCommand({ Bucket: bucket,\
+          \ Key: key }));\n      str = await response.Body.transformToString();\n\
+          \      console.log(key, 'loaded Succcessfully');\n    }\n    catch (err)\
+          \ {\n      console.error(err);\n      process.exit(0);\n    }\n    const\
+          \ entries = JSON.parse(str);\n    const batchSize = 25;\n    const batches\
+          \ = [];\n    if (table == 'ProjectKittyCustomers') {\n      for (let i =\
+          \ 0; i < entries.length / batchSize; i++) {\n        const filtered = entries.filter(({},\
+          \ index) => index >= batchSize * i && index < batchSize * (i + 1));\n  \
+          \      const mapped = filtered.map(entry => {\n          const mappedFriends\
+          \ = entry.friends.map(friend => { return { \"N\": String(friend), }; });\n\
+          \          return {\n            \"PutRequest\": {\n              \"Item\"\
+          : {\n                id: { N: String(entry.id) },\n                firstName:\
+          \ { S: String(entry.firstName) },\n                lastName: { S: String(entry.lastName)\
+          \ },\n                friends: { L: mappedFriends },\n              }\n\
+          \            }\n          };\n        });\n        batches.push(mapped);\n\
+          \      }\n    }\n    if (table == 'ProjectKittyAccounts') {\n      for (let\
+          \ i = 0; i < entries.length / batchSize; i++) {\n        const filtered\
+          \ = entries.filter(({}, index) => index >= batchSize * i && index < batchSize\
+          \ * (i + 1));\n        const mapped = filtered.map(entry => {\n        \
+          \  return {\n            \"PutRequest\": {\n              \"Item\": {\n\
+          \                accountNumber: { N: String(entry.accountNumber) },\n  \
+          \              routingNumber: { N: String(entry.routingNumber) },\n    \
+          \            customerId: { N: String(entry.customerId) },\n            \
+          \    nickname: { S: String(entry.nickname) },\n                type: { S:\
+          \ String(entry.type) },\n              }\n            }\n          };\n\
+          \        });\n        batches.push(mapped);\n      }\n    }\n    if (table\
+          \ == 'ProjectKittyTransactions') {\n      for (let i = 0; i < entries.length\
+          \ / batchSize; i++) {\n        const filtered = entries.filter(({}, index)\
+          \ => index >= batchSize * i && index < batchSize * (i + 1));\n        const\
+          \ mapped = filtered.map(entry => {\n          return {\n            \"PutRequest\"\
+          : {\n              \"Item\": {\n                accountNumber: { N: String(entry.accountNumber)\
+          \ },\n                submittedDateTime: { N: String(entry.submittedDateTime)\
+          \ },\n                completedDateTime: { N: String(entry.completedDateTime)\
+          \ },\n                amount: { N: String(entry.amount) },\n           \
+          \     memo: { S: String(entry.memo) },\n              }\n            }\n\
+          \          };\n        });\n        batches.push(mapped);\n      }\n   \
+          \ }\n    for (const batch in batches) {\n      const params = {\n      \
+          \  RequestItems: {\n          [table]: batches[batch]\n        }\n     \
+          \ };\n      try {\n        await ddbDocClient.send(new BatchWriteItemCommand(params));\n\
+          \        console.log(table, 'batch persisted Succcessfully');\n      }\n\
+          \      catch (err) {\n        console.error(err);\n        process.exit(0);\n\
+          \      }\n    }\n  }\n};\n"
       Handler: index.handler
       Role:
         Fn::GetAtt:
@@ -92,12 +152,12 @@ Resources:
         - Arn
       Runtime: nodejs18.x
       Timeout: 60
-      Code:
-        S3Bucket: projectkitty
-        S3Key: 87d758e0705c3ac4aee5799f3d75d292
   RunPopulateTables:
     Type: AWS::CloudFormation::CustomResource
-    DependsOn: ProjectKittyCustomers
+    DependsOn:
+    - ProjectKittyCustomers
+    - ProjectKittyAccounts
+    - ProjectKittyTransactions
     Properties:
       ServiceToken:
         Fn::GetAtt:
