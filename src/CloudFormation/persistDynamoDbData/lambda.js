@@ -1,27 +1,27 @@
 import { S3Client, GetObjectCommand } from "@aws-sdk/client-s3";
 import { DynamoDBClient, BatchWriteItemCommand } from "@aws-sdk/client-dynamodb";
 import { DynamoDBDocumentClient } from "@aws-sdk/lib-dynamodb";
-import { fromProcess } from "@aws-sdk/credential-providers";
+import { fromIni } from "@aws-sdk/credential-provider-ini";
+import { fromEnv } from "@aws-sdk/credential-provider-env";
+import { loadSharedConfigFiles } from '@aws-sdk/shared-ini-file-loader';
 
-const config = {
-    credentials: fromProcess({
-        profile: "bt",
-        filepath: "~/.aws/credentials",
-        configFilepath: "~/.aws/config",
-    }),
-};
+let credentials;
+let profile = 'bt'
 
-const { s3Client, ddbDocClient } = await import("./config.js").then((local) => {
-    return {
-        s3Client: new S3Client(local.config),
-        ddbDocClient: DynamoDBDocumentClient.from(new DynamoDBClient(local.config))
+if (process.env.AWS_LAMBDA_FUNCTION_NAME) {
+    credentials = fromEnv();
+} else {
+    // Get credentials from the .aws folder
+    credentials = {
+        credentials: fromIni({ profile }),
+        region: (await loadSharedConfigFiles()).configFile?.[profile]?.region,
     };
-}).catch(() => {
-    return {
-        s3Client: new S3Client({}),
-        ddbDocClient: DynamoDBDocumentClient.from(new DynamoDBClient({ region: 'us-west-2' }))
-    };
-});
+}
+
+let s3Client, ddbClient, ddbDocClient;
+s3Client = new S3Client(credentials);
+ddbClient = new DynamoDBClient(credentials);
+ddbDocClient = DynamoDBDocumentClient.from(ddbClient);
 
 const tableData = {
     ProjectKittyCustomers: {

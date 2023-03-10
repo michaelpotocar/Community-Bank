@@ -1,0 +1,105 @@
+Resources:
+  ProjectKittyCustomers:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      AttributeDefinitions:
+      - AttributeName: id
+        AttributeType: N
+      KeySchema:
+      - AttributeName: id
+        KeyType: HASH
+      BillingMode: PAY_PER_REQUEST
+      TableName: ProjectKittyCustomers
+  ProjectKittyAccounts:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      AttributeDefinitions:
+      - AttributeName: accountNumber
+        AttributeType: N
+      - AttributeName: routingNumber
+        AttributeType: N
+      KeySchema:
+      - AttributeName: accountNumber
+        KeyType: HASH
+      - AttributeName: routingNumber
+        KeyType: RANGE
+      BillingMode: PAY_PER_REQUEST
+      TableName: ProjectKittyAccounts
+  ProjectKittyTransactions:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      AttributeDefinitions:
+      - AttributeName: accountNumber
+        AttributeType: N
+      - AttributeName: submittedDateTime
+        AttributeType: N
+      KeySchema:
+      - AttributeName: accountNumber
+        KeyType: HASH
+      - AttributeName: submittedDateTime
+        KeyType: RANGE
+      BillingMode: PAY_PER_REQUEST
+      TableName: ProjectKittyTransactions
+  ProjectKittyPeerToPeer:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      AttributeDefinitions:
+      - AttributeName: sourceCustomerID
+        AttributeType: N
+      - AttributeName: destinationCustomerID
+        AttributeType: N
+      KeySchema:
+      - AttributeName: sourceCustomerID
+        KeyType: HASH
+      - AttributeName: destinationCustomerID
+        KeyType: RANGE
+      BillingMode: PAY_PER_REQUEST
+      TableName: ProjectKittyPeerToPeer
+  ProjectKittyPopulateRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+        - Effect: Allow
+          Principal:
+            Service:
+            - lambda.amazonaws.com
+          Action:
+          - sts:AssumeRole
+      Path: /
+      Policies:
+      - PolicyName: dynamodbAccessRole
+        PolicyDocument:
+          Version: '2012-10-17'
+          Statement:
+          - Effect: Allow
+            Action:
+            - dynamodb:*
+            Resource: '*'
+          - Effect: Allow
+            Action:
+            - logs:*
+            Resource: '*'
+  PopulateTables:
+    Type: AWS::Lambda::Function
+    Properties:
+      CodeUri: ./persistDynamoDbData/lambda.js
+      Handler: index.handler
+      Role:
+        Fn::GetAtt:
+        - ProjectKittyPopulateRole
+        - Arn
+      Runtime: nodejs18.x
+      Timeout: 60
+      Code:
+        S3Bucket: projectkitty
+        S3Key: 87d758e0705c3ac4aee5799f3d75d292
+  RunPopulateTables:
+    Type: AWS::CloudFormation::CustomResource
+    DependsOn: ProjectKittyCustomers
+    Properties:
+      ServiceToken:
+        Fn::GetAtt:
+        - PopulateTables
+        - Arn
