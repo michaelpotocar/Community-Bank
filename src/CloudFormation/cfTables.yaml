@@ -9,7 +9,7 @@ Resources:
         - AttributeName: "id"
           KeyType: "HASH"
       BillingMode: PAY_PER_REQUEST
-      TableName: "ProjectKittyCustomersTablesOnly"
+      TableName: "ProjectKittyCustomers"
   ProjectKittyAccounts:
     Type: AWS::DynamoDB::Table
     Properties:
@@ -24,7 +24,7 @@ Resources:
         - AttributeName: "routingNumber"
           KeyType: "RANGE"
       BillingMode: PAY_PER_REQUEST
-      TableName: "ProjectKittyAccountsTablesOnly"
+      TableName: "ProjectKittyAccounts"
   ProjectKittyTransactions:
     Type: AWS::DynamoDB::Table
     Properties:
@@ -39,7 +39,7 @@ Resources:
         - AttributeName: "submittedDateTime"
           KeyType: "RANGE"
       BillingMode: PAY_PER_REQUEST
-      TableName: "ProjectKittyTransactionsTablesOnly"
+      TableName: "ProjectKittyTransactions"
   ProjectKittyPeerToPeer:
     Type: AWS::DynamoDB::Table
     Properties:
@@ -54,4 +54,4 @@ Resources:
         - AttributeName: "destinationCustomerID"
           KeyType: "RANGE"
       BillingMode: PAY_PER_REQUEST
-      TableName: "ProjectKittyPeerToPeerTablesOnly"
+      TableName: "ProjectKittyPeerToPeer"

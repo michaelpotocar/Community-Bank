@@ -1,33 +1,32 @@
-# Package
-aws cloudformation package \
-  --template ./cf.yaml \
-  --s3-bucket projectkitty \
-  --output-template-file ./packaged-template.yaml \
+# Create Stack
+rm  /Users/michaelpotocar/Developer/Bloomtech/bd-team-project-project-kitty/src/CloudFormation/WriteDynamoDbLambda.zip
+zip -j /Users/michaelpotocar/Developer/Bloomtech/bd-team-project-project-kitty/src/CloudFormation/WriteDynamoDbLambda.zip \
+ /Users/michaelpotocar/Developer/Bloomtech/bd-team-project-project-kitty/src/CloudFormation/WriteDynamoDbData/PopulateTables/index.mjs \
+ /Users/michaelpotocar/Developer/Bloomtech/bd-team-project-project-kitty/src/CloudFormation/WriteDynamoDbData/PopulateTables/cfn-response.mjs
+aws s3 cp \
+ /Users/michaelpotocar/Developer/Bloomtech/bd-team-project-project-kitty/src/CloudFormation/WriteDynamoDbLambda.zip \
+ s3://projectkitty \
+ --profile bt
+aws s3 cp \
+ /Users/michaelpotocar/Developer/Bloomtech/bd-team-project-project-kitty/src/CloudFormation/cf.yaml \
+ s3://projectkitty \
+ --profile bt
+aws cloudformation create-stack \
+ --stack-name ProjectKitty \
+ --template-url https://projectkitty.s3.us-west-2.amazonaws.com/cf.yaml \
+  --capabilities CAPABILITY_IAM \
+ --profile bt
+# Delete Stack
+aws cloudformation delete-stack \
   --region us-west-2 \
+  --stack-name ProjectKitty \
   --profile bt
-
-# Deploy package
-aws cloudformation deploy \
---template-file ./packaged-template.yaml \
---stack-name ProjectKitty \
---region us-west-2 \
---profile bt \
---capabilities CAPABILITY_IAM
-
+#########################################Tables
 # Create Stack
 aws cloudformation create-stack \
   --region us-west-2 \
-  --stack-name ProjectKitty \
-  --template-body file://src/CloudFormation/cf.yaml \
-  --capabilities CAPABILITY_IAM \
-  --profile bt
-
-#########################################Tables
-# Create Tables Only
-aws cloudformation create-stack \
-  --region us-west-2 \
   --stack-name ProjectKittyTablesOnly \
-  --template-body file://cfTables.yaml \
+  --template-body file://src/CloudFormation/cfTables.yaml \
   --capabilities CAPABILITY_IAM \
   --profile bt
 
@@ -39,19 +38,3 @@ aws cloudformation create-stack \
   --template-body file://src/CloudFormation/cfTest.yaml \
   --capabilities CAPABILITY_IAM \
   --profile bt
-
-# Package
-aws cloudformation package \
-  --template ./cfTest.yaml \
-  --s3-bucket projectkitty \
-  --output-template-file ./packaged-template-test.yaml \
-  --region us-west-2 \
-  --profile bt
-
-# Deploy
-aws cloudformation deploy \
-  --template-file ./packaged-template-test.yaml \
-  --stack-name ProjectKittyTest10 \
-  --region us-west-2 \
-  --profile bt \
-  --capabilities CAPABILITY_IAM

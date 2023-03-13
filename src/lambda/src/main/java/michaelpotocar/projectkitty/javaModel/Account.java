@@ -1,2 +1,5 @@
-package michaelpotocar.projectkitty.model;public class Account {
+package michaelpotocar.projectkitty.javaModel;
+
+public class Account {
+
 }

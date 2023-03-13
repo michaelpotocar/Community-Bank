@@ -1,8 +1,8 @@
 [
-  { "id": "471470477", "firstName": "Leigh", "lastName": "Rabier", "friends": [ 353275695, 761707788, 360432542, 256805475 ] },
-  { "id": "353275695", "firstName": "Nydia", "lastName": "Perotti", "friends": [ 471470477, 360432542, 256805475 ] },
-  { "id": "941255051", "firstName": "Valentijn", "lastName": "Flintoft", "friends": [ 761707788 ] },
-  { "id": "761707788", "firstName": "Nelle", "lastName": "Corbin", "friends": [ 471470477, 941255051 ] },
-  { "id": "360432542", "firstName": "Xerxes", "lastName": "Shutle", "friends": [ 471470477, 353275695, 256805475 ] },
-  { "id": "256805475", "firstName": "Jone", "lastName": "Bartaletti", "friends": [ 471470477, 353275695, 360432542 ] }
+  { "id": "811259776", "firstName": "Leigh", "lastName": "Rabier" },
+  { "id": "126879020", "firstName": "Nydia", "lastName": "Perotti" },
+  { "id": "790214816", "firstName": "Valentijn", "lastName": "Flintoft" },
+  { "id": "119539015", "firstName": "Nelle", "lastName": "Corbin" },
+  { "id": "367435024", "firstName": "Xerxes", "lastName": "Shutle" },
+  { "id": "161102352", "firstName": "Jone", "lastName": "Bartaletti" }
 ]

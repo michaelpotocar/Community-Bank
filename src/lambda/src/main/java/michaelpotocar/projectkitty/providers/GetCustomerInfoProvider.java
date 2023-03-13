@@ -5,7 +5,7 @@ import com.amazonaws.services.lambda.runtime.RequestHandler;
 import michaelpotocar.projectkitty.requests.GetCustomerInfoRequest;
 import michaelpotocar.projectkitty.results.GetCustomerInfoResult;
 
-public class GetCustomerInfo  implements RequestHandler<GetCustomerInfoRequest, GetCustomerInfoResult> {
+public class GetCustomerInfoProvider implements RequestHandler<GetCustomerInfoRequest, GetCustomerInfoResult> {
     public static void main(String[] args) {
         System.out.println("Hello world!");
     }

@@ -94,7 +94,7 @@ Resources:
       Runtime: nodejs18.x
       Code:
         S3Bucket: projectkitty
-        S3Key: "Archive.zip"
+        S3Key: "WriteDynamoDbLambda.zip"
       Timeout: 60
   RunPopulateTables:
     Type: AWS::CloudFormation::CustomResource
