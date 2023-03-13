@@ -1,5 +1,6 @@
 import { S3Client, GetObjectCommand } from "@aws-sdk/client-s3";
 import { DynamoDBClient, BatchWriteItemCommand } from "@aws-sdk/client-dynamodb";
+import { DynamoDBDocumentClient } from "@aws-sdk/lib-dynamodb";
 import { fromIni } from "@aws-sdk/credential-provider-ini";
 import { fromEnv } from "@aws-sdk/credential-provider-env";
 import { loadSharedConfigFiles } from '@aws-sdk/shared-ini-file-loader';
@@ -19,6 +20,7 @@ if (process.env.AWS_LAMBDA_FUNCTION_NAME) {
 
 const s3Client = new S3Client(credentials);
 const ddbClient = new DynamoDBClient(credentials);
+const ddbDocClient = DynamoDBDocumentClient.from(ddbClient);
 
 const tableData = {
     ProjectKittyCustomers: {
@@ -106,15 +108,6 @@ export const handler = async function (event, context) {
             }
         }
 
-
-        let creditAndCheckingAccounts = accounts.filter(account => account.type.S != 'external' && account.type.S != 'savings');
-
-        for (transaction of transactions) {
-            let mod = parseInt(transaction.submittedDateTime.N) % creditAndCheckingAccounts.length;
-            transaction.accountNumber = {}
-            transaction.accountNumber.N = creditAndCheckingAccounts[mod].accountNumber.N;
-        }
-
         if (table == 'ProjectKittyTransactions') {
             for (let i = 0; i < entries.length / batchSize; i++) {
                 const filtered = entries.filter(({ }, index) => index >= batchSize * i && index < batchSize * (i + 1));
@@ -143,7 +136,7 @@ export const handler = async function (event, context) {
             };
 
             try {
-                await ddbClient.send(new BatchWriteItemCommand(params));
+                await ddbDocClient.send(new BatchWriteItemCommand(params));
                 console.log(table, 'batch persisted Succcessfully');
             } catch (err) {
                 console.error(err);
