@@ -4,6 +4,18 @@ zip -j /Users/michaelpotocar/Developer/Bloomtech/bd-team-project-project-kitty/s
  /Users/michaelpotocar/Developer/Bloomtech/bd-team-project-project-kitty/src/CloudFormation/WriteDynamoDbData/PopulateTables/index.mjs \
  /Users/michaelpotocar/Developer/Bloomtech/bd-team-project-project-kitty/src/CloudFormation/WriteDynamoDbData/PopulateTables/cfn-response.mjs
 aws s3 cp \
+ /Users/michaelpotocar/Developer/Bloomtech/bd-team-project-project-kitty/src/CloudFormation/ddbTableDate/ProjectKittyCustomers.json \
+ s3://projectkitty \
+ --profile bt
+aws s3 cp \
+ /Users/michaelpotocar/Developer/Bloomtech/bd-team-project-project-kitty/src/CloudFormation/ddbTableDate/ProjectKittyAccounts.json \
+ s3://projectkitty \
+ --profile bt
+aws s3 cp \
+ /Users/michaelpotocar/Developer/Bloomtech/bd-team-project-project-kitty/src/CloudFormation/ddbTableDate/ProjectKittyTransactions.json \
+ s3://projectkitty \
+ --profile bt
+aws s3 cp \
  /Users/michaelpotocar/Developer/Bloomtech/bd-team-project-project-kitty/src/CloudFormation/WriteDynamoDbLambda.zip \
  s3://projectkitty \
  --profile bt
@@ -16,25 +28,3 @@ aws cloudformation create-stack \
  --template-url https://projectkitty.s3.us-west-2.amazonaws.com/cf.yaml \
   --capabilities CAPABILITY_IAM \
  --profile bt
-# Delete Stack
-aws cloudformation delete-stack \
-  --region us-west-2 \
-  --stack-name ProjectKitty \
-  --profile bt
-#########################################Tables
-# Create Stack
-aws cloudformation create-stack \
-  --region us-west-2 \
-  --stack-name ProjectKittyTablesOnly \
-  --template-body file://src/CloudFormation/cfTables.yaml \
-  --capabilities CAPABILITY_IAM \
-  --profile bt
-
-#########################################Test
-# create-stack
-aws cloudformation create-stack \
-  --region us-west-2 \
-  --stack-name ProjectKittyTest \
-  --template-body file://src/CloudFormation/cfTest.yaml \
-  --capabilities CAPABILITY_IAM \
-  --profile bt

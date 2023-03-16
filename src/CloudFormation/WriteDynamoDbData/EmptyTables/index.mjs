@@ -14,7 +14,7 @@ if (process.env.AWS_LAMBDA_FUNCTION_NAME) {
     };
 }
 
-const tables = ['ProjectKittyCustomers', 'ProjectKittyAccounts', 'ProjectKittyTransactions', 'ProjectKittyPeerToPeer'];
+const tables = ['ProjectKittyCustomers', 'ProjectKittyAccounts', 'ProjectKittyTransactions', 'ProjectKittyPeerToPeerTransactions'];
 const ddbClient = new DynamoDBClient(credentials);
 let params;
 let key;
