@@ -13,6 +13,7 @@ public class Account {
     private Long customerId;
     private String nickname;
     private String type;
+    private Double creditLimit;
 
     @DynamoDBHashKey(attributeName = "accountNumber")
     public Long getAccountNumber() {return accountNumber;}
@@ -38,11 +39,7 @@ public class Account {
     public String getType() {return type;}
     public void setType(String type) {this.type = type;}
 
+    @DynamoDBAttribute(attributeName = "creditLimit")
+    public Double getCreditLimit() {return creditLimit;}
+    public void setCreditLimit(Double creditLimit) {this.creditLimit = creditLimit;}
 }
-
-
-
-
-
-
-

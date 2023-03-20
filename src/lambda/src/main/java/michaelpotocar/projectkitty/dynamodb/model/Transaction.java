@@ -32,7 +32,5 @@ public class Transaction {
     @DynamoDBAttribute(attributeName = "memo")
     public String getMemo() {return memo;}
     public void setMemo(String memo) {this.memo = memo;}
+
 }
-
-
-

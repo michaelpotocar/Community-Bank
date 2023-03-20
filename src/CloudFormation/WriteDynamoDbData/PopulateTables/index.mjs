@@ -26,7 +26,7 @@ const tableData = [
 let customers, accounts, transactions;
 
 let s3Promises = [];
-let batchSize = 25;
+let batchSize = 1;
 let ddbPromises = [];
 
 export const handler = async function (event, context) {
@@ -79,6 +79,13 @@ export const handler = async function (event, context) {
         });
 
     ////////////////////////Link Data
+
+    let transactionAccounts = accounts.filter(account => account.type != 'savings' && account.type != 'external');
+    let checkingAccounts = accounts.filter(account => account.type == 'checking');
+    let creditAccounts = accounts.filter(account => account.type == 'credit');
+    let savingsAccounts = accounts.filter(account => account.type == 'savings');
+
+
     //Index objects
     customers.forEach((customer, index) => {
         customer.index = index;
@@ -86,7 +93,6 @@ export const handler = async function (event, context) {
     accounts.forEach((account, index) => {
         account.index = index;
     });
-    let transactionAccounts = accounts.filter(account => account.type != 'savings' && account.type != 'external');
     transactionAccounts.forEach((account, index) => {
         account.secondaryIndex = index;
     });
@@ -101,6 +107,104 @@ export const handler = async function (event, context) {
             transaction.accountNumber = transactionAccount.accountNumber;
         }
     }
+
+    //Correct transaction amounts and memos 
+    for (let account of checkingAccounts) {
+        for (let transaction of account.transactions) {
+            transaction.amount *= -1;
+        }
+    }
+
+    for (let account of creditAccounts) {
+        for (let transaction of account.transactions) {
+            if (transaction.amount < 0) {
+                transaction.memo = 'Payment - Thank You';
+            }
+        }
+    }
+
+    for (let account of checkingAccounts) {
+        account.transactions.sort((a, b) => { return a.submittedDateTime - b.submittedDateTime; });
+        let balance = 0;
+        let newBalance = 0;
+        account.transactions.forEach((transaction, index) => {
+            newBalance = balance + transaction.amount;
+            if (newBalance < 0) {
+
+                let delta = -newBalance;
+                let amount = transaction.amount + Math.ceil(delta / 100) * 100 * (index + 1) + 100;
+                let memo = amount > 0 ? 'Balance Transfer' : 'Payment - Thank You';
+                transaction.amount = amount;
+                transaction.memo = memo;
+                balance += amount;
+
+
+            } else {
+                balance += transaction.amount;
+            }
+        });
+
+        // account.transactions.sort((a, b) => { return a.submittedDateTime - b.submittedDateTime; });
+        // balance = 0;
+        // account.transactions.forEach((transaction) => {
+        //     balance += transaction.amount;
+        //     console.log(balance);
+        // });
+    }
+
+    for (let account of creditAccounts) {
+        account.transactions.sort((a, b) => { return a.submittedDateTime - b.submittedDateTime; });
+        let balance = 0;
+        let newBalance = 0;
+        account.transactions.forEach((transaction, index) => {
+
+            newBalance = balance + transaction.amount;
+            if (newBalance < 0) {
+                let delta = -newBalance;
+                let amount = transaction.amount + Math.ceil(delta / 100) * 100 * (index + 1) + 100;
+                let memo = amount > 0 ? 'Balance Transfer' : 'Payment - Thank You';
+                transaction.amount = amount;
+                transaction.memo = memo;
+                balance += amount;
+            } else if (newBalance > account.creditLimit) {
+                let delta = account.creditLimit - newBalance;
+                let amount = transaction.amount - Math.floor(delta / 100) * 100 * (index + 1) - 100;
+                let memo = amount > 0 ? 'Balance Transfer' : 'Payment - Thank You';
+                transaction.amount = amount;
+                transaction.memo = memo;
+                balance += amount;
+            } else {
+                balance += transaction.amount;
+            }
+        });
+
+        // account.transactions.sort((a, b) => { return a.submittedDateTime - b.submittedDateTime; });
+        // balance = 0;
+        // console.log(`limit: ${account.creditLimit}`);
+        // account.transactions.forEach((transaction) => {
+        //     balance += transaction.amount;
+        //     console.log(balance);
+        // });
+    }
+
+    for (let account of savingsAccounts) {
+
+        let amount = (account.index + 1) * 100;
+        let submittedDateTime = 1640995200 + ((account.index + 1) / (accounts.length + 1)) * 86400;
+        let completedDateTime = Math.ceil(submittedDateTime / 86400) * 86400;
+
+        let newTransaction = {
+            accountNumber: account.accountNumber,
+            submittedDateTime: submittedDateTime,
+            completedDateTime: completedDateTime,
+            amount: amount,
+            memo: 'Deposit',
+        };
+
+        transactions.push(newTransaction);
+        account.transactions = [newTransaction];
+    }
+
     for (let account of accounts) {
         account.balance = (account.transactions ?? []).reduce((accumulator, transaction) => {
             transaction.accountNumber = account.accountNumber;
@@ -144,7 +248,7 @@ export const handler = async function (event, context) {
     ////////////////////////Accounts
     //Transaction Accounts
     let mappedAccounts = accounts.map(account => {
-        return {
+        let mappedAccount = {
             PutRequest: {
                 Item: {
                     accountNumber: { N: String(account.accountNumber) },
@@ -156,6 +260,10 @@ export const handler = async function (event, context) {
                 }
             }
         };
+        if (account.type == 'credit') {
+            mappedAccount.PutRequest.Item.creditLimit = { N: String(account.creditLimit) };
+        }
+        return mappedAccount;
     });
 
     //Create DynamoBD Promise

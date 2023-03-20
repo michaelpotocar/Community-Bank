@@ -1,17 +1,21 @@
 package michaelpotocar.projectkitty.requests;
 
 public class GetCustomerInfoRequest {
-    private String id;
+    private Long id;
 
-    public String getId() {
+    public GetCustomerInfoRequest() {
+    }
+
+    public GetCustomerInfoRequest(Long id) {
+        this.setId(id);
+    }
+
+
+    public Long getId() {
         return this.id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
-    }
-
-    public GetCustomerInfoRequest(String id) {
-        this.setId(id);
     }
 }

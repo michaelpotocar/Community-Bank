@@ -21,4 +21,5 @@ public class ContactStub {
     @DynamoDBAttribute(attributeName = "lastName")
     public String getLastName() {return lastName;}
     public void setLastName(String lastName) {this.lastName = lastName;}
+
 }
