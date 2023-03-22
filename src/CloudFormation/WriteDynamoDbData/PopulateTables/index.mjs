@@ -92,6 +92,15 @@ export const handler = async function (event, context) {
     });
     accounts.forEach((account, index) => {
         account.index = index;
+
+        let i = 0;
+        let n = account.nickname.charAt(0).toUpperCase() + account.nickname.slice(1);
+        while (n.indexOf(' ', i) != -1) {
+            n = n.slice(0, n.indexOf(' ', i) + 1) + n.charAt(n.indexOf(' ', i) + 1).toUpperCase() + n.slice(n.indexOf(' ', i) + 2);
+            i = n.indexOf(' ', i) + 1;
+        }
+        account.nickname = n;
+
     });
     transactionAccounts.forEach((account, index) => {
         account.secondaryIndex = index;
@@ -130,15 +139,12 @@ export const handler = async function (event, context) {
         account.transactions.forEach((transaction, index) => {
             newBalance = balance + transaction.amount;
             if (newBalance < 0) {
-
                 let delta = -newBalance;
                 let amount = transaction.amount + Math.ceil(delta / 100) * 100 * (index + 1) + 100;
                 let memo = amount > 0 ? 'Balance Transfer' : 'Payment - Thank You';
                 transaction.amount = amount;
                 transaction.memo = memo;
                 balance += amount;
-
-
             } else {
                 balance += transaction.amount;
             }
@@ -160,17 +166,15 @@ export const handler = async function (event, context) {
 
             newBalance = balance + transaction.amount;
             if (newBalance < 0) {
-                let delta = -newBalance;
-                let amount = transaction.amount + Math.ceil(delta / 100) * 100 * (index + 1) + 100;
+                let amount = .5 * account.creditLimit + Math.random() * 200 - 100 - balance;
                 let memo = amount > 0 ? 'Balance Transfer' : 'Payment - Thank You';
-                transaction.amount = amount;
+                transaction.amount = (Math.round(amount * 100) / 100);
                 transaction.memo = memo;
                 balance += amount;
             } else if (newBalance > account.creditLimit) {
-                let delta = account.creditLimit - newBalance;
-                let amount = transaction.amount - Math.floor(delta / 100) * 100 * (index + 1) - 100;
+                let amount = .5 * account.creditLimit + Math.random() * 200 - 100 - balance;
                 let memo = amount > 0 ? 'Balance Transfer' : 'Payment - Thank You';
-                transaction.amount = amount;
+                transaction.amount = (Math.round(amount * 100) / 100);
                 transaction.memo = memo;
                 balance += amount;
             } else {
@@ -206,15 +210,16 @@ export const handler = async function (event, context) {
     }
 
     for (let account of accounts) {
-        account.balance = (account.transactions ?? []).reduce((accumulator, transaction) => {
+        account.balance = (Math.round((account.transactions ?? []).reduce((accumulator, transaction) => {
             transaction.accountNumber = account.accountNumber;
             return accumulator + transaction.amount;
-        }, 0);
+        }, 0) * 100) / 100);
+
     }
     for (let customer of customers) {
         customer.contacts = customers.filter(contact => Math.abs(customer.id - contact.id) < 200000000 && customer.id != contact.id);
         customer.accounts = accounts.filter(account => (account.accountNumber % customers.length) == customer.index);
-        for (let account of accounts) {
+        for (let account of customer.accounts) {
             account.customerId = customer.id;
         }
     }
