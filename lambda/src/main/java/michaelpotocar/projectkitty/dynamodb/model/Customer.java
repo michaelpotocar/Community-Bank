@@ -11,7 +11,7 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
 import java.util.List;
 
 @DynamoDBTable(
-        tableName = "ProjectKittyCustomers"
+        tableName = "Customers"
 )
 public class Customer {
     private Long id;

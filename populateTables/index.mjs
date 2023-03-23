@@ -8,17 +8,17 @@ import * as cfnResponse from './cfn-response.mjs';
 const tableData = [
     {
         bucket: 'projectkitty',
-        key: 'ProjectKittyCustomers.json',
+        key: 'Customers.json',
         write: obj => { customers = obj; },
     },
     {
         bucket: 'projectkitty',
-        key: 'ProjectKittyAccounts.json',
+        key: 'Accounts.json',
         write: obj => { accounts = obj; },
     },
     {
         bucket: 'projectkitty',
-        key: 'ProjectKittyTransactions.json',
+        key: 'Transactions.json',
         write: obj => { transactions = obj; },
     },
 ];
@@ -246,7 +246,7 @@ export const handler = async function (event, context) {
             j >= (batchSize * i) && j < (batchSize * (i + 1))
         ));
 
-        let params = { RequestItems: { 'ProjectKittyTransactions': batchTransactions } };
+        let params = { RequestItems: { 'Transactions': batchTransactions } };
         ddbPromises.push(ddbClient.send(new BatchWriteItemCommand(params)));
     }
 
@@ -277,7 +277,7 @@ export const handler = async function (event, context) {
             j >= (batchSize * i) && j < (batchSize * (i + 1))
         ));
 
-        let params = { RequestItems: { 'ProjectKittyAccounts': batchAccounts } };
+        let params = { RequestItems: { 'Accounts': batchAccounts } };
         ddbPromises.push(ddbClient.send(new BatchWriteItemCommand(params)));
     }
 
@@ -332,7 +332,7 @@ export const handler = async function (event, context) {
             j >= (batchSize * i) && j < (batchSize * (i + 1))
         ));
 
-        let params = { RequestItems: { 'ProjectKittyCustomers': batchCustomers } };
+        let params = { RequestItems: { 'Customers': batchCustomers } };
         ddbPromises.push(ddbClient.send(new BatchWriteItemCommand(params)));
     }
 

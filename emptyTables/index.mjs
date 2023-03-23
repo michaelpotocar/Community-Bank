@@ -14,7 +14,7 @@ if (process.env.AWS_LAMBDA_FUNCTION_NAME) {
     };
 }
 
-const tables = ['ProjectKittyCustomers', 'ProjectKittyAccounts', 'ProjectKittyTransactions', 'ProjectKittyPeerToPeerTransactions'];
+const tables = ['Customers', 'Accounts', 'Transactions', 'PeerToPeerTransactions'];
 const ddbClient = new DynamoDBClient(credentials);
 let params;
 let key;
@@ -40,7 +40,7 @@ export const handler = async function (event, context) {
             params = {
                 TableName: table,
                 Key: key
-            }
+            };
 
             promises.push(new Promise(resolve => {
                 ddbClient.send(new DeleteItemCommand(params));

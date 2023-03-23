@@ -21,4 +21,11 @@ public class GetCustomersResult {
     public void setAccounts(List<CustomerStub> customers) {
         this.customers = customers;
     }
+
+    @Override
+    public String toString() {
+        return "GetCustomersResult{" +
+                "customers=" + customers +
+                '}';
+    }
 }

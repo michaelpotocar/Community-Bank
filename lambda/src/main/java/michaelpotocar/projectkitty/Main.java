@@ -37,15 +37,22 @@ public class Main {
     }
 
     public static void main(String[] args) {
+        getCustomerInfo();
+    }
+
+    public static void getCustomerInfo() {
+        GetCustomerInfoRequest request = new GetCustomerInfoRequest();
+        request.setId(126879020l);
+        GetCustomerInfoResult result = (new GetCustomerInfoProvider()).handleRequest(request, (Context)null);
+    }
+    public static void getCustomers() {
         GetCustomersRequest request = new GetCustomersRequest();
         GetCustomersResult result = (new GetCustomersProvider()).handleRequest(request, (Context)null);
-        System.out.println();
     }
 
     public static void testCredentials() {
         GetCustomerInfoRequest request = new GetCustomerInfoRequest(1L);
         GetCustomerInfoResult result = (new GetCustomerInfoProvider()).handleRequest(request, (Context)null);
-        System.out.println();
     }
 
     public static void testDynamoDBDao() {

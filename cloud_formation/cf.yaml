@@ -1,5 +1,6 @@
+---
 Resources:
-  ProjectKittyCustomers:
+  CustomersTable:
     Type: AWS::DynamoDB::Table
     Properties:
       AttributeDefinitions:
@@ -9,8 +10,9 @@ Resources:
         - AttributeName: "id"
           KeyType: "HASH"
       BillingMode: PAY_PER_REQUEST
-      TableName: "ProjectKittyCustomers"
-  ProjectKittyAccounts:
+      TableName: "Customers"
+
+  AccountsTable:
     Type: AWS::DynamoDB::Table
     Properties:
       AttributeDefinitions:
@@ -24,8 +26,9 @@ Resources:
         - AttributeName: "routingNumber"
           KeyType: "RANGE"
       BillingMode: PAY_PER_REQUEST
-      TableName: "ProjectKittyAccounts"
-  ProjectKittyTransactions:
+      TableName: "Accounts"
+
+  TransactionsTable:
     Type: AWS::DynamoDB::Table
     Properties:
       AttributeDefinitions:
@@ -39,8 +42,9 @@ Resources:
         - AttributeName: "submittedDateTime"
           KeyType: "RANGE"
       BillingMode: PAY_PER_REQUEST
-      TableName: "ProjectKittyTransactions"
-  ProjectKittyPeerToPeerTransactions:
+      TableName: "Transactions"
+
+  PeerToPeerTransactionsTable:
     Type: AWS::DynamoDB::Table
     Properties:
       AttributeDefinitions:
@@ -54,8 +58,9 @@ Resources:
         - AttributeName: "destinationCustomerID"
           KeyType: "RANGE"
       BillingMode: PAY_PER_REQUEST
-      TableName: "ProjectKittyPeerToPeerTransactions"
-  ProjectKittyPopulateRole:
+      TableName: "PeerToPeerTransactions"
+
+  LambdaRole:
     Type: AWS::IAM::Role
     Properties:
       AssumeRolePolicyDocument:
@@ -69,7 +74,7 @@ Resources:
               - sts:AssumeRole
       Path: "/"
       Policies:
-        - PolicyName: ProjectKittyPopulateRole
+        - PolicyName: LambdaRole
           PolicyDocument:
             Version: '2012-10-17'
             Statement:
@@ -85,23 +90,102 @@ Resources:
                 Action:
                   - logs:*
                 Resource: "*"
+
   PopulateTables:
     Type: AWS::Lambda::Function
     Properties:
       Handler: index.handler
       Role:
-        Fn::GetAtt: [ ProjectKittyPopulateRole , "Arn" ]
+        Fn::GetAtt: [ LambdaRole , "Arn" ]
       Runtime: nodejs18.x
       Code:
         S3Bucket: projectkitty
-        S3Key: "WriteDynamoDbLambda.zip"
+        S3Key: "populateTables.zip"
       Timeout: 60
+
   RunPopulateTables:
     Type: AWS::CloudFormation::CustomResource
     DependsOn:
-      - ProjectKittyCustomers
-      - ProjectKittyAccounts
-      - ProjectKittyTransactions
+      - CustomersTable
+      - AccountsTable
+      - TransactionsTable
     Properties:
       ServiceToken:
         Fn::GetAtt: [ PopulateTables , "Arn" ]
+
+  EmptyTables:
+    Type: AWS::Lambda::Function
+    Properties:
+      Handler: index.handler
+      Role:
+        Fn::GetAtt: [ LambdaRole , "Arn" ]
+      Runtime: nodejs18.x
+      Code:
+        S3Bucket: projectkitty
+        S3Key: "emptyTables.zip"
+      Timeout: 60
+
+  GetCustomersLambda:
+    Type: AWS::Lambda::Function
+    Properties:
+      Handler: michaelpotocar.projectkitty.providers.GetCustomersProvider::handleRequest
+      Role:
+        Fn::GetAtt: [ LambdaRole , "Arn" ]
+      Runtime: java11
+      Code:
+        S3Bucket: projectkitty
+        S3Key: "lambda-1.0-SNAPSHOT.zip"
+      MemorySize: 256
+      Timeout: 60
+
+  GetCustomersPermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName:
+        Ref: GetCustomersLambda
+      Principal: apigateway.amazonaws.com
+      SourceArn:
+        Fn::Sub:
+          "arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${ApiGateway}/*/*/*"
+
+  GetCustomerInfoLambda:
+    Type: AWS::Lambda::Function
+    Properties:
+      Handler: michaelpotocar.projectkitty.providers.GetCustomerInfoProvider::handleRequest
+      Role:
+        Fn::GetAtt: [ LambdaRole , "Arn" ]
+      Runtime: java11
+      Code:
+        S3Bucket: projectkitty
+        S3Key: "lambda-1.0-SNAPSHOT.zip"
+      MemorySize: 256
+      Timeout: 60
+
+  GetCustomerInfoPermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName:
+        Ref: GetCustomerInfoLambda
+      Principal: apigateway.amazonaws.com
+      SourceArn:
+        Fn::Sub:
+          "arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${ApiGateway}/*/*/*"
+
+  ApiGatewayDeployment:
+    Type: AWS::ApiGateway::Deployment
+    Properties:
+      RestApiId:
+        Ref: ApiGateway
+      StageName: prod
+
+  ApiGateway:
+    Type: AWS::ApiGateway::RestApi
+    Properties:
+      Name: ProjectKitty
+      Body:
+        Fn::Transform:
+          Name: AWS::Include
+          Parameters:
+            Location: s3://projectkitty/swagger.yaml

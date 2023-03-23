@@ -1,0 +1,1 @@
+aws cloudformation get-template --stack-name ProjectKitty --template-stage Processed --profile bt

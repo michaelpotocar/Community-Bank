@@ -25,26 +25,28 @@ public class CustomerDao {
     }
 
     public static Customer getCustomer(Long id) {
-        Customer customer = (Customer)ddbMapper.load(Customer.class, id);
+        Customer customer = ddbMapper.load(Customer.class, id);
         return customer;
     }
 
     public static List<Customer> getAllCustomers() {
-        System.out.println("getAllCustomers1");
         DynamoDBScanExpression scanExpression = new DynamoDBScanExpression();
-        System.out.println("getAllCustomers2");
         List<Customer> customers = ddbMapper.scan(Customer.class, scanExpression);
-        System.out.println("getAllCustomers3");
         return customers;
     }
 
     static {
         if (System.getenv("AWS_EXECUTION_ENV") != null) {
-            ddbClient = (AmazonDynamoDB)((AmazonDynamoDBClientBuilder)((AmazonDynamoDBClientBuilder)AmazonDynamoDBClientBuilder.standard().withCredentials(credentialsProvider)).withRegion(Regions.US_WEST_2)).build();
+            ddbClient = ((AmazonDynamoDBClientBuilder
+                    .standard()
+                    .withCredentials(credentialsProvider))
+                    .withRegion(Regions.US_WEST_2)).build();
         } else {
-            ddbClient = (AmazonDynamoDB)((AmazonDynamoDBClientBuilder)((AmazonDynamoDBClientBuilder)AmazonDynamoDBClientBuilder.standard().withCredentials(localCredentialsProvider)).withRegion(Regions.US_WEST_2)).build();
+            ddbClient = ((AmazonDynamoDBClientBuilder
+                    .standard()
+                    .withCredentials(localCredentialsProvider))
+                    .withRegion(Regions.US_WEST_2)).build();
         }
-
         ddbMapper = new DynamoDBMapper(ddbClient);
     }
 }

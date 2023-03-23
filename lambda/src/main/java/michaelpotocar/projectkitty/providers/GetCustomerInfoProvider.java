@@ -17,6 +17,7 @@ public class GetCustomerInfoProvider implements RequestHandler<GetCustomerInfoRe
     }
 
     public GetCustomerInfoResult handleRequest(GetCustomerInfoRequest input, Context context) {
+        System.out.println("Input: " + input.toString());
         Long customerID = input.getId();
         Customer customer = CustomerDao.getCustomer(customerID);
         System.out.println(customer.toString());
@@ -25,6 +26,7 @@ public class GetCustomerInfoProvider implements RequestHandler<GetCustomerInfoRe
         result.setFirstName(customer.getFirstName());
         result.setLastName(customer.getLastName());
         result.setAccounts(customer.getAccounts());
+        System.out.println("Result: " + result.toString());
         return result;
     }
 }

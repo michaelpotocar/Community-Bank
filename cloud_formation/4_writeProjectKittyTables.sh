@@ -1,1 +1,1 @@
-node /Users/michaelpotocar/Developer/Bloomtech/bd-team-project-project-kitty/src/CloudFormation/WriteDynamoDbData/PopulateTables/lambda.mjs
+node /Users/michaelpotocar/Developer/Bloomtech/bd-team-project-project-kitty/dynamodb/PopulateTables/lambda.mjs

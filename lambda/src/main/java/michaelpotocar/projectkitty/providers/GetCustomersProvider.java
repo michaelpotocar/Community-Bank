@@ -21,10 +21,9 @@ public class GetCustomersProvider implements RequestHandler<GetCustomersRequest,
     }
 
     public GetCustomersResult handleRequest(GetCustomersRequest input, Context context) {
-        System.out.println("handling request1");
+        System.out.println("Input: " + input.toString());
         List<Customer> customers = CustomerDao.getAllCustomers();
         GetCustomersResult result = new GetCustomersResult();
-        System.out.println("handling request2");
         List<CustomerStub> customerStubs = new ArrayList();
         Iterator var6 = customers.iterator();
 
@@ -38,7 +37,7 @@ public class GetCustomersProvider implements RequestHandler<GetCustomersRequest,
         }
 
         result.setAccounts(customerStubs);
-        System.out.println("handling request3");
+        System.out.println("Result: " + result.toString());
         return result;
     }
 }
