@@ -1,4 +1,6 @@
-.DS_Store
 .idea/
-~$*
-/src/lambda/build/distributions/lambda-1.0-SNAPSHOT.zip
+.DS_Store
+node_modules/
+.vscode/
+.gradle/
+build/
