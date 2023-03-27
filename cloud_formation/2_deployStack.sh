@@ -108,7 +108,7 @@ api_id=`aws apigateway get-rest-apis \
   --region us-west-2 \
   | jq -r '.items[] | select(.name == "ProjectKitty") | .id'`
 
-echo $api_id > '/Users/michaelpotocar/Developer/Bloomtech/bd-team-project-project-kitty/.ignore/api_id'
+echo $api_id > '/Users/michaelpotocar/Developer/Bloomtech/bd-team-project-project-kitty/frontend/public/.ignore/api_id'
 
 api_message="API ID: ${api_id}"
 echo "${api_message}"
@@ -119,6 +119,6 @@ postman_collection=`cat /Users/michaelpotocar/Developer/Bloomtech/bd-team-projec
 postman login --with-api-key ${postman_api_key} \
   > /dev/null
 postman collection run ${postman_collection} \
-  --global-var api_Id=${api_id}
+  --global-var api_id=${api_id}
 
 echo ''
