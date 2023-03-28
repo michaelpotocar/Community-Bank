@@ -3,16 +3,17 @@ import axios from 'axios';
 import { styled } from '@mui/material/styles';
 import { Button, Container, Paper, Grid, Box, Typography } from '@mui/material';
 import Context from './Context';
-import { Link } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 
-function CustomerList() {
+function AccountList() {
   const { api_id } = useContext(Context);
+  const { customerId } = useParams();
   const [loading, setLoading] = useState(true);
-  const [resp, setResp] = useState("Loading");
+  const [resp, setResp] = useState('Loading');
 
   useMemo(() => {
     if (api_id != '') {
-      axios.get(`https://${api_id}.execute-api.us-west-2.amazonaws.com/prod/customers`)
+      axios.get(`https://${api_id}.execute-api.us-west-2.amazonaws.com/prod/customers/${customerId}`)
         .then(response => {
           setResp(response.data);
           setLoading(false);
@@ -36,21 +37,21 @@ function CustomerList() {
     <>
       <Container maxWidth='md' disableGutters={true}>
         <Typography align='center' variant="h2">
-          Welcome!
+          Hi {resp.firstName}!
         </Typography>
       </Container>
 
       <Container maxWidth='md' disableGutters={true}>
-        {resp.customers.map(customer => {
+        {resp.accounts.filter(a => a.type !== 'external').map(account => {
           return (
             <Grid container spacing={5}>
               <Grid item xs={8}>
-                <Item>{customer.firstName} {customer.lastName}</Item>
+                <Item>{account.nickname} Balance: ${(Math.round(account.balance * 100) / 100).toFixed(2)}</Item>
               </Grid>
               <Grid item xs={4}>
                 <Container>
-                  <Link to={`/customer/${customer.id}`} >
-                    <Button variant="contained" fullWidth={true}>View Accounts</Button>
+                  <Link to={`/customer/${customerId}/account/${account.accountNumber}`} >
+                    <Button variant="contained" fullWidth={true} >View Transactions</Button>
                   </Link>
                 </Container>
               </Grid>
@@ -63,5 +64,4 @@ function CustomerList() {
   );
 };
 
-export default CustomerList;
-
+export default AccountList;

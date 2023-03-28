@@ -3,20 +3,20 @@ import axios from 'axios';
 import { styled } from '@mui/material/styles';
 import { Button, Container, Paper, Grid, Box, Typography } from '@mui/material';
 import Context from './Context';
+import { useParams, Link } from 'react-router-dom';
 
-function CustomerDetails() {
-  const { api_id, customerId, setPage } = useContext(Context);
+function TransactionList() {
+  const { api_id } = useContext(Context);
+  const { customerId, accountId } = useParams();
   const [loading, setLoading] = useState(true);
-  const [resp, setResp] = useState("Loading");
+  const [resp, setResp] = useState('Loading');
 
   useMemo(() => {
     if (api_id != '') {
       axios.get(`https://${api_id}.execute-api.us-west-2.amazonaws.com/prod/customers/${customerId}`)
         .then(response => {
-          console.log(response.data);
           setResp(response.data);
           setLoading(false);
-          console.log(response.data);
         }).catch(err => {
           console.log(err);
         });
@@ -50,7 +50,7 @@ function CustomerDetails() {
               </Grid>
               <Grid item xs={4}>
                 <Container>
-                  <Button variant="contained" fullWidth={true} onClick={() => { console.log("hi"); }}>View Transactions</Button>
+                  <Button variant="contained" fullWidth={true} >View Transactions</Button>
                 </Container>
               </Grid>
             </Grid>
@@ -62,4 +62,4 @@ function CustomerDetails() {
   );
 };
 
-export default CustomerDetails;
+export default TransactionList;

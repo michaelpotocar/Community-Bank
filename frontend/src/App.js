@@ -1,16 +1,22 @@
 import './App.css';
-import { useState, useMemo } from "react";
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-import Context from './Context';
 import CustomerList from './CustomerList';
-import CustomerInfo from './CustomerInfo';
+import AccountList from './AccountList';
+import TransactionList from './TransactionList';
+import { Routes, Route } from 'react-router-dom';
+import Context from './Context';
+import { useState, useMemo } from 'react';
 
 function App() {
 
-    const [api_id, set_api_id] = useState("");
-    const [page, setPage] = useState("CustomerList");
-    const [customerId, setCustomerId] = useState();
+    const darkTheme = createTheme({
+        palette: {
+            mode: 'dark',
+        },
+    });
+
+    const [api_id, set_api_id] = useState('');
     useMemo(() => {
         fetch('/.ignore/api_id').then(res => {
             return res.text();
@@ -19,33 +25,21 @@ function App() {
         });
     }, []);
 
-    const darkTheme = createTheme({
-        palette: {
-            mode: 'dark',
-        },
-    });
-
     const contextBody = {
         api_id,
-        page,
-        setPage,
-        customerId,
-        setCustomerId,
     };
 
     return (
-        <>
-            <ThemeProvider theme={darkTheme}>
-                <CssBaseline />
-                <Context.Provider value={contextBody}>
-                    {
-                        (page == "CustomerList" && <CustomerList />) ||
-                        (page == "CustomerInfo" && <CustomerInfo />)
-                    }
-                </Context.Provider>
-            </ThemeProvider>
-        </>
+        <ThemeProvider theme={darkTheme}>
+            <CssBaseline />
+            <Context.Provider value={contextBody}>
+                <Routes>
+                    <Route path='/' element={<CustomerList />}> </Route>
+                    <Route path='/customer/:customerId' element={<AccountList />}> </Route>
+                    <Route path='/customer/:customerId/account/:accountId' element={<TransactionList />}> </Route>
+                </Routes>
+            </Context.Provider>
+        </ThemeProvider>
     );
 }
-
 export default App;
