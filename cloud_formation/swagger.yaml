@@ -23,7 +23,7 @@ paths:
             responseParameters:
               method.response.header.Access-Control-Allow-Origin: "'*'"
         passthroughBehavior: "when_no_match"
-  /customers/{id}:
+  /customers/{customerId}:
     get:
       consumes:
       - "application/json"
@@ -43,12 +43,46 @@ paths:
         httpMethod: "POST"
         uri:
           Fn::Sub:
-            "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${GetCustomerInfoLambda.Arn}/invocations"
+            "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${getAccountsLambda.Arn}/invocations"
         responses:
           default:
             statusCode: "200"
             responseParameters:
               method.response.header.Access-Control-Allow-Origin: "'*'"
         requestTemplates:
-          application/json: "{\n    \"id\": \"$input.params('id')\"\n}"
+          application/json: "{\n    \"customerId\": \"$input.params('customerId')\"\n}"
         passthroughBehavior: "when_no_match"
+  /customers/{customerId}/accounts/{accountId}:
+    get:
+      consumes:
+      - "application/json"
+      parameters:
+      - name: "customerId"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "accountId"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        "200":
+          description: "200 response"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+      x-amazon-apigateway-integration:
+        type: "aws"
+        httpMethod: "POST"
+        uri:
+          Fn::Sub:
+            "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${GetTransactionsLambda.Arn}/invocations"
+        responses:
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+        requestTemplates:
+          application/json: "{\n    \"customerId\": \"$input.params('customerId')\",\n    \"accountId\"\
+            : \"$input.params('accountId')\"\n}"
+        passthroughBehavior: "when_no_templates"

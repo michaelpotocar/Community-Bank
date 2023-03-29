@@ -1,28 +1,24 @@
-//
-// Source code recreated from a .class file by IntelliJ IDEA
-// (powered by FernFlower decompiler)
-//
-
 package michaelpotocar.projectkitty.results;
 
 import java.util.List;
+
 import michaelpotocar.projectkitty.dynamodb.model.AccountStub;
 
-public class GetCustomerInfoResult {
-    private Long id;
+public class GetAccountsResult {
+    private Long customerId;
     private List<AccountStub> accounts;
     private String firstName;
     private String lastName;
 
-    public GetCustomerInfoResult() {
+    public GetAccountsResult() {
     }
 
-    public Long getId() {
-        return this.id;
+    public Long getCustomerId() {
+        return this.customerId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setCustomerId(Long customerId) {
+        this.customerId = customerId;
     }
 
     public List<AccountStub> getAccounts() {
@@ -52,7 +48,7 @@ public class GetCustomerInfoResult {
     @Override
     public String toString() {
         return "GetCustomerInfoResult{" +
-                "id=" + id +
+                "id=" + customerId +
                 ", accounts=" + accounts +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +

@@ -27,18 +27,6 @@ zip -j /Users/michaelpotocar/Developer/Bloomtech/bd-team-project-project-kitty/e
 echo 'Uploading to S3'
 
 aws s3 cp \
-  /Users/michaelpotocar/Developer/Bloomtech/bd-team-project-project-kitty/populateTables/populateTables.zip \
-  s3://projectkitty \
-  --profile bt \
-  > /dev/null
-
-aws s3 cp \
-  /Users/michaelpotocar/Developer/Bloomtech/bd-team-project-project-kitty/emptyTables/emptyTables.zip \
-  s3://projectkitty \
-  --profile bt \
-  > /dev/null
-
-aws s3 cp \
  /Users/michaelpotocar/Developer/Bloomtech/bd-team-project-project-kitty/cloud_formation/ddbTableData/Customers.json \
  s3://projectkitty \
   --profile bt \
@@ -59,6 +47,18 @@ aws s3 cp \
 aws s3 cp \
  /Users/michaelpotocar/Developer/Bloomtech/bd-team-project-project-kitty/lambda/build/distributions/lambda-1.0-SNAPSHOT.zip \
  s3://projectkitty \
+  --profile bt \
+  > /dev/null
+
+aws s3 cp \
+  /Users/michaelpotocar/Developer/Bloomtech/bd-team-project-project-kitty/populateTables/populateTables.zip \
+  s3://projectkitty \
+  --profile bt \
+  > /dev/null
+
+aws s3 cp \
+  /Users/michaelpotocar/Developer/Bloomtech/bd-team-project-project-kitty/emptyTables/emptyTables.zip \
+  s3://projectkitty \
   --profile bt \
   > /dev/null
 

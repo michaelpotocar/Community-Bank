@@ -1,7 +1,7 @@
 import { useState, useMemo, useContext } from 'react';
 import axios from 'axios';
 import { styled } from '@mui/material/styles';
-import { Button, Container, Paper, Grid, Box, Typography } from '@mui/material';
+import { Button, Container, Paper, Grid, Typography } from '@mui/material';
 import Context from './Context';
 import { useParams, Link } from 'react-router-dom';
 

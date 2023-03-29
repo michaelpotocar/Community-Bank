@@ -1,8 +1,3 @@
-//
-// Source code recreated from a .class file by IntelliJ IDEA
-// (powered by FernFlower decompiler)
-//
-
 package michaelpotocar.projectkitty.providers;
 
 import com.amazonaws.services.lambda.runtime.Context;
@@ -23,20 +18,18 @@ public class GetCustomersProvider implements RequestHandler<GetCustomersRequest,
     public GetCustomersResult handleRequest(GetCustomersRequest input, Context context) {
         System.out.println("Input: " + input.toString());
         List<Customer> customers = CustomerDao.getAllCustomers();
-        GetCustomersResult result = new GetCustomersResult();
-        List<CustomerStub> customerStubs = new ArrayList();
-        Iterator var6 = customers.iterator();
 
-        while(var6.hasNext()) {
-            Customer c = (Customer)var6.next();
+        List<CustomerStub> customerStubs = new ArrayList();
+        for(Customer customer : customers) {
             CustomerStub cs = new CustomerStub();
-            cs.setId(c.getId());
-            cs.setFirstName(c.getFirstName());
-            cs.setLastName(c.getLastName());
+            cs.setId(customer.getId());
+            cs.setFirstName(customer.getFirstName());
+            cs.setLastName(customer.getLastName());
             customerStubs.add(cs);
         }
 
-        result.setAccounts(customerStubs);
+        GetCustomersResult result = new GetCustomersResult(customerStubs);
+
         System.out.println("Result: " + result.toString());
         return result;
     }
