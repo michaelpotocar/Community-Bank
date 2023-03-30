@@ -1,9 +1,9 @@
 import './App.css';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-import CustomerList from './CustomerList';
-import AccountList from './AccountList';
-import TransactionList from './TransactionList';
+import Customers from './Customers';
+import CustomerAccounts from './CustomerAccounts';
+import AccountTransactions from './AccountTransactions';
 import { Routes, Route } from 'react-router-dom';
 import Context from './Context';
 import { useState, useMemo } from 'react';
@@ -34,9 +34,9 @@ function App() {
             <CssBaseline />
             <Context.Provider value={contextBody}>
                 <Routes>
-                    <Route path='/' element={<CustomerList />}> </Route>
-                    <Route path='/customer/:customerId' element={<AccountList />}> </Route>
-                    <Route path='/customer/:customerId/account/:accountId' element={<TransactionList />}> </Route>
+                    <Route path='/' element={<Customers />}> </Route>
+                    <Route path='/customer/:customerId' element={<CustomerAccounts />}> </Route>
+                    <Route path='/customer/:customerId/account/:accountNumber' element={<AccountTransactions />}> </Route>
                 </Routes>
             </Context.Provider>
         </ThemeProvider>

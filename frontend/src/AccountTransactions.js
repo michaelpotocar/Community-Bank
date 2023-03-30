@@ -5,21 +5,31 @@ import { Button, Container, Paper, Grid, Typography } from '@mui/material';
 import Context from './Context';
 import { useParams, Link } from 'react-router-dom';
 
-function AccountList() {
+function AccountTransactions() {
   const { api_id } = useContext(Context);
-  const { customerId } = useParams();
-  const [loading, setLoading] = useState(true);
-  const [resp, setResp] = useState('Loading');
+  const { customerId, accountNumber } = useParams();
+  const [loading, setLoading] = useState([true, true]);
+  const [account, setAccount] = useState('Loading');
+  const [transactions, setTransactions] = useState('Loading');
 
   useMemo(() => {
     if (api_id != '') {
-      axios.get(`https://${api_id}.execute-api.us-west-2.amazonaws.com/prod/customers/${customerId}`)
+      axios.get(`https://${api_id}.execute-api.us-west-2.amazonaws.com/prod/customers/${customerId}/accounts/${accountNumber}`)
         .then(response => {
-          setResp(response.data);
-          setLoading(false);
+          setAccount(response.data);
+          setLoading(loading => { return [false, loading[1]]; });
         }).catch(err => {
           console.log(err);
         });
+
+      axios.get(`https://${api_id}.execute-api.us-west-2.amazonaws.com/prod/customers/${customerId}/accounts/${accountNumber}/transactions`)
+        .then(response => {
+          setTransactions(response.data);
+          setLoading(loading => { return [loading[0], false]; });
+        }).catch(err => {
+          console.log(err);
+        });
+
     }
   }, [api_id]);
 
@@ -32,17 +42,17 @@ function AccountList() {
   }));
 
   return (
-    !loading &&
+    !loading.includes(true) &&
 
     <>
-      <Container maxWidth='md' disableGutters={true}>
+      {/* <Container maxWidth='md' disableGutters={true}>
         <Typography align='center' variant="h2">
           Hi {resp.firstName}!
         </Typography>
       </Container>
 
       <Container maxWidth='md' disableGutters={true}>
-        {resp.accounts.filter(a => a.type !== 'external').map(account => {
+        {resp.transactions.map(account => {
           return (
             <Grid container spacing={5}>
               <Grid item xs={8}>
@@ -50,18 +60,16 @@ function AccountList() {
               </Grid>
               <Grid item xs={4}>
                 <Container>
-                  <Link to={`/customer/${customerId}/account/${account.accountNumber}`} >
-                    <Button variant="contained" fullWidth={true} >View Transactions</Button>
-                  </Link>
+                  <Button variant="contained" fullWidth={true} >View Transactions</Button>
                 </Container>
               </Grid>
             </Grid>
           );
         })}
-      </Container>
+      </Container> */}
 
     </>
   );
 };
 
-export default AccountList;
+export default AccountTransactions;

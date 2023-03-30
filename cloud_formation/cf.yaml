@@ -20,6 +20,8 @@ Resources:
           AttributeType: "N"
         - AttributeName: "routingNumber"
           AttributeType: "N"
+        - AttributeName: "customerId"
+          AttributeType: "N"
       KeySchema:
         - AttributeName: "accountNumber"
           KeyType: "HASH"
@@ -27,7 +29,13 @@ Resources:
           KeyType: "RANGE"
       BillingMode: PAY_PER_REQUEST
       TableName: "Accounts"
-
+      GlobalSecondaryIndexes:
+        - IndexName: "CustomerId"
+          KeySchema:
+            - AttributeName: "customerId"
+              KeyType: "HASH"
+          Projection:
+            ProjectionType: "ALL"
   TransactionsTable:
     Type: AWS::DynamoDB::Table
     Properties:
@@ -149,10 +157,10 @@ Resources:
         Fn::Sub:
           "arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${ApiGateway}/*/*/*"
 
-  getAccountsLambda:
+  getCustomerLambda:
     Type: AWS::Lambda::Function
     Properties:
-      Handler: michaelpotocar.projectkitty.providers.GetAccountsProvider::handleRequest
+      Handler: michaelpotocar.projectkitty.providers.GetCustomerProvider::handleRequest
       Role:
         Fn::GetAtt: [ LambdaRole , "Arn" ]
       Runtime: java11
@@ -162,21 +170,21 @@ Resources:
       MemorySize: 256
       Timeout: 60
 
-  getAccountsPermission:
+  getCustomerPermission:
     Type: AWS::Lambda::Permission
     Properties:
       Action: lambda:InvokeFunction
       FunctionName:
-        Ref: getAccountsLambda
+        Ref: getCustomerLambda
       Principal: apigateway.amazonaws.com
       SourceArn:
         Fn::Sub:
           "arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${ApiGateway}/*/*/*"
 
-  GetTransactionsLambda:
+  getCustomerAccountsLambda:
     Type: AWS::Lambda::Function
     Properties:
-      Handler: michaelpotocar.projectkitty.providers.GetTransactionsProvider::handleRequest
+      Handler: michaelpotocar.projectkitty.providers.GetCustomerAccountsProvider::handleRequest
       Role:
         Fn::GetAtt: [ LambdaRole , "Arn" ]
       Runtime: java11
@@ -186,12 +194,60 @@ Resources:
       MemorySize: 256
       Timeout: 60
 
-  GetTransactionsPermission:
+  getCustomerAccountsPermission:
     Type: AWS::Lambda::Permission
     Properties:
       Action: lambda:InvokeFunction
       FunctionName:
-        Ref: GetTransactionsLambda
+        Ref: getCustomerAccountsLambda
+      Principal: apigateway.amazonaws.com
+      SourceArn:
+        Fn::Sub:
+          "arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${ApiGateway}/*/*/*"
+
+  getCustomerAccountLambda:
+    Type: AWS::Lambda::Function
+    Properties:
+      Handler: michaelpotocar.projectkitty.providers.GetCustomerAccountProvider::handleRequest
+      Role:
+        Fn::GetAtt: [ LambdaRole , "Arn" ]
+      Runtime: java11
+      Code:
+        S3Bucket: projectkitty
+        S3Key: "lambda-1.0-SNAPSHOT.zip"
+      MemorySize: 256
+      Timeout: 60
+
+  getCustomerAccountPermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName:
+        Ref: getCustomerAccountLambda
+      Principal: apigateway.amazonaws.com
+      SourceArn:
+        Fn::Sub:
+          "arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${ApiGateway}/*/*/*"
+
+  GetAccountTransactionsLambda:
+    Type: AWS::Lambda::Function
+    Properties:
+      Handler: michaelpotocar.projectkitty.providers.GetAccountTransactionsProvider::handleRequest
+      Role:
+        Fn::GetAtt: [ LambdaRole , "Arn" ]
+      Runtime: java11
+      Code:
+        S3Bucket: projectkitty
+        S3Key: "lambda-1.0-SNAPSHOT.zip"
+      MemorySize: 256
+      Timeout: 60
+
+  GetAccountTransactionsPermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName:
+        Ref: GetAccountTransactionsLambda
       Principal: apigateway.amazonaws.com
       SourceArn:
         Fn::Sub:

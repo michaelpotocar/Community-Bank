@@ -2,24 +2,28 @@ package michaelpotocar.projectkitty.providers;
 
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
-import java.util.ArrayList;
-import java.util.List;
 import michaelpotocar.projectkitty.dynamodb.dao.CustomerDao;
 import michaelpotocar.projectkitty.dynamodb.model.Customer;
 import michaelpotocar.projectkitty.dynamodb.model.CustomerStub;
+import michaelpotocar.projectkitty.requests.GetCustomerRequest;
 import michaelpotocar.projectkitty.requests.GetCustomersRequest;
+import michaelpotocar.projectkitty.results.GetCustomerResult;
 import michaelpotocar.projectkitty.results.GetCustomersResult;
 
-public class GetCustomersProvider implements RequestHandler<GetCustomersRequest, GetCustomersResult> {
-    public GetCustomersProvider() {
+import java.util.ArrayList;
+import java.util.List;
+
+public class GetCustomerProvider implements RequestHandler<GetCustomerRequest, GetCustomerResult> {
+    public GetCustomerProvider() {
     }
 
-    public GetCustomersResult handleRequest(GetCustomersRequest input, Context context) {
+    public GetCustomerResult handleRequest(GetCustomerRequest input, Context context) {
         System.out.println("Input: " + input.toString());
+        Long customerId = input.getCustomerId();
 
-        List<Customer> customers = CustomerDao.getAllCustomers();
+        Customer customer = CustomerDao.getCustomer(customerId);
 
-        GetCustomersResult result = new GetCustomersResult(customers);
+        GetCustomerResult result = new GetCustomerResult(customer);
 
         System.out.println("Result: " + result.toString());
         return result;

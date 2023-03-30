@@ -3,15 +3,15 @@ package michaelpotocar.projectkitty.requests;
 public class GetTransactionsRequest {
 
     private Long customerId;
-    private Long accountId;
+    private Long accountNumber;
 
     public GetTransactionsRequest() {
 
     }
 
-    public GetTransactionsRequest(Long customerId, Long accountId) {
+    public GetTransactionsRequest(Long customerId, Long accountNumber) {
         this.setCustomerId(customerId);
-        this.setAccountId(accountId);
+        this.setAccountNumber(accountNumber);
     }
 
     public Long getCustomerId() {
@@ -22,19 +22,19 @@ public class GetTransactionsRequest {
         this.customerId = customerId;
     }
 
-    public Long getAccountId() {
-        return accountId;
+    public Long getAccountNumber() {
+        return accountNumber;
     }
 
-    public void setAccountId(Long accountId) {
-        this.accountId = accountId;
+    public void setAccountNumber(Long accountNumber) {
+        this.accountNumber = accountNumber;
     }
 
     @Override
     public String toString() {
         return "GetTransactionsRequest{" +
                 "customerId=" + customerId +
-                ", accountId=" + accountId +
+                ", accountNumber=" + accountNumber +
                 '}';
     }
 }

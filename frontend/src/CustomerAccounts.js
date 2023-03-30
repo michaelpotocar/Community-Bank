@@ -5,18 +5,27 @@ import { Button, Container, Paper, Grid, Typography } from '@mui/material';
 import Context from './Context';
 import { useParams, Link } from 'react-router-dom';
 
-function TransactionList() {
+function CustomerAccounts() {
   const { api_id } = useContext(Context);
-  const { customerId, accountId } = useParams();
-  const [loading, setLoading] = useState(true);
-  const [resp, setResp] = useState('Loading');
+  const { customerId } = useParams();
+  const [loading, setLoading] = useState([true, true]);
+  const [customer, setCustomer] = useState('Loading');
+  const [accounts, setAccounts] = useState('Loading');
 
   useMemo(() => {
     if (api_id != '') {
       axios.get(`https://${api_id}.execute-api.us-west-2.amazonaws.com/prod/customers/${customerId}`)
         .then(response => {
-          setResp(response.data);
-          setLoading(false);
+          setCustomer(response.data.customer);
+          setLoading(loading => { return [false, loading[1]]; });
+        }).catch(err => {
+          console.log(err);
+        });
+
+      axios.get(`https://${api_id}.execute-api.us-west-2.amazonaws.com/prod/customers/${customerId}/accounts`)
+        .then(response => {
+          setAccounts(response.data.accounts);
+          setLoading(loading => { return [loading[0], false]; });
         }).catch(err => {
           console.log(err);
         });
@@ -32,17 +41,17 @@ function TransactionList() {
   }));
 
   return (
-    !loading &&
+    !loading.includes(true) &&
 
     <>
       <Container maxWidth='md' disableGutters={true}>
         <Typography align='center' variant="h2">
-          Hi {resp.firstName}!
+          Hi {customer.firstName}!
         </Typography>
       </Container>
 
       <Container maxWidth='md' disableGutters={true}>
-        {resp.accounts.filter(a => a.type !== 'external').map(account => {
+        {accounts.filter(account => account.type !== 'external').map(account => {
           return (
             <Grid container spacing={5}>
               <Grid item xs={8}>
@@ -50,7 +59,9 @@ function TransactionList() {
               </Grid>
               <Grid item xs={4}>
                 <Container>
-                  <Button variant="contained" fullWidth={true} >View Transactions</Button>
+                  <Link to={`/customer/${customerId}/account/${account.accountNumber}`} >
+                    <Button variant="contained" fullWidth={true} >View Transactions</Button>
+                  </Link>
                 </Container>
               </Grid>
             </Grid>
@@ -62,4 +73,4 @@ function TransactionList() {
   );
 };
 
-export default TransactionList;
+export default CustomerAccounts;

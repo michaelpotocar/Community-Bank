@@ -9,16 +9,16 @@ import michaelpotocar.projectkitty.results.GetTransactionsResult;
 
 import java.util.List;
 
-public class GetTransactionsProvider implements RequestHandler<GetTransactionsRequest, GetTransactionsResult> {
-    public GetTransactionsProvider() {
+public class GetAccountTransactionsProvider implements RequestHandler<GetTransactionsRequest, GetTransactionsResult> {
+    public GetAccountTransactionsProvider() {
     }
 
     public GetTransactionsResult handleRequest(GetTransactionsRequest input, Context context) {
         System.out.println("Input: " + input.toString());
         Long customerId = input.getCustomerId();
-        Long accountId = input.getAccountId();
+        Long accountNumber = input.getAccountNumber();
 
-        List<Transaction> transactions = TransactionDao.getAccountTransactions(accountId);
+        List<Transaction> transactions = TransactionDao.getAccountTransactions(accountNumber);
 
         GetTransactionsResult result = new GetTransactionsResult(transactions);
 

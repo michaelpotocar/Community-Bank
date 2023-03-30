@@ -43,7 +43,7 @@ paths:
         httpMethod: "POST"
         uri:
           Fn::Sub:
-            "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${getAccountsLambda.Arn}/invocations"
+            "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${getCustomerLambda.Arn}/invocations"
         responses:
           default:
             statusCode: "200"
@@ -52,16 +52,12 @@ paths:
         requestTemplates:
           application/json: "{\n    \"customerId\": \"$input.params('customerId')\"\n}"
         passthroughBehavior: "when_no_match"
-  /customers/{customerId}/accounts/{accountId}:
+  /customers/{customerId}/accounts:
     get:
       consumes:
       - "application/json"
       parameters:
-      - name: "customerId"
-        in: "path"
-        required: true
-        type: "string"
-      - name: "accountId"
+      - name: "id"
         in: "path"
         required: true
         type: "string"
@@ -76,13 +72,80 @@ paths:
         httpMethod: "POST"
         uri:
           Fn::Sub:
-            "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${GetTransactionsLambda.Arn}/invocations"
+            "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${getCustomerAccountsLambda.Arn}/invocations"
         responses:
           default:
             statusCode: "200"
             responseParameters:
               method.response.header.Access-Control-Allow-Origin: "'*'"
         requestTemplates:
-          application/json: "{\n    \"customerId\": \"$input.params('customerId')\",\n    \"accountId\"\
-            : \"$input.params('accountId')\"\n}"
+          application/json: "{\n    \"customerId\": \"$input.params('customerId')\"\n}"
+        passthroughBehavior: "when_no_match"
+  /customers/{customerId}/accounts/{accountNumber}:
+    get:
+      consumes:
+      - "application/json"
+      parameters:
+      - name: "customerId"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "accountNumber"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        "200":
+          description: "200 response"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+      x-amazon-apigateway-integration:
+        type: "aws"
+        httpMethod: "POST"
+        uri:
+          Fn::Sub:
+            "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${getCustomerAccountLambda.Arn}/invocations"
+        responses:
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+        requestTemplates:
+          application/json: "{\n    \"customerId\": \"$input.params('customerId')\",\n    \"accountNumber\"\
+            : \"$input.params('accountNumber')\"\n}"
+        passthroughBehavior: "when_no_templates"
+  /customers/{customerId}/accounts/{accountNumber}/transactions:
+    get:
+      consumes:
+      - "application/json"
+      parameters:
+      - name: "customerId"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "accountNumber"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        "200":
+          description: "200 response"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+      x-amazon-apigateway-integration:
+        type: "aws"
+        httpMethod: "POST"
+        uri:
+          Fn::Sub:
+            "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${GetAccountTransactionsLambda.Arn}/invocations"
+        responses:
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+        requestTemplates:
+          application/json: "{\n    \"customerId\": \"$input.params('customerId')\",\n    \"accountNumber\"\
+            : \"$input.params('accountNumber')\"\n}"
         passthroughBehavior: "when_no_templates"

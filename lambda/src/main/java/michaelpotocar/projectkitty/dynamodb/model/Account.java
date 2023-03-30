@@ -1,9 +1,6 @@
 package michaelpotocar.projectkitty.dynamodb.model;
 
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBRangeKey;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
+import com.amazonaws.services.dynamodbv2.datamodeling.*;
 
 @DynamoDBTable(
         tableName = "Accounts"
@@ -18,6 +15,11 @@ public class Account {
     private Double creditLimit;
 
     public Account() {
+    }
+
+    public Account(Long accountNumber, Long routingNumber) {
+        this.setAccountNumber(accountNumber);
+        this.setRoutingNumber(routingNumber);
     }
 
     @DynamoDBHashKey(
@@ -53,9 +55,7 @@ public class Account {
         this.balance = balance;
     }
 
-    @DynamoDBAttribute(
-            attributeName = "customerId"
-    )
+    @DynamoDBIndexHashKey(globalSecondaryIndexNames = "CustomerId", attributeName = "customerId")
     public Long getCustomerId() {
         return this.customerId;
     }

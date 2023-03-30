@@ -4,21 +4,29 @@ package michaelpotocar.projectkitty;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import java.time.Instant;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBQueryExpression;
+import com.amazonaws.services.dynamodbv2.datamodeling.PaginatedQueryList;
+import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 import michaelpotocar.projectkitty.dynamodb.DynamoDbMapperProvider;
 import michaelpotocar.projectkitty.dynamodb.model.Account;
 import michaelpotocar.projectkitty.dynamodb.model.AccountStub;
 import michaelpotocar.projectkitty.dynamodb.model.Customer;
 import michaelpotocar.projectkitty.dynamodb.model.CustomerStub;
 import michaelpotocar.projectkitty.dynamodb.model.Transaction;
-import michaelpotocar.projectkitty.providers.GetAccountsProvider;
+import michaelpotocar.projectkitty.providers.GetCustomerAccountProvider;
+import michaelpotocar.projectkitty.providers.GetCustomerAccountsProvider;
 import michaelpotocar.projectkitty.providers.GetCustomersProvider;
-import michaelpotocar.projectkitty.providers.GetTransactionsProvider;
-import michaelpotocar.projectkitty.requests.GetAccountsRequest;
+import michaelpotocar.projectkitty.providers.GetAccountTransactionsProvider;
+import michaelpotocar.projectkitty.requests.GetCustomerAccountsRequest;
+import michaelpotocar.projectkitty.requests.GetCustomerAccountRequest;
 import michaelpotocar.projectkitty.requests.GetCustomersRequest;
 import michaelpotocar.projectkitty.requests.GetTransactionsRequest;
-import michaelpotocar.projectkitty.results.GetAccountsResult;
+import michaelpotocar.projectkitty.results.GetCustomerAccountsResult;
+import michaelpotocar.projectkitty.results.GetCustomerAccountResult;
 import michaelpotocar.projectkitty.results.GetCustomersResult;
 import michaelpotocar.projectkitty.results.GetTransactionsResult;
 
@@ -28,18 +36,28 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        getTransactions();
+        getCustomerAccounts();
+    }
+
+    public static void getCustomerAccounts() {
+        GetCustomerAccountsRequest request = new GetCustomerAccountsRequest(126879020L);
+        GetCustomerAccountsResult result = (new GetCustomerAccountsProvider()).handleRequest(request, null);
+    }
+
+    public static void getCustomerAccount() {
+        GetCustomerAccountRequest request = new GetCustomerAccountRequest(969464857111L, 127000000001L);
+        GetCustomerAccountResult result = (new GetCustomerAccountProvider()).handleRequest(request, null);
     }
 
     public static void getTransactions() {
         GetTransactionsRequest request = new GetTransactionsRequest(126879020L, 969464857111L);
-        GetTransactionsResult result = (new GetTransactionsProvider()).handleRequest(request, null);
+        GetTransactionsResult result = (new GetAccountTransactionsProvider()).handleRequest(request, null);
     }
 
     public static void getCustomerInfo() {
-        GetAccountsRequest request = new GetAccountsRequest();
+        GetCustomerAccountsRequest request = new GetCustomerAccountsRequest();
         request.setCustomerId(126879020L);
-        GetAccountsResult result = (new GetAccountsProvider()).handleRequest(request, null);
+        GetCustomerAccountsResult result = (new GetCustomerAccountsProvider()).handleRequest(request, null);
     }
 
     public static void getCustomers() {
@@ -48,8 +66,8 @@ public class Main {
     }
 
     public static void testCredentials() {
-        GetAccountsRequest request = new GetAccountsRequest(1L);
-        GetAccountsResult result = (new GetAccountsProvider()).handleRequest(request, null);
+        GetCustomerAccountsRequest request = new GetCustomerAccountsRequest(1L);
+        GetCustomerAccountsResult result = (new GetCustomerAccountsProvider()).handleRequest(request, null);
     }
 
     public static void testDynamoDBDao() {

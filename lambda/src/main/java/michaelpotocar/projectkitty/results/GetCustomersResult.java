@@ -2,23 +2,24 @@ package michaelpotocar.projectkitty.results;
 
 import java.util.List;
 
+import michaelpotocar.projectkitty.dynamodb.model.Customer;
 import michaelpotocar.projectkitty.dynamodb.model.CustomerStub;
 
 public class GetCustomersResult {
-    private List<CustomerStub> customers;
+    private List<Customer> customers;
 
     public GetCustomersResult() {
     }
 
-    public GetCustomersResult(List<CustomerStub> customers) {
-        this.setCutomers(customers);
+    public GetCustomersResult(List<Customer> customers) {
+        this.customers = customers;
     }
 
-    public List<CustomerStub> getCustomers() {
-        return this.customers;
+    public List<Customer> getCustomers() {
+        return customers;
     }
 
-    public void setCutomers(List<CustomerStub> customers) {
+    public void setCustomers(List<Customer> customers) {
         this.customers = customers;
     }
 

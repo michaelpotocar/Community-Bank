@@ -1,13 +1,15 @@
 package michaelpotocar.projectkitty.requests;
 
-public class GetAccountsRequest {
+public class GetCustomerRequest {
+
     private Long customerId;
 
-    public GetAccountsRequest() {
+    public GetCustomerRequest() {
+
     }
 
-    public GetAccountsRequest(Long customerId) {
-        this.setCustomerId(customerId);
+    public GetCustomerRequest(Long customerId) {
+        this.customerId = customerId;
     }
 
     public Long getCustomerId() {
@@ -20,7 +22,7 @@ public class GetAccountsRequest {
 
     @Override
     public String toString() {
-        return "GetCustomerInfoRequest{" +
+        return "GetCustomerRequest{" +
                 "customerId=" + customerId +
                 '}';
     }

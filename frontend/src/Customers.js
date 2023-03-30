@@ -5,16 +5,16 @@ import { Button, Container, Paper, Grid, Box, Typography } from '@mui/material';
 import Context from './Context';
 import { Link } from 'react-router-dom';
 
-function CustomerList() {
+function Customers() {
   const { api_id } = useContext(Context);
   const [loading, setLoading] = useState(true);
-  const [resp, setResp] = useState("Loading");
+  const [customers, setCustomers] = useState("Loading");
 
   useMemo(() => {
     if (api_id != '') {
       axios.get(`https://${api_id}.execute-api.us-west-2.amazonaws.com/prod/customers`)
         .then(response => {
-          setResp(response.data);
+          setCustomers(response.data.customers);
           setLoading(false);
         }).catch(err => {
           console.log(err);
@@ -41,7 +41,7 @@ function CustomerList() {
       </Container>
 
       <Container maxWidth='md' disableGutters={true}>
-        {resp.customers.map(customer => {
+        {customers.map(customer => {
           return (
             <Grid container spacing={5}>
               <Grid item xs={8}>
@@ -63,5 +63,5 @@ function CustomerList() {
   );
 };
 
-export default CustomerList;
+export default Customers;
 

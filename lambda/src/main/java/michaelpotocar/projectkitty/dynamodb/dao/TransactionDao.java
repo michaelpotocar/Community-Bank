@@ -14,9 +14,9 @@ public class TransactionDao {
 
     public static List<Transaction> getAccountTransactions(Long accountNumber) {
         DynamoDBMapper ddbMapper = DynamoDbMapperProvider.getDynamoDbMapper();
-        Transaction t = new Transaction();
-        t.setAccountNumber(accountNumber);
-        DynamoDBQueryExpression<Transaction> queryExpression = (new DynamoDBQueryExpression()).withHashKeyValues(t);
+        Transaction transaction = new Transaction();
+        transaction.setAccountNumber(accountNumber);
+        DynamoDBQueryExpression<Transaction> queryExpression = (new DynamoDBQueryExpression()).withHashKeyValues(transaction);
         List<Transaction> transactions = ddbMapper.query(Transaction.class, queryExpression);
         return transactions;
     }
