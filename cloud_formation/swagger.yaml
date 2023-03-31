@@ -81,7 +81,7 @@ paths:
         requestTemplates:
           application/json: "{\n    \"customerId\": \"$input.params('customerId')\"\n}"
         passthroughBehavior: "when_no_match"
-  /customers/{customerId}/accounts/{accountNumber}:
+  /customers/{customerId}/accounts/{accountId}:
     get:
       consumes:
       - "application/json"
@@ -90,7 +90,7 @@ paths:
         in: "path"
         required: true
         type: "string"
-      - name: "accountNumber"
+      - name: "accountId"
         in: "path"
         required: true
         type: "string"
@@ -112,10 +112,10 @@ paths:
             responseParameters:
               method.response.header.Access-Control-Allow-Origin: "'*'"
         requestTemplates:
-          application/json: "{\n    \"customerId\": \"$input.params('customerId')\",\n    \"accountNumber\"\
-            : \"$input.params('accountNumber')\"\n}"
+          application/json: "{\n    \"customerId\": \"$input.params('customerId')\",\n    \"accountId\"\
+            : \"$input.params('accountId')\"\n}"
         passthroughBehavior: "when_no_templates"
-  /customers/{customerId}/accounts/{accountNumber}/transactions:
+  /customers/{customerId}/accounts/{accountId}/transactions:
     get:
       consumes:
       - "application/json"
@@ -124,7 +124,7 @@ paths:
         in: "path"
         required: true
         type: "string"
-      - name: "accountNumber"
+      - name: "accountId"
         in: "path"
         required: true
         type: "string"
@@ -146,6 +146,6 @@ paths:
             responseParameters:
               method.response.header.Access-Control-Allow-Origin: "'*'"
         requestTemplates:
-          application/json: "{\n    \"customerId\": \"$input.params('customerId')\",\n    \"accountNumber\"\
-            : \"$input.params('accountNumber')\"\n}"
+          application/json: "{\n    \"customerId\": \"$input.params('customerId')\",\n    \"accountId\"\
+            : \"$input.params('accountId')\"\n}"
         passthroughBehavior: "when_no_templates"

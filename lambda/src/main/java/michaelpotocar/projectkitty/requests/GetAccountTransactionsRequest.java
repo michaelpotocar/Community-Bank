@@ -1,17 +1,17 @@
 package michaelpotocar.projectkitty.requests;
 
-public class GetTransactionsRequest {
+public class GetAccountTransactionsRequest {
 
     private Long customerId;
-    private Long accountNumber;
+    private String accountId;
 
-    public GetTransactionsRequest() {
+    public GetAccountTransactionsRequest() {
 
     }
 
-    public GetTransactionsRequest(Long customerId, Long accountNumber) {
+    public GetAccountTransactionsRequest(Long customerId, String accountId) {
         this.setCustomerId(customerId);
-        this.setAccountNumber(accountNumber);
+        this.setAccountId(accountId);
     }
 
     public Long getCustomerId() {
@@ -22,19 +22,19 @@ public class GetTransactionsRequest {
         this.customerId = customerId;
     }
 
-    public Long getAccountNumber() {
-        return accountNumber;
+    public String getAccountId() {
+        return accountId;
     }
 
-    public void setAccountNumber(Long accountNumber) {
-        this.accountNumber = accountNumber;
+    public void setAccountId(String accountId) {
+        this.accountId = accountId;
     }
 
     @Override
     public String toString() {
         return "GetTransactionsRequest{" +
                 "customerId=" + customerId +
-                ", accountNumber=" + accountNumber +
+                ", accountNumber=" + accountId +
                 '}';
     }
 }

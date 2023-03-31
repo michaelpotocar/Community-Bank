@@ -1,38 +1,27 @@
 package michaelpotocar.projectkitty.requests;
 
 public class GetCustomerAccountRequest {
-    private Long accountNumber;
-    private Long routingNumber;
+    private Long customerId;
+    private String accountId;
 
     public GetCustomerAccountRequest() {
     }
 
-    public GetCustomerAccountRequest(Long accountNumber, Long routingNumber) {
-        this.setAccountNumber(accountNumber);
-        this.setRoutingNumber(routingNumber);
+    public GetCustomerAccountRequest(Long customerId, String accountNumber) {
+        this.setCustomerId(customerId);
+        this.setAccountId(accountNumber);
     }
 
-    public Long getAccountNumber() {
-        return accountNumber;
+    public String getAccountId() {return accountId;}
+    public void setAccountId(String accountId) {
+        this.accountId = accountId;
     }
 
-    public void setAccountNumber(Long accountNumber) {
-        this.accountNumber = accountNumber;
+    public Long getCustomerId() {
+        return customerId;
+    }
+    public void setCustomerId(Long customerId) {
+        this.customerId = customerId;
     }
 
-    public Long getRoutingNumber() {
-        return routingNumber;
-    }
-
-    public void setRoutingNumber(Long routingNumber) {
-        this.routingNumber = routingNumber;
-    }
-
-    @Override
-    public String toString() {
-        return "GetCustomerAccountRequest{" +
-                "accountNumber=" + accountNumber +
-                ", routingNumber=" + routingNumber +
-                '}';
-    }
 }

@@ -4,13 +4,8 @@ package michaelpotocar.projectkitty;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import java.time.Instant;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBQueryExpression;
-import com.amazonaws.services.dynamodbv2.datamodeling.PaginatedQueryList;
-import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 import michaelpotocar.projectkitty.dynamodb.DynamoDbMapperProvider;
 import michaelpotocar.projectkitty.dynamodb.model.Account;
 import michaelpotocar.projectkitty.dynamodb.model.AccountStub;
@@ -24,11 +19,11 @@ import michaelpotocar.projectkitty.providers.GetAccountTransactionsProvider;
 import michaelpotocar.projectkitty.requests.GetCustomerAccountsRequest;
 import michaelpotocar.projectkitty.requests.GetCustomerAccountRequest;
 import michaelpotocar.projectkitty.requests.GetCustomersRequest;
-import michaelpotocar.projectkitty.requests.GetTransactionsRequest;
+import michaelpotocar.projectkitty.requests.GetAccountTransactionsRequest;
 import michaelpotocar.projectkitty.results.GetCustomerAccountsResult;
 import michaelpotocar.projectkitty.results.GetCustomerAccountResult;
 import michaelpotocar.projectkitty.results.GetCustomersResult;
-import michaelpotocar.projectkitty.results.GetTransactionsResult;
+import michaelpotocar.projectkitty.results.GetAccountTransactionsResult;
 
 public class Main {
 
@@ -36,7 +31,7 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        getCustomerAccounts();
+        getCustomerAccount();
     }
 
     public static void getCustomerAccounts() {
@@ -45,13 +40,13 @@ public class Main {
     }
 
     public static void getCustomerAccount() {
-        GetCustomerAccountRequest request = new GetCustomerAccountRequest(969464857111L, 127000000001L);
+        GetCustomerAccountRequest request = new GetCustomerAccountRequest(126879020L, "441629877739127000000001");
         GetCustomerAccountResult result = (new GetCustomerAccountProvider()).handleRequest(request, null);
     }
 
     public static void getTransactions() {
-        GetTransactionsRequest request = new GetTransactionsRequest(126879020L, 969464857111L);
-        GetTransactionsResult result = (new GetAccountTransactionsProvider()).handleRequest(request, null);
+        GetAccountTransactionsRequest request = new GetAccountTransactionsRequest(126879020L, "441629877739127000000001");
+        GetAccountTransactionsResult result = (new GetAccountTransactionsProvider()).handleRequest(request, null);
     }
 
     public static void getCustomerInfo() {
@@ -73,7 +68,7 @@ public class Main {
     public static void testDynamoDBDao() {
         DynamoDBMapper ddbMapper = DynamoDbMapperProvider.getDynamoDbMapper();
         Transaction transaction = new Transaction();
-        transaction.setAccountNumber(1L);
+        transaction.setAccountId("1");
         transaction.setAmount(1.0);
         transaction.setMemo("My new transaction");
         transaction.setSubmittedDateTime(Instant.now().getEpochSecond() - 86400L);
@@ -91,7 +86,7 @@ public class Main {
         customer.setLastName("P");
         customer.setId(1L);
         AccountStub accountStub = new AccountStub();
-        accountStub.setAccountNumber(account.getAccountNumber());
+        accountStub.setAccountId(account.getAccountId());
         accountStub.setBalance(account.getBalance());
         accountStub.setNickname(account.getNickname());
         accountStub.setType(account.getType());

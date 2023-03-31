@@ -59,7 +59,7 @@ function CustomerAccounts() {
               </Grid>
               <Grid item xs={4}>
                 <Container>
-                  <Link to={`/customer/${customerId}/account/${account.accountNumber}`} >
+                  <Link to={`/customer/${customerId}/account/${account.accountId}`} >
                     <Button variant="contained" fullWidth={true} >View Transactions</Button>
                   </Link>
                 </Container>

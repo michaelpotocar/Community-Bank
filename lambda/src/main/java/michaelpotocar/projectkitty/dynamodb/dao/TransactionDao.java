@@ -12,10 +12,10 @@ public class TransactionDao {
     public TransactionDao() {
     }
 
-    public static List<Transaction> getAccountTransactions(Long accountNumber) {
+    public static List<Transaction> getAccountTransactions(String accountId) {
         DynamoDBMapper ddbMapper = DynamoDbMapperProvider.getDynamoDbMapper();
         Transaction transaction = new Transaction();
-        transaction.setAccountNumber(accountNumber);
+        transaction.setAccountId(accountId);
         DynamoDBQueryExpression<Transaction> queryExpression = (new DynamoDBQueryExpression()).withHashKeyValues(transaction);
         List<Transaction> transactions = ddbMapper.query(Transaction.class, queryExpression);
         return transactions;

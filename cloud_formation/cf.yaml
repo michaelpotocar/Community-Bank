@@ -16,36 +16,27 @@ Resources:
     Type: AWS::DynamoDB::Table
     Properties:
       AttributeDefinitions:
-        - AttributeName: "accountNumber"
-          AttributeType: "N"
-        - AttributeName: "routingNumber"
-          AttributeType: "N"
         - AttributeName: "customerId"
           AttributeType: "N"
+        - AttributeName: "accountId"
+          AttributeType: "S"
       KeySchema:
-        - AttributeName: "accountNumber"
+        - AttributeName: "customerId"
           KeyType: "HASH"
-        - AttributeName: "routingNumber"
+        - AttributeName: "accountId"
           KeyType: "RANGE"
       BillingMode: PAY_PER_REQUEST
       TableName: "Accounts"
-      GlobalSecondaryIndexes:
-        - IndexName: "CustomerId"
-          KeySchema:
-            - AttributeName: "customerId"
-              KeyType: "HASH"
-          Projection:
-            ProjectionType: "ALL"
   TransactionsTable:
     Type: AWS::DynamoDB::Table
     Properties:
       AttributeDefinitions:
-        - AttributeName: "accountNumber"
-          AttributeType: "N"
+        - AttributeName: "accountId"
+          AttributeType: "S"
         - AttributeName: "submittedDateTime"
           AttributeType: "N"
       KeySchema:
-        - AttributeName: "accountNumber"
+        - AttributeName: "accountId"
           KeyType: "HASH"
         - AttributeName: "submittedDateTime"
           KeyType: "RANGE"

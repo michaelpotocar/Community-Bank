@@ -100,6 +100,7 @@ export const handler = async function (event, context) {
             i = n.indexOf(' ', i) + 1;
         }
         account.nickname = n;
+        account.accountId = String(account.accountNumber) + String(account.routingNumber);
 
     });
     transactionAccounts.forEach((account, index) => {
@@ -113,7 +114,7 @@ export const handler = async function (event, context) {
     for (let transactionAccount of transactionAccounts) {
         transactionAccount.transactions = transactions.filter(transaction => transaction.index % transactionAccounts.length == transactionAccount.secondaryIndex);
         for (let transaction of transactionAccount.transactions) {
-            transaction.accountNumber = transactionAccount.accountNumber;
+            transaction.accountId = transactionAccount.accountId;
         }
     }
 
@@ -198,7 +199,7 @@ export const handler = async function (event, context) {
         let completedDateTime = Math.ceil(submittedDateTime / 86400) * 86400;
 
         let newTransaction = {
-            accountNumber: account.accountNumber,
+            accountId: account.accountId,
             submittedDateTime: submittedDateTime,
             completedDateTime: completedDateTime,
             amount: amount,
@@ -211,7 +212,6 @@ export const handler = async function (event, context) {
 
     for (let account of accounts) {
         account.balance = (Math.round((account.transactions ?? []).reduce((accumulator, transaction) => {
-            transaction.accountNumber = account.accountNumber;
             return accumulator + transaction.amount;
         }, 0) * 100) / 100);
 
@@ -230,7 +230,7 @@ export const handler = async function (event, context) {
         return {
             PutRequest: {
                 Item: {
-                    accountNumber: { N: String(transaction.accountNumber) },
+                    accountId: { S: String(transaction.accountId) },
                     submittedDateTime: { N: String(transaction.submittedDateTime) },
                     completedDateTime: { N: String(transaction.completedDateTime) },
                     amount: { N: String(transaction.amount) },
@@ -256,6 +256,7 @@ export const handler = async function (event, context) {
         let mappedAccount = {
             PutRequest: {
                 Item: {
+                    accountId: { S: String(account.accountId) },
                     accountNumber: { N: String(account.accountNumber) },
                     routingNumber: { N: String(account.routingNumber) },
                     customerId: { N: String(account.customerId) },
@@ -297,7 +298,7 @@ export const handler = async function (event, context) {
         let mappedAccounts = customer.accounts.map(account => {
             let mappedAccount = {
                 M: {
-                    accountNumber: { N: String(account.accountNumber) },
+                    accountId: { S: String(account.accountId) },
                     nickname: { S: String(account.nickname) },
                     type: { S: String(account.type) },
                 }

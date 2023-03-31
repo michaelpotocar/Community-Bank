@@ -4,27 +4,35 @@ import { styled } from '@mui/material/styles';
 import { Button, Container, Paper, Grid, Typography } from '@mui/material';
 import Context from './Context';
 import { useParams, Link } from 'react-router-dom';
+import moment from 'moment';
 
 function AccountTransactions() {
   const { api_id } = useContext(Context);
-  const { customerId, accountNumber } = useParams();
+  const { customerId, accountId } = useParams();
   const [loading, setLoading] = useState([true, true]);
   const [account, setAccount] = useState('Loading');
   const [transactions, setTransactions] = useState('Loading');
 
   useMemo(() => {
     if (api_id != '') {
-      axios.get(`https://${api_id}.execute-api.us-west-2.amazonaws.com/prod/customers/${customerId}/accounts/${accountNumber}`)
+      axios.get(`https://${api_id}.execute-api.us-west-2.amazonaws.com/prod/customers/${customerId}/accounts/${accountId}`)
         .then(response => {
-          setAccount(response.data);
+          setAccount(response.data.account);
           setLoading(loading => { return [false, loading[1]]; });
         }).catch(err => {
           console.log(err);
         });
 
-      axios.get(`https://${api_id}.execute-api.us-west-2.amazonaws.com/prod/customers/${customerId}/accounts/${accountNumber}/transactions`)
+      axios.get(`https://${api_id}.execute-api.us-west-2.amazonaws.com/prod/customers/${customerId}/accounts/${accountId}/transactions`)
         .then(response => {
-          setTransactions(response.data);
+          setTransactions(response.data.transactions.sort((a, b) => {
+            if (a.completedDateTime > b.completedDateTime)
+              return -1;
+            if (a.completedDateTime < b.completedDateTime)
+              return 1;
+            return 0;
+          }
+          ));
           setLoading(loading => { return [loading[0], false]; });
         }).catch(err => {
           console.log(err);
@@ -45,28 +53,23 @@ function AccountTransactions() {
     !loading.includes(true) &&
 
     <>
-      {/* <Container maxWidth='md' disableGutters={true}>
+      <Container maxWidth='md' disableGutters={true}>
         <Typography align='center' variant="h2">
-          Hi {resp.firstName}!
+          {account.nickname} - Balance: ${(Math.round(account.balance * 100) / 100).toFixed(2)}
         </Typography>
       </Container>
 
       <Container maxWidth='md' disableGutters={true}>
-        {resp.transactions.map(account => {
+        {transactions.map(transaction => {
           return (
             <Grid container spacing={5}>
               <Grid item xs={8}>
-                <Item>{account.nickname} Balance: ${(Math.round(account.balance * 100) / 100).toFixed(2)}</Item>
-              </Grid>
-              <Grid item xs={4}>
-                <Container>
-                  <Button variant="contained" fullWidth={true} >View Transactions</Button>
-                </Container>
+                <Item>{moment.unix(transaction.completedDateTime).format('dddd, MMMM Do, YYYY')} - {transaction.memo} Amount: ${(Math.round(transaction.amount * 100) / 100).toFixed(2)}</Item>
               </Grid>
             </Grid>
           );
         })}
-      </Container> */}
+      </Container>
 
     </>
   );

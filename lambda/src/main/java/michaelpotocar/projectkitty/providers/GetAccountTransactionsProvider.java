@@ -4,23 +4,23 @@ import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 import michaelpotocar.projectkitty.dynamodb.dao.TransactionDao;
 import michaelpotocar.projectkitty.dynamodb.model.Transaction;
-import michaelpotocar.projectkitty.requests.GetTransactionsRequest;
-import michaelpotocar.projectkitty.results.GetTransactionsResult;
+import michaelpotocar.projectkitty.requests.GetAccountTransactionsRequest;
+import michaelpotocar.projectkitty.results.GetAccountTransactionsResult;
 
 import java.util.List;
 
-public class GetAccountTransactionsProvider implements RequestHandler<GetTransactionsRequest, GetTransactionsResult> {
+public class GetAccountTransactionsProvider implements RequestHandler<GetAccountTransactionsRequest, GetAccountTransactionsResult> {
     public GetAccountTransactionsProvider() {
     }
 
-    public GetTransactionsResult handleRequest(GetTransactionsRequest input, Context context) {
+    public GetAccountTransactionsResult handleRequest(GetAccountTransactionsRequest input, Context context) {
         System.out.println("Input: " + input.toString());
         Long customerId = input.getCustomerId();
-        Long accountNumber = input.getAccountNumber();
+        String accountId = input.getAccountId();
 
-        List<Transaction> transactions = TransactionDao.getAccountTransactions(accountNumber);
+        List<Transaction> transactions = TransactionDao.getAccountTransactions(accountId);
 
-        GetTransactionsResult result = new GetTransactionsResult(transactions);
+        GetAccountTransactionsResult result = new GetAccountTransactionsResult(transactions);
 
         System.out.println("Result: " + result.toString());
         return result;

@@ -5,7 +5,7 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBDocument;
 
 @DynamoDBDocument
 public class AccountStub {
-    Long accountNumber;
+    String accountId;
     String nickname;
     String type;
     Double balance;
@@ -13,46 +13,34 @@ public class AccountStub {
     public AccountStub() {
     }
 
-    @DynamoDBAttribute(
-            attributeName = "accountNumber"
-    )
-    public Long getAccountNumber() {
-        return this.accountNumber;
+    @DynamoDBAttribute(attributeName = "accountId")
+    public String getAccountId() {
+        return this.accountId;
+    }
+    public void setAccountId(String accountId) {
+        this.accountId = accountId;
     }
 
-    public void setAccountNumber(Long accountNumber) {
-        this.accountNumber = accountNumber;
-    }
-
-    @DynamoDBAttribute(
-            attributeName = "nickname"
-    )
+    @DynamoDBAttribute(attributeName = "nickname")
     public String getNickname() {
         return this.nickname;
     }
-
     public void setNickname(String nickname) {
         this.nickname = nickname;
     }
 
-    @DynamoDBAttribute(
-            attributeName = "type"
-    )
+    @DynamoDBAttribute(attributeName = "type")
     public String getType() {
         return this.type;
     }
-
     public void setType(String type) {
         this.type = type;
     }
 
-    @DynamoDBAttribute(
-            attributeName = "balance"
-    )
+    @DynamoDBAttribute(attributeName = "balance")
     public Double getBalance() {
         return this.balance;
     }
-
     public void setBalance(Double balance) {
         this.balance = balance;
     }

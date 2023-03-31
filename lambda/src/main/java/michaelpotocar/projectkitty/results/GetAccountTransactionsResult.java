@@ -4,13 +4,13 @@ import michaelpotocar.projectkitty.dynamodb.model.Transaction;
 
 import java.util.List;
 
-public class GetTransactionsResult {
+public class GetAccountTransactionsResult {
     private List<Transaction> transactions;
 
-    public GetTransactionsResult() {
+    public GetAccountTransactionsResult() {
     }
 
-    public GetTransactionsResult(List<Transaction> transactions) {
+    public GetAccountTransactionsResult(List<Transaction> transactions) {
         this.setTransactions(transactions);
     }
 

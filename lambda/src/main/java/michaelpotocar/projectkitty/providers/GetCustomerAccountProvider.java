@@ -13,10 +13,10 @@ public class GetCustomerAccountProvider implements RequestHandler<GetCustomerAcc
 
     public GetCustomerAccountResult handleRequest(GetCustomerAccountRequest input, Context context) {
         System.out.println("Input: " + input.toString());
-        Long accountNumber = input.getAccountNumber();
-        Long routingNumber = input.getRoutingNumber();
+        Long customerId = input.getCustomerId();
+        String accountId = input.getAccountId();
 
-        Account account = AccountDao.getAccount(accountNumber, routingNumber);
+        Account account = AccountDao.getAccount(customerId,accountId);
 
         GetCustomerAccountResult result = new GetCustomerAccountResult(account);
 

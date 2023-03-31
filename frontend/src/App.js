@@ -36,7 +36,7 @@ function App() {
                 <Routes>
                     <Route path='/' element={<Customers />}> </Route>
                     <Route path='/customer/:customerId' element={<CustomerAccounts />}> </Route>
-                    <Route path='/customer/:customerId/account/:accountNumber' element={<AccountTransactions />}> </Route>
+                    <Route path='/customer/:customerId/account/:accountId' element={<AccountTransactions />}> </Route>
                 </Routes>
             </Context.Provider>
         </ThemeProvider>
