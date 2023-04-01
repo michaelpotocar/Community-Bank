@@ -16,7 +16,7 @@ paths:
         httpMethod: "POST"
         uri:
           Fn::Sub:
-            "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${GetCustomersLambda.Arn}/invocations"
+            "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${GetCustomersLambdaVersion}/invocations"
         responses:
           default:
             statusCode: "200"
@@ -43,7 +43,7 @@ paths:
         httpMethod: "POST"
         uri:
           Fn::Sub:
-            "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${getCustomerLambda.Arn}/invocations"
+            "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${GetCustomerLambdaVersion}/invocations"
         responses:
           default:
             statusCode: "200"
@@ -72,7 +72,7 @@ paths:
         httpMethod: "POST"
         uri:
           Fn::Sub:
-            "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${getCustomerAccountsLambda.Arn}/invocations"
+            "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${GetCustomerAccountsLambdaVersion}/invocations"
         responses:
           default:
             statusCode: "200"
@@ -105,7 +105,7 @@ paths:
         httpMethod: "POST"
         uri:
           Fn::Sub:
-            "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${getCustomerAccountLambda.Arn}/invocations"
+            "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${GetCustomerAccountLambdaVersion}/invocations"
         responses:
           default:
             statusCode: "200"
@@ -139,7 +139,7 @@ paths:
         httpMethod: "POST"
         uri:
           Fn::Sub:
-            "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${GetAccountTransactionsLambda.Arn}/invocations"
+            "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${GetAccountTransactionsLambdaVersion}/invocations"
         responses:
           default:
             statusCode: "200"

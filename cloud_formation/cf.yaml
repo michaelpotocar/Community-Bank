@@ -137,18 +137,26 @@ Resources:
       MemorySize: 256
       Timeout: 60
 
+  GetCustomersLambdaVersion:
+    Type: AWS::Lambda::Version
+    Properties:
+      FunctionName:
+        Ref: GetCustomersLambda
+      ProvisionedConcurrencyConfig:
+        ProvisionedConcurrentExecutions: 1
+
   GetCustomersPermission:
     Type: AWS::Lambda::Permission
     Properties:
       Action: lambda:InvokeFunction
       FunctionName:
-        Ref: GetCustomersLambda
+        Ref: GetCustomersLambdaVersion
       Principal: apigateway.amazonaws.com
       SourceArn:
         Fn::Sub:
           "arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${ApiGateway}/*/*/*"
 
-  getCustomerLambda:
+  GetCustomerLambda:
     Type: AWS::Lambda::Function
     Properties:
       Handler: michaelpotocar.projectkitty.providers.GetCustomerProvider::handleRequest
@@ -161,18 +169,26 @@ Resources:
       MemorySize: 256
       Timeout: 60
 
-  getCustomerPermission:
+  GetCustomerLambdaVersion:
+    Type: AWS::Lambda::Version
+    Properties:
+      FunctionName:
+        Ref: GetCustomerLambda
+      ProvisionedConcurrencyConfig:
+        ProvisionedConcurrentExecutions: 1
+
+  GetCustomerPermission:
     Type: AWS::Lambda::Permission
     Properties:
       Action: lambda:InvokeFunction
       FunctionName:
-        Ref: getCustomerLambda
+        Ref: GetCustomerLambdaVersion
       Principal: apigateway.amazonaws.com
       SourceArn:
         Fn::Sub:
           "arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${ApiGateway}/*/*/*"
 
-  getCustomerAccountsLambda:
+  GetCustomerAccountsLambda:
     Type: AWS::Lambda::Function
     Properties:
       Handler: michaelpotocar.projectkitty.providers.GetCustomerAccountsProvider::handleRequest
@@ -185,18 +201,26 @@ Resources:
       MemorySize: 256
       Timeout: 60
 
-  getCustomerAccountsPermission:
+  GetCustomerAccountsLambdaVersion:
+    Type: AWS::Lambda::Version
+    Properties:
+      FunctionName:
+        Ref: GetCustomerAccountsLambda
+      ProvisionedConcurrencyConfig:
+        ProvisionedConcurrentExecutions: 1
+
+  GetCustomerAccountsPermission:
     Type: AWS::Lambda::Permission
     Properties:
       Action: lambda:InvokeFunction
       FunctionName:
-        Ref: getCustomerAccountsLambda
+        Ref: GetCustomerAccountsLambdaVersion
       Principal: apigateway.amazonaws.com
       SourceArn:
         Fn::Sub:
           "arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${ApiGateway}/*/*/*"
 
-  getCustomerAccountLambda:
+  GetCustomerAccountLambda:
     Type: AWS::Lambda::Function
     Properties:
       Handler: michaelpotocar.projectkitty.providers.GetCustomerAccountProvider::handleRequest
@@ -209,12 +233,20 @@ Resources:
       MemorySize: 256
       Timeout: 60
 
-  getCustomerAccountPermission:
+  GetCustomerAccountLambdaVersion:
+    Type: AWS::Lambda::Version
+    Properties:
+      FunctionName:
+        Ref: GetCustomerAccountLambda
+      ProvisionedConcurrencyConfig:
+        ProvisionedConcurrentExecutions: 1
+
+  GetCustomerAccountPermission:
     Type: AWS::Lambda::Permission
     Properties:
       Action: lambda:InvokeFunction
       FunctionName:
-        Ref: getCustomerAccountLambda
+        Ref: GetCustomerAccountLambdaVersion
       Principal: apigateway.amazonaws.com
       SourceArn:
         Fn::Sub:
@@ -233,12 +265,20 @@ Resources:
       MemorySize: 256
       Timeout: 60
 
+  GetAccountTransactionsLambdaVersion:
+    Type: AWS::Lambda::Version
+    Properties:
+      FunctionName:
+        Ref: GetAccountTransactionsLambda
+      ProvisionedConcurrencyConfig:
+        ProvisionedConcurrentExecutions: 1
+
   GetAccountTransactionsPermission:
     Type: AWS::Lambda::Permission
     Properties:
       Action: lambda:InvokeFunction
       FunctionName:
-        Ref: GetAccountTransactionsLambda
+        Ref: GetAccountTransactionsLambdaVersion
       Principal: apigateway.amazonaws.com
       SourceArn:
         Fn::Sub:

@@ -53,13 +53,13 @@ function AccountTransactions() {
     !loading.includes(true) &&
 
     <>
-      <Container maxWidth='md' disableGutters={true}>
+      <Container maxWidth='md' disableGutters={false}>
         <Typography align='center' variant="h2">
           {account.nickname} - Balance: ${(Math.round(account.balance * 100) / 100).toFixed(2)}
         </Typography>
       </Container>
 
-      <Container maxWidth='md' disableGutters={true}>
+      <Container maxWidth='md' disableGutters={false}>
         {transactions.map(transaction => {
           return (
             <Grid container spacing={5}>

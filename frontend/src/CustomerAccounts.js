@@ -44,13 +44,13 @@ function CustomerAccounts() {
     !loading.includes(true) &&
 
     <>
-      <Container maxWidth='md' disableGutters={true}>
+      <Container maxWidth='md' disableGutters={false}>
         <Typography align='center' variant="h2">
           Hi {customer.firstName}!
         </Typography>
       </Container>
 
-      <Container maxWidth='md' disableGutters={true}>
+      <Container maxWidth='md' disableGutters={false}>
         {accounts.filter(account => account.type !== 'external').map(account => {
           return (
             <Grid container spacing={5}>

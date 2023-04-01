@@ -34,13 +34,13 @@ function Customers() {
     !loading &&
 
     <>
-      <Container maxWidth='md' disableGutters={true}>
+      <Container maxWidth='md' disableGutters={false}>
         <Typography align='center' variant="h2">
           Welcome!
         </Typography>
       </Container>
 
-      <Container maxWidth='md' disableGutters={true}>
+      <Container maxWidth='md' disableGutters={false}>
         {customers.map(customer => {
           return (
             <Grid container spacing={5}>
