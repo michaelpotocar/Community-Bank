@@ -1,10 +1,21 @@
 import { useState, useMemo, useContext } from 'react';
 import axios from 'axios';
-import { styled } from '@mui/material/styles';
-import { Button, Container, Paper, Grid, Typography } from '@mui/material';
 import Context from './Context';
 import { useParams, Link } from 'react-router-dom';
 import moment from 'moment';
+import {
+  Button,
+  Paper,
+  Grid,
+  Typography,
+  TableContainer,
+  Table,
+  TableHead,
+  TableRow,
+  TableCell,
+  TableBody,
+} from '@mui/material';
+import { styled } from '@mui/material/styles';
 
 function AccountTransactions() {
   const { api_id } = useContext(Context);
@@ -53,23 +64,56 @@ function AccountTransactions() {
     !loading.includes(true) &&
 
     <>
-      <Container maxWidth='md' disableGutters={false}>
-        <Typography align='center' variant="h2">
-          {account.nickname} - Balance: ${(Math.round(account.balance * 100) / 100).toFixed(2)}
-        </Typography>
-      </Container>
+      <Grid container
+        justifyContent="center"
+        spacing={1}>
 
-      <Container maxWidth='md' disableGutters={false}>
-        {transactions.map(transaction => {
-          return (
-            <Grid container spacing={5}>
-              <Grid item xs={8}>
-                <Item>{moment.unix(transaction.completedDateTime).format('dddd, MMMM Do, YYYY')} - {transaction.memo} Amount: ${(Math.round(transaction.amount * 100) / 100).toFixed(2)}</Item>
-              </Grid>
-            </Grid>
-          );
-        })}
-      </Container>
+        <Grid item xs={12} />
+
+        <Grid item xs={1} />
+        <Grid item xs={3}>
+          <Link to={`/customer/${customerId}`} >
+            <Button variant="contained" >Return&nbsp;to Account&nbsp;Selection</Button>
+          </Link>
+        </Grid>
+        <Grid item xs={8} />
+
+        <Grid item xs={12}>
+          <Typography align='center' variant="h4">
+            {account.nickname} - Balance: ${(Math.round(account.balance * 100) / 100).toFixed(2)}
+          </Typography>
+        </Grid>
+
+        <Grid item xs={9}>
+          <TableContainer component={Paper}>
+            <Table >
+              <TableHead>
+                <TableRow>
+                  <TableCell align="center">Date</TableCell>
+                  <TableCell align="center">Memo</TableCell>
+                  <TableCell align="center">Amount</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {transactions.map((transaction) => (
+                  <TableRow
+                    key={transaction.completedTime}
+                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                  >
+                    <TableCell align="center">{moment.unix(transaction.completedDateTime).format('dddd, MMMM Do, YYYY')}</TableCell>
+                    <TableCell align="center">{transaction.memo}</TableCell>
+                    <TableCell align="center">{(Math.round(transaction.amount * 100) / 100).toFixed(2)}</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </Grid>
+
+      </Grid>
+
+
+
 
     </>
   );

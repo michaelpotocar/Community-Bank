@@ -1,9 +1,21 @@
 import { useState, useMemo, useContext } from 'react';
 import axios from 'axios';
-import { styled } from '@mui/material/styles';
-import { Button, Container, Paper, Grid, Typography } from '@mui/material';
+import { Container } from '@mui/material';
 import Context from './Context';
 import { useParams, Link } from 'react-router-dom';
+import {
+  Button,
+  Paper,
+  Grid,
+  Typography,
+  TableContainer,
+  Table,
+  TableHead,
+  TableRow,
+  TableCell,
+  TableBody,
+} from '@mui/material';
+import { styled } from '@mui/material/styles';
 
 function CustomerAccounts() {
   const { api_id } = useContext(Context);
@@ -44,33 +56,74 @@ function CustomerAccounts() {
     !loading.includes(true) &&
 
     <>
-      <Container maxWidth='md' disableGutters={false}>
-        <Typography align='center' variant="h2">
-          Hi {customer.firstName}!
-        </Typography>
-      </Container>
+      <Grid container spacing={1}
+        justifyContent="center"
+      >
+        <Grid item xs={3} >
+        </Grid>
+        <Grid item xs={9} />
 
-      <Container maxWidth='md' disableGutters={false}>
-        {accounts.filter(account => account.type !== 'external').map(account => {
-          return (
-            <Grid container spacing={5}>
-              <Grid item xs={8}>
-                <Item>{account.nickname} Balance: ${(Math.round(account.balance * 100) / 100).toFixed(2)}</Item>
-              </Grid>
-              <Grid item xs={4}>
-                <Container>
-                  <Link to={`/customer/${customerId}/account/${account.accountId}`} >
-                    <Button variant="contained" fullWidth={true} >View Transactions</Button>
-                  </Link>
-                </Container>
-              </Grid>
-            </Grid>
-          );
-        })}
-      </Container>
+        <Grid item xs={9} >
+        </Grid>
 
+        <Grid container
+          justifyContent="center"
+          spacing={1}>
+
+          <Grid item xs={12} />
+
+          <Grid item xs={1} />
+          <Grid item xs={3}>
+            <Link to={`/`} >
+              <Button variant="contained" > Return&nbsp;to Customer&nbsp;Selection</Button>
+            </Link>
+          </Grid>
+          <Grid item xs={8} />
+
+          <Grid item xs={12}>
+            <Typography align='center' variant="h2">
+              Hi {customer.firstName}!
+            </Typography>
+          </Grid>
+
+          <Grid item xs={9}>
+            <TableContainer component={Paper}>
+              <Table >
+                <TableHead>
+                  <TableRow>
+                    <TableCell align="center">Account</TableCell>
+                    <TableCell align="center">Balance</TableCell>
+                    <TableCell align="center">Details</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {accounts.filter(account => account.type !== 'external').map(account => (
+                    <TableRow
+                      key={account.accountId}
+                      sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                    >
+                      <TableCell align="center">{account.nickname}</TableCell>
+                      <TableCell align="center">Balance: ${(Math.round(account.balance * 100) / 100).toFixed(2)}</TableCell>
+                      <TableCell align="center">
+                        <Link to={`/customer/${customerId}/account/${account.accountId}`} >
+                          <Button variant="contained" fullWidth={true} >View Transactions</Button>
+                        </Link>
+
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
+          </Grid>
+        </Grid>
+
+
+      </Grid>
     </>
   );
 };
 
 export default CustomerAccounts;
+
+
