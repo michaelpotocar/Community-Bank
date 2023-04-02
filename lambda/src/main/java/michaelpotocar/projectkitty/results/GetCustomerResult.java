@@ -2,8 +2,6 @@ package michaelpotocar.projectkitty.results;
 
 import michaelpotocar.projectkitty.dynamodb.model.Customer;
 
-import java.util.List;
-
 public class GetCustomerResult {
     private Customer customer;
 

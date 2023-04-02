@@ -1,37 +1,237 @@
 [
-  { "accountNumber": 441629877739, "routingNumber": 127000000001, "nickname": "cohesive savings", "type": "savings" },
-  { "accountNumber": 958081785543, "routingNumber": 1709866271, "nickname": "maximized external", "type": "external" },
-  { "accountNumber": 3889151225443840, "routingNumber": 0, "nickname": "Multi-tiered credit", "type": "credit", "creditLimit": 2000 },
-  { "accountNumber": 234313312084, "routingNumber": 127000000001, "nickname": "Balanced savings", "type": "savings" },
-  { "accountNumber": 708297991534, "routingNumber": 127000000001, "nickname": "help-desk checking", "type": "checking" },
-  { "accountNumber": 931635305088, "routingNumber": 5526122951, "nickname": "system engine external", "type": "external" },
-  { "accountNumber": 1939513055428350, "routingNumber": 0, "nickname": "Fully-configurable credit", "type": "credit", "creditLimit": 1000 },
-  { "accountNumber": 134744867786, "routingNumber": 127000000001, "nickname": "mobile checking", "type": "checking" },
-  { "accountNumber": 659315142629, "routingNumber": 127000000001, "nickname": "foreground checking", "type": "checking" },
-  { "accountNumber": 582780807612, "routingNumber": 127000000001, "nickname": "contingency savings", "type": "savings" },
-  { "accountNumber": 272818719588, "routingNumber": 127000000001, "nickname": "maximized savings", "type": "savings" },
-  { "accountNumber": 3822309207635980, "routingNumber": 0, "nickname": "reciprocal credit", "type": "credit", "creditLimit": 3000 },
-  { "accountNumber": 492784307625, "routingNumber": 127000000001, "nickname": "bifurcated savings", "type": "savings" },
-  { "accountNumber": 549950671010, "routingNumber": 127000000001, "nickname": "synergy checking", "type": "checking" },
-  { "accountNumber": 459239672796, "routingNumber": 127000000001, "nickname": "migration savings", "type": "savings" },
-  { "accountNumber": 969464857111, "routingNumber": 127000000001, "nickname": "analyzing checking", "type": "checking" },
-  { "accountNumber": 1426773852438830, "routingNumber": 0, "nickname": "Robust credit", "type": "credit", "creditLimit": 1500 },
-  { "accountNumber": 506889075264, "routingNumber": 127000000001, "nickname": "encoding checking", "type": "checking" },
-  { "accountNumber": 600643151016, "routingNumber": 127000000001, "nickname": "Versatile checking", "type": "checking" },
-  { "accountNumber": 322202590108, "routingNumber": 127000000001, "nickname": "4th generation checking", "type": "checking" },
-  { "accountNumber": 700868281123, "routingNumber": 556874458, "nickname": "archive external", "type": "external" },
-  { "accountNumber": 850749969556, "routingNumber": 127000000001, "nickname": "Balanced checking", "type": "checking" },
-  { "accountNumber": 1959218086497910, "routingNumber": 0, "nickname": "Focused credit", "type": "credit", "creditLimit": 1000 },
-  { "accountNumber": 643714394949, "routingNumber": 6167215583, "nickname": "system-worthy external", "type": "external" },
-  { "accountNumber": 656043774479, "routingNumber": 127000000001, "nickname": "24/7 savings", "type": "savings" },
-  { "accountNumber": 169252080640, "routingNumber": 816007921, "nickname": "Re-contextualized external", "type": "external" },
-  { "accountNumber": 580020816233, "routingNumber": 127000000001, "nickname": "intangible savings", "type": "savings" },
-  { "accountNumber": 670978832574, "routingNumber": 127000000001, "nickname": "tangible savings", "type": "savings" },
-  { "accountNumber": 654882962263, "routingNumber": 127000000001, "nickname": "Ameliorated checking", "type": "checking" },
-  { "accountNumber": 1147767053288750, "routingNumber": 0, "nickname": "task-force credit", "type": "credit", "creditLimit": 3000 },
-  { "accountNumber": 530746984391, "routingNumber": 127000000001, "nickname": "Profound savings", "type": "savings" },
-  { "accountNumber": 830802287420, "routingNumber": 127000000001, "nickname": "data-warehouse savings", "type": "savings" },
-  { "accountNumber": 347304355899, "routingNumber": 127000000001, "nickname": "Innovative checking", "type": "checking" },
-  { "accountNumber": 971573772959, "routingNumber": 6905386346, "nickname": "transitional external", "type": "external" },
-  { "accountNumber": 437564432978, "routingNumber": 127000000001, "nickname": "time-frame savings", "type": "savings" }
+  {
+    "accountNumber": 254438198713,
+    "routingNumber": 127000000001,
+    "customerId": 589631133,
+    "nickname": "cohesive",
+    "type": "savings"
+  },
+  {
+    "accountNumber": 685109477442,
+    "routingNumber": 4875544142,
+    "customerId": 637818676,
+    "nickname": "maximized",
+    "type": "external"
+  },
+  {
+    "accountNumber": 973891075646,
+    "routingNumber": 127000000001,
+    "customerId": 794085645,
+    "nickname": "Multi-tiered",
+    "type": "savings"
+  },
+  {
+    "accountNumber": 228410255662,
+    "routingNumber": 127000000001,
+    "customerId": 876055831,
+    "nickname": "Balanced",
+    "type": "savings"
+  },
+  {
+    "accountNumber": 455810450311,
+    "routingNumber": 242544574,
+    "customerId": 637818676,
+    "nickname": "help-desk",
+    "type": "external"
+  },
+  {
+    "accountNumber": 863866434270,
+    "routingNumber": 127000000001,
+    "customerId": 637818676,
+    "nickname": "system engine",
+    "type": "savings"
+  },
+  {
+    "accountNumber": 771640338305,
+    "routingNumber": 127000000001,
+    "customerId": 923739977,
+    "nickname": "Fully-configurable",
+    "type": "checking"
+  },
+  {
+    "accountNumber": 154068856018,
+    "routingNumber": 127000000001,
+    "customerId": 906799530,
+    "nickname": "mobile",
+    "type": "checking"
+  },
+  {
+    "accountNumber": 477378744576,
+    "routingNumber": 127000000001,
+    "customerId": 906799530,
+    "nickname": "foreground",
+    "type": "checking"
+  },
+  {
+    "accountNumber": 590761751601,
+    "routingNumber": 127000000001,
+    "customerId": 794085645,
+    "nickname": "contingency",
+    "type": "checking"
+  },
+  {
+    "accountNumber": 745844482971,
+    "routingNumber": 127000000001,
+    "customerId": 589631133,
+    "nickname": "maximized",
+    "type": "savings"
+  },
+  {
+    "accountNumber": 810077691050,
+    "routingNumber": 127000000001,
+    "customerId": 794085645,
+    "nickname": "reciprocal",
+    "type": "checking"
+  },
+  {
+    "accountNumber": 201893813588,
+    "routingNumber": 127000000001,
+    "customerId": 876055831,
+    "nickname": "bifurcated",
+    "type": "savings"
+  },
+  {
+    "accountNumber": 306781755424,
+    "routingNumber": 73652204,
+    "customerId": 794085645,
+    "nickname": "synergy",
+    "type": "external"
+  },
+  {
+    "accountNumber": 567751798401,
+    "routingNumber": 3822575883,
+    "customerId": 637818676,
+    "nickname": "migration",
+    "type": "external"
+  },
+  {
+    "accountNumber": 968412565877,
+    "routingNumber": 127000000001,
+    "customerId": 637818676,
+    "nickname": "analyzing",
+    "type": "checking"
+  },
+  {
+    "accountNumber": 750266561847,
+    "routingNumber": 127000000001,
+    "customerId": 794085645,
+    "nickname": "Robust",
+    "type": "savings"
+  },
+  {
+    "accountNumber": 422842313902,
+    "routingNumber": 127000000001,
+    "customerId": 589631133,
+    "nickname": "encoding",
+    "type": "savings"
+  },
+  {
+    "accountNumber": 697163844059,
+    "routingNumber": 127000000001,
+    "customerId": 923739977,
+    "nickname": "Versatile",
+    "type": "checking"
+  },
+  {
+    "accountNumber": 398225850477,
+    "routingNumber": 127000000001,
+    "customerId": 794085645,
+    "nickname": "4th generation",
+    "type": "savings"
+  },
+  {
+    "accountNumber": 869780232178,
+    "routingNumber": 127000000001,
+    "customerId": 589631133,
+    "nickname": "archive",
+    "type": "savings"
+  },
+  {
+    "accountNumber": 627541466323,
+    "routingNumber": 127000000001,
+    "customerId": 794085645,
+    "nickname": "Balanced",
+    "type": "savings"
+  },
+  {
+    "accountNumber": 384302539441,
+    "routingNumber": 4109757198,
+    "customerId": 906799530,
+    "nickname": "Focused",
+    "type": "external"
+  },
+  {
+    "accountNumber": 702136833361,
+    "routingNumber": 127000000001,
+    "customerId": 794085645,
+    "nickname": "system-worthy",
+    "type": "checking"
+  },
+  {
+    "accountNumber": 450379505851,
+    "routingNumber": 127000000001,
+    "customerId": 589631133,
+    "nickname": "24/7",
+    "type": "savings"
+  },
+  {
+    "accountNumber": 198252465357,
+    "routingNumber": 127000000001,
+    "customerId": 876055831,
+    "nickname": "Re-contextualized",
+    "type": "savings"
+  },
+  {
+    "accountNumber": 373565734409,
+    "routingNumber": 5416031908,
+    "customerId": 589631133,
+    "nickname": "intangible",
+    "type": "external"
+  },
+  {
+    "accountNumber": 771519988061,
+    "routingNumber": 5319175241,
+    "customerId": 589631133,
+    "nickname": "tangible",
+    "type": "external"
+  },
+  {
+    "accountNumber": 743989385362,
+    "routingNumber": 127000000001,
+    "customerId": 923739977,
+    "nickname": "Ameliorated",
+    "type": "savings"
+  },
+  {
+    "accountNumber": 8215830979251800,
+    "routingNumber": 0,
+    "customerId": 589631133,
+    "nickname": "task-force",
+    "type": "credit",
+    "creditLimit": 500
+  },
+  {
+    "accountNumber": 6688393282945650,
+    "routingNumber": 0,
+    "customerId": 794085645,
+    "nickname": "Profound",
+    "type": "credit",
+    "creditLimit": 2500
+  },
+  {
+    "accountNumber": 8755129424701580,
+    "routingNumber": 0,
+    "customerId": 876055831,
+    "nickname": "data-warehouse",
+    "type": "credit",
+    "creditLimit": 2500
+  },
+  {
+    "accountNumber": 1072336678888600,
+    "routingNumber": 0,
+    "customerId": 923739977,
+    "nickname": "Innovative",
+    "type": "credit",
+    "creditLimit": 2500
+  }
 ]

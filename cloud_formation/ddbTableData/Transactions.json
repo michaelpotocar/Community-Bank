@@ -1,282 +1,1962 @@
 [
-  { "submittedDateTime": 1641029188, "completedDateTime": 1641081600, "amount": 59.99, "memo": "Microsoft Redmond WA null XXXXXXXXXXXX6681" },
-  { "submittedDateTime": 1641136984, "completedDateTime": 1641168000, "amount": 13.88, "memo": "PENN STATION 10 CINCINNATI OH" },
-  { "submittedDateTime": 1641158723, "completedDateTime": 1641168000, "amount": 20.38, "memo": "DOUBLE DRAGON II CINCINNATI OH" },
-  { "submittedDateTime": 1641305380, "completedDateTime": 1641340800, "amount": 11.64, "memo": "35 PIADA FLORENCE FLORENCE KY" },
-  { "submittedDateTime": 1641337461, "completedDateTime": 1641340800, "amount": 240.43, "memo": "SPI*DUKE-ENERGY 800-777-9898 NC" },
-  { "submittedDateTime": 1641355021, "completedDateTime": 1641427200, "amount": -49.53, "memo": "THE HOME DEPOT #3832 CINCINNATI OH" },
-  { "submittedDateTime": 1641399618, "completedDateTime": 1641427200, "amount": -59.44, "memo": "THE HOME DEPOT #3832 CINCINNATI OH" },
-  { "submittedDateTime": 1641417856, "completedDateTime": 1641427200, "amount": 65.91, "memo": "CIN BELL ELEC PAY 513-5652210 OH" },
-  { "submittedDateTime": 1641370204, "completedDateTime": 1641427200, "amount": 452.49, "memo": "CAPITAL GRILLE 0138052 CINCINNATI OH" },
-  { "submittedDateTime": 1641491813, "completedDateTime": 1641513600, "amount": -2418.36, "memo": "ONLINE PAYMENT, THANK YOU" },
-  { "submittedDateTime": 1641604176, "completedDateTime": 1641686400, "amount": 30, "memo": "VISIBLE 8663313527 CO" },
-  { "submittedDateTime": 1642108568, "completedDateTime": 1642118400, "amount": 21.95, "memo": "DOUBLE DRAGON II CINCINNATI OH" },
-  { "submittedDateTime": 1642587670, "completedDateTime": 1642636800, "amount": 48.08, "memo": "WM SUPERCENTER #2250 CINCINNATI OH" },
-  { "submittedDateTime": 1642867081, "completedDateTime": 1642896000, "amount": 16.1, "memo": "CANCUN MEXICAN BAR AND NORWOOD OH" },
-  { "submittedDateTime": 1643178832, "completedDateTime": 1643241600, "amount": 17.14, "memo": "FIVE GUYS OH 1056 QSR CINCINNATI OH" },
-  { "submittedDateTime": 1643346513, "completedDateTime": 1643414400, "amount": 30.92, "memo": "DOUBLE DRAGON II CINCINNATI OH" },
-  { "submittedDateTime": 1643800640, "completedDateTime": 1643846400, "amount": 2.78, "memo": "LOWES #01585* CINCINNATI OH" },
-  { "submittedDateTime": 1643963075, "completedDateTime": 1644019200, "amount": -1132.5, "memo": "ONLINE PAYMENT, THANK YOU" },
-  { "submittedDateTime": 1644008307, "completedDateTime": 1644019200, "amount": 16.1, "memo": "CANCUN MEXICAN BAR AND NORWOOD OH" },
-  { "submittedDateTime": 1644095390, "completedDateTime": 1644105600, "amount": 11.99, "memo": "PENN STATION 10 CINCINNATI OH" },
-  { "submittedDateTime": 1644214710, "completedDateTime": 1644278400, "amount": 39.55, "memo": "HOMEDEPOT.COM 800-430-3376 GA" },
-  { "submittedDateTime": 1644232268, "completedDateTime": 1644278400, "amount": 11.56, "memo": "TVP INC/LA ROSA S NORW 513-984-3870 OH" },
-  { "submittedDateTime": 1644316160, "completedDateTime": 1644364800, "amount": 30, "memo": "VISIBLE 8663313527 CO" },
-  { "submittedDateTime": 1644618156, "completedDateTime": 1644624000, "amount": 281.99, "memo": "HOMEDEPOT.COM 800-430-3376 GA" },
-  { "submittedDateTime": 1644609100, "completedDateTime": 1644624000, "amount": 156.75, "memo": "HOMEDEPOT.COM 800-430-3376 GA" },
-  { "submittedDateTime": 1644982672, "completedDateTime": 1645056000, "amount": -39.55, "memo": "THE HOME DEPOT #3832 CINCINNATI OH" },
-  { "submittedDateTime": 1644999158, "completedDateTime": 1645056000, "amount": -109.49, "memo": "THE HOME DEPOT #3832 CINCINNATI OH" },
-  { "submittedDateTime": 1646409284, "completedDateTime": 1646438400, "amount": -57.58, "memo": "ONLINE PAYMENT, THANK YOU" },
-  { "submittedDateTime": 1646497529, "completedDateTime": 1646524800, "amount": 12.93, "memo": "GOOGLE *YouTubePremium g.co/helppay# CA" },
-  { "submittedDateTime": 1646594241, "completedDateTime": 1646611200, "amount": 48.33, "memo": "TST* FIFTY WEST BREWIN CINCINNATI OH" },
-  { "submittedDateTime": 1646537608, "completedDateTime": 1646611200, "amount": 30.93, "memo": "DOUBLE DRAGON II CINCINNATI OH" },
-  { "submittedDateTime": 1646733975, "completedDateTime": 1646784000, "amount": 30, "memo": "VISIBLE 8663313527 CO" },
-  { "submittedDateTime": 1646987431, "completedDateTime": 1647043200, "amount": 269.87, "memo": "SPI*DUKE-ENERGY 800-777-9898 NC" },
-  { "submittedDateTime": 1646961800, "completedDateTime": 1647043200, "amount": 34.66, "memo": "DAVE & BUSTERS #96 FLORENCE KY" },
-  { "submittedDateTime": 1647182035, "completedDateTime": 1647216000, "amount": 9.64, "memo": "WM SUPERCENTER #2250 CINCINNATI OH" },
-  { "submittedDateTime": 1647397703, "completedDateTime": 1647475200, "amount": 16.6, "memo": "CANCUN MEXICAN BAR AND NORWOOD OH" },
-  { "submittedDateTime": 1647535425, "completedDateTime": 1647561600, "amount": 97.13, "memo": "THIRD EYE BREWING CINCINNATI OH" },
-  { "submittedDateTime": 1647747499, "completedDateTime": 1647820800, "amount": 14, "memo": "THE ECHO RESTAURANT CINCINNATI OH" },
-  { "submittedDateTime": 1648109284, "completedDateTime": 1648166400, "amount": 13.93, "memo": "SPEEDWAY 05402 9369 ME MENTOR OH" },
-  { "submittedDateTime": 1648304132, "completedDateTime": 1648339200, "amount": 11.5, "memo": "TST* Noras Public Hous Willoughby Hi OH" },
-  { "submittedDateTime": 1648416815, "completedDateTime": 1648425600, "amount": 18, "memo": "TST* THE 1899 PUB WILLOUGHBY OH" },
-  { "submittedDateTime": 1648408804, "completedDateTime": 1648425600, "amount": 22.48, "memo": "DOUBLE DRAGON II CINCINNATI OH" },
-  { "submittedDateTime": 1648368860, "completedDateTime": 1648425600, "amount": 45.78, "memo": "KROGER #418 NORWOOD OH" },
-  { "submittedDateTime": 1648342216, "completedDateTime": 1648425600, "amount": 6.38, "memo": "WENDY'S 219 MENTOR OH" },
-  { "submittedDateTime": 1648368967, "completedDateTime": 1648425600, "amount": 20.25, "memo": "FIREBIRDS COLUMBUS COLUMBUS OH" },
-  { "submittedDateTime": 1648515247, "completedDateTime": 1648598400, "amount": 13.48, "memo": "PENN STATION 10 - ECOM CINCINNATI OH" },
-  { "submittedDateTime": 1648561683, "completedDateTime": 1648598400, "amount": 16.1, "memo": "CANCUN MEXICAN BAR AND NORWOOD OH" },
-  { "submittedDateTime": 1648622888, "completedDateTime": 1648684800, "amount": -5, "memo": "DD DOORDASH POTBELLYS 8559731040 CA" },
-  { "submittedDateTime": 1648633841, "completedDateTime": 1648684800, "amount": 1.51, "memo": "365 MARKET 888 432-32 TROY MI" },
-  { "submittedDateTime": 1648666925, "completedDateTime": 1648684800, "amount": 11.91, "memo": "SKYLINE CHILI 1033 CINCINNATI OH" },
-  { "submittedDateTime": 1648773223, "completedDateTime": 1648857600, "amount": 15.49, "memo": "JIMMY JOHNS - 2554 CINCINNATI OH" },
-  { "submittedDateTime": 1648942797, "completedDateTime": 1648944000, "amount": -595.48, "memo": "ONLINE PAYMENT, THANK YOU" },
-  { "submittedDateTime": 1648921605, "completedDateTime": 1648944000, "amount": 11.31, "memo": "TACO BELL 15353 COVINGTON KY" },
-  { "submittedDateTime": 1649028837, "completedDateTime": 1649030400, "amount": 48.48, "memo": "KROGER #465 CINCINNATI OH" },
-  { "submittedDateTime": 1649042998, "completedDateTime": 1649116800, "amount": 140.25, "memo": "SERVICE FEE 888-658-5465 TN" },
-  { "submittedDateTime": 1649052805, "completedDateTime": 1649116800, "amount": 7500, "memo": "US TREAS TAX PYMT 888-658-5465 TN" },
-  { "submittedDateTime": 1649047977, "completedDateTime": 1649116800, "amount": 16.1, "memo": "CANCUN MEXICAN BAR AND NORWOOD OH" },
-  { "submittedDateTime": 1649179585, "completedDateTime": 1649203200, "amount": 11.48, "memo": "KFC G135916 NORWOOD OH" },
-  { "submittedDateTime": 1649194772, "completedDateTime": 1649203200, "amount": 12.93, "memo": "GOOGLE *YouTubePremium g.co/helppay# CA" },
-  { "submittedDateTime": 1649213900, "completedDateTime": 1649289600, "amount": -7750, "memo": "PAYMENT THANK YOU" },
-  { "submittedDateTime": 1649445906, "completedDateTime": 1649462400, "amount": 6.87, "memo": "TACO BELL 15353 COVINGTON KY" },
-  { "submittedDateTime": 1649409069, "completedDateTime": 1649462400, "amount": 390.84, "memo": "ACMETOOLS.COM 8773452263 ND" },
-  { "submittedDateTime": 1649416352, "completedDateTime": 1649462400, "amount": 30, "memo": "VISIBLE 8663313527 CO" },
-  { "submittedDateTime": 1649582475, "completedDateTime": 1649635200, "amount": 18.15, "memo": "CANCUN MEXICAN BAR AND NORWOOD OH" },
-  { "submittedDateTime": 1649680717, "completedDateTime": 1649721600, "amount": 11.53, "memo": "SKYLINE CHILI DENT CINCINNATI OH" },
-  { "submittedDateTime": 1649888946, "completedDateTime": 1649894400, "amount": 12.78, "memo": "LA ROSA'S HYDE PARK 513-984-3870 OH" },
-  { "submittedDateTime": 1649985321, "completedDateTime": 1650067200, "amount": 65.91, "memo": "CIN BELL ELEC PAY 513-5652210 OH" },
-  { "submittedDateTime": 1650147372, "completedDateTime": 1650153600, "amount": 173.08, "memo": "SPI*DUKE-ENERGY 800-777-9898 NC" },
-  { "submittedDateTime": 1650224962, "completedDateTime": 1650240000, "amount": -35, "memo": "ONLINE PAYMENT, THANK YOU" },
-  { "submittedDateTime": 1650258658, "completedDateTime": 1650326400, "amount": 2354, "memo": "KY REVENUE DEPT 5028753733 KY" },
-  { "submittedDateTime": 1650379378, "completedDateTime": 1650412800, "amount": 59.55, "memo": "KROGER #355 CINCINNATI OH" },
-  { "submittedDateTime": 1650344360, "completedDateTime": 1650412800, "amount": 14.34, "memo": "EL TORO OF CINCINNATI CINCINNATI OH" },
-  { "submittedDateTime": 1650422507, "completedDateTime": 1650499200, "amount": 201.58, "memo": "INTUIT *TURBOTAX CL.INTUIT.COM CA" },
-  { "submittedDateTime": 1650724028, "completedDateTime": 1650758400, "amount": -624.26, "memo": "ONLINE PAYMENT, THANK YOU" },
-  { "submittedDateTime": 1650914337, "completedDateTime": 1650931200, "amount": 29.72, "memo": "KROGER #465 CINCINNATI OH" },
-  { "submittedDateTime": 1651048823, "completedDateTime": 1651104000, "amount": 33.39, "memo": "HOMEDEPOT.COM 800-430-3376 GA" },
-  { "submittedDateTime": 1651610206, "completedDateTime": 1651622400, "amount": 15.39, "memo": "SP BLOWERBAND FAIRFAX VA" },
-  { "submittedDateTime": 1651561224, "completedDateTime": 1651622400, "amount": 91.62, "memo": "GRIOTS GARAGE 253-9222400 WA" },
-  { "submittedDateTime": 1651691821, "completedDateTime": 1651708800, "amount": 65.91, "memo": "CIN BELL ELEC PAY 513-5652210 OH" },
-  { "submittedDateTime": 1651714277, "completedDateTime": 1651795200, "amount": 198.87, "memo": "SPI*DUKE-ENERGY 800-777-9898 NC" },
-  { "submittedDateTime": 1651780642, "completedDateTime": 1651795200, "amount": 12.93, "memo": "GOOGLE *YouTubePremium g.co/helppay# CA" },
-  { "submittedDateTime": 1651881576, "completedDateTime": 1651881600, "amount": 348, "memo": "VUE*COMPTIA MRKETPLCE 800-511-3478 MN" },
-  { "submittedDateTime": 1652002205, "completedDateTime": 1652054400, "amount": 30, "memo": "VISIBLE 8663313527 CO" },
-  { "submittedDateTime": 1652106686, "completedDateTime": 1652140800, "amount": 322.32, "memo": "LOWES #00907* 866-483-7521 NC" },
-  { "submittedDateTime": 1652056046, "completedDateTime": 1652140800, "amount": 11.83, "memo": "HOMEDEPOT.COM 800-430-3376 GA" },
-  { "submittedDateTime": 1652116413, "completedDateTime": 1652140800, "amount": 11.97, "memo": "HOMEDEPOT.COM 800-430-3376 GA" },
-  { "submittedDateTime": 1652387915, "completedDateTime": 1652400000, "amount": 20.25, "memo": "PMT*OH BUREAU MOTOR VE COLUMBUS OH" },
-  { "submittedDateTime": 1652481413, "completedDateTime": 1652486400, "amount": -62, "memo": "ONLINE PAYMENT, THANK YOU" },
-  { "submittedDateTime": 1652613544, "completedDateTime": 1652659200, "amount": 58.27, "memo": "WAL-MART #2250 CINCINNATI OH" },
-  { "submittedDateTime": 1652586703, "completedDateTime": 1652659200, "amount": 11.65, "memo": "MCALISTER'S 102341 FLORENCE KY" },
-  { "submittedDateTime": 1652746326, "completedDateTime": 1652832000, "amount": -50.17, "memo": "WAL-MART #2250 CINCINNATI OH" },
-  { "submittedDateTime": 1652765931, "completedDateTime": 1652832000, "amount": 24.55, "memo": "WM SUPERCENTER #2250 CINCINNATI OH" },
-  { "submittedDateTime": 1652829124, "completedDateTime": 1652832000, "amount": 24.55, "memo": "WAL-MART #3749 CINCINNATI OH" },
-  { "submittedDateTime": 1652859377, "completedDateTime": 1652918400, "amount": -4072.46, "memo": "ONLINE PAYMENT, THANK YOU" },
-  { "submittedDateTime": 1652967904, "completedDateTime": 1653004800, "amount": 11.83, "memo": "HOMEDEPOT.COM 800-430-3376 GA" },
-  { "submittedDateTime": 1653684246, "completedDateTime": 1653696000, "amount": 5.66, "memo": "ICI*FEECITY OF NORWOOD 866-342-9266 MA" },
-  { "submittedDateTime": 1653613645, "completedDateTime": 1653696000, "amount": 226.36, "memo": "CITY OF NORWOOD 513-458-4500 OH" },
-  { "submittedDateTime": 1653648999, "completedDateTime": 1653696000, "amount": 130.52, "memo": "SPI*DUKE-ENERGY 800-777-9898 NC" },
-  { "submittedDateTime": 1653941374, "completedDateTime": 1653955200, "amount": 18.18, "memo": "Etsy.com - BlueThreadG Brooklyn NY" },
-  { "submittedDateTime": 1653925834, "completedDateTime": 1653955200, "amount": 172.9, "memo": "Tesla_US_Service 8777983752 CA null XXXXXXXXXXXX3777" },
-  { "submittedDateTime": 1654020816, "completedDateTime": 1654041600, "amount": 22.59, "memo": "HOMEDEPOT.COM 800-430-3376 GA" },
-  { "submittedDateTime": 1654467693, "completedDateTime": 1654473600, "amount": 12.93, "memo": "GOOGLE *YouTubePremium 650-253-0000 CA" },
-  { "submittedDateTime": 1654425272, "completedDateTime": 1654473600, "amount": 19.8, "memo": "LONGHORN STEAK 0125046 FLORENCE KY" },
-  { "submittedDateTime": 1654714444, "completedDateTime": 1654732800, "amount": 30, "memo": "VISIBLE 8663313527 CO" },
-  { "submittedDateTime": 1654825982, "completedDateTime": 1654905600, "amount": -1085.99, "memo": "ONLINE PAYMENT, THANK YOU" },
-  { "submittedDateTime": 1655124580, "completedDateTime": 1655164800, "amount": 61.94, "memo": "Tesla Insurance Servic Fremont CA null XXXXXXXXXXXX3777" },
-  { "submittedDateTime": 1655293283, "completedDateTime": 1655337600, "amount": 70.75, "memo": "SP IFIXIT SAN LUIS OBIS CA" },
-  { "submittedDateTime": 1655393219, "completedDateTime": 1655424000, "amount": 65.91, "memo": "CIN BELL ELEC PAY 513-5652210 OH" },
-  { "submittedDateTime": 1655632058, "completedDateTime": 1655683200, "amount": 72, "memo": "SQ *CATHOLIC KOLPING S Cincinnati OH" },
-  { "submittedDateTime": 1656207361, "completedDateTime": 1656288000, "amount": -35, "memo": "AUTOPAY 220614032635645RAUTOPAY AUTO-PMT" },
-  { "submittedDateTime": 1656353955, "completedDateTime": 1656374400, "amount": 0.66, "memo": "Tesla Insurance Servic Fremont CA null XXXXXXXXXXXX3777" },
-  { "submittedDateTime": 1656309164, "completedDateTime": 1656374400, "amount": 18, "memo": "THE DAVID PAKMAN SHOW BOSTON MA" },
-  { "submittedDateTime": 1656370747, "completedDateTime": 1656374400, "amount": 64.68, "memo": "WALMART.COM AA 8009666546 AR" },
-  { "submittedDateTime": 1656653769, "completedDateTime": 1656720000, "amount": -318.94, "memo": "ONLINE PAYMENT, THANK YOU" },
-  { "submittedDateTime": 1656695485, "completedDateTime": 1656720000, "amount": 40.74, "memo": "SPI*DUKE-ENERGY 800-777-9898 NC" },
-  { "submittedDateTime": 1656899493, "completedDateTime": 1656979200, "amount": 65.91, "memo": "CIN BELL ELEC PAY 513-5652210 OH" },
-  { "submittedDateTime": 1657047219, "completedDateTime": 1657065600, "amount": 12.93, "memo": "GOOGLE *YouTubePremium 650-253-0000 CA" },
-  { "submittedDateTime": 1657271256, "completedDateTime": 1657324800, "amount": -119.58, "memo": "ONLINE PAYMENT, THANK YOU" },
-  { "submittedDateTime": 1657243503, "completedDateTime": 1657324800, "amount": 30, "memo": "VISIBLE 8663313527 CO" },
-  { "submittedDateTime": 1657269883, "completedDateTime": 1657324800, "amount": 0, "memo": "MEMBERSHIP FEE JUL 22-JUN 23" },
-  { "submittedDateTime": 1658105014, "completedDateTime": 1658188800, "amount": 11.51, "memo": "TST* Rotolo Bowling Southgate KY" },
-  { "submittedDateTime": 1658104636, "completedDateTime": 1658188800, "amount": 23.35, "memo": "TST* Rotolo Bowling Southgate KY" },
-  { "submittedDateTime": 1658269213, "completedDateTime": 1658275200, "amount": 12.18, "memo": "CHILI'S FLORENCE #1706 FLORENCE KY" },
-  { "submittedDateTime": 1658215220, "completedDateTime": 1658275200, "amount": 15.68, "memo": "CHEDDAR'S 0202134 FLORENCE KY" },
-  { "submittedDateTime": 1658411904, "completedDateTime": 1658448000, "amount": 14.71, "memo": "SKYLINE CHILI 1003 FLORENCE KY" },
-  { "submittedDateTime": 1658475702, "completedDateTime": 1658534400, "amount": 31.25, "memo": "KROGER #418 NORWOOD OH" },
-  { "submittedDateTime": 1658560104, "completedDateTime": 1658620800, "amount": 71.15, "memo": "WALMART.COM AA 8009666546 AR" },
-  { "submittedDateTime": 1658864788, "completedDateTime": 1658880000, "amount": -41, "memo": "AUTOPAY 220614032635645RAUTOPAY AUTO-PMT" },
-  { "submittedDateTime": 1658818060, "completedDateTime": 1658880000, "amount": 60.61, "memo": "Tesla Insurance Servic Fremont CA null XXXXXXXXXXXX3777" },
-  { "submittedDateTime": 1658838345, "completedDateTime": 1658880000, "amount": 12.39, "memo": "PANERA BREAD #204911 P FLORENCE KY" },
-  { "submittedDateTime": 1658907422, "completedDateTime": 1658966400, "amount": 14.18, "memo": "PANERA BREAD #204911 P FLORENCE KY" },
-  { "submittedDateTime": 1658969167, "completedDateTime": 1659052800, "amount": -241.83, "memo": "ONLINE PAYMENT, THANK YOU" },
-  { "submittedDateTime": 1659031571, "completedDateTime": 1659052800, "amount": 49.04, "memo": "PLAYSTATION NETWORK 800-345-7669 CA" },
-  { "submittedDateTime": 1659193419, "completedDateTime": 1659225600, "amount": -129.67, "memo": "THE HOME DEPOT #3832 CINCINNATI OH" },
-  { "submittedDateTime": 1659163592, "completedDateTime": 1659225600, "amount": 150, "memo": "THE HOME DEPOT #3832 CINCINNATI OH" },
-  { "submittedDateTime": 1659266435, "completedDateTime": 1659312000, "amount": 14.18, "memo": "PANERA BREAD #204911 P FLORENCE KY" },
-  { "submittedDateTime": 1659383320, "completedDateTime": 1659398400, "amount": 14.18, "memo": "PANERA BREAD #204911 P FLORENCE KY" },
-  { "submittedDateTime": 1659440314, "completedDateTime": 1659484800, "amount": 1.9, "memo": "WENDY'S - TURFWAY FLORENCE KY" },
-  { "submittedDateTime": 1659539052, "completedDateTime": 1659571200, "amount": -111.91, "memo": "ONLINE PAYMENT, THANK YOU" },
-  { "submittedDateTime": 1659693281, "completedDateTime": 1659744000, "amount": 12.93, "memo": "GOOGLE *YouTubePremium 650-253-0000 CA" },
-  { "submittedDateTime": 1659905575, "completedDateTime": 1659916800, "amount": 13.23, "memo": "PANERA BREAD #204911 P FLORENCE KY" },
-  { "submittedDateTime": 1659937489, "completedDateTime": 1660003200, "amount": 30, "memo": "VISIBLE 8663313527 CO" },
-  { "submittedDateTime": 1659974261, "completedDateTime": 1660003200, "amount": 15.18, "memo": "PANERA BREAD #204911 P FLORENCE KY null XXXXXXXXXXXX4754" },
-  { "submittedDateTime": 1660017989, "completedDateTime": 1660089600, "amount": 14.18, "memo": "PANERA BREAD #204911 P FLORENCE KY" },
-  { "submittedDateTime": 1660126608, "completedDateTime": 1660176000, "amount": 12.65, "memo": "SQ *BAM BAM'S Florence KY" },
-  { "submittedDateTime": 1660423805, "completedDateTime": 1660435200, "amount": 60.61, "memo": "Tesla Insurance Servic Fremont CA null XXXXXXXXXXXX3777" },
-  { "submittedDateTime": 1660363707, "completedDateTime": 1660435200, "amount": 65.91, "memo": "CIN BELL ELEC PAY 513-5652210 OH" },
-  { "submittedDateTime": 1660366749, "completedDateTime": 1660435200, "amount": 1.05, "memo": "WENDY'S COVINGTON KY" },
-  { "submittedDateTime": 1660449322, "completedDateTime": 1660521600, "amount": 148.33, "memo": "BEST BUY 00001610 FLORENCE KY" },
-  { "submittedDateTime": 1660501276, "completedDateTime": 1660521600, "amount": 241.17, "memo": "SPI*DUKE-ENERGY 800-777-9898 NC" },
-  { "submittedDateTime": 1660552192, "completedDateTime": 1660608000, "amount": 7.41, "memo": "TST* Rotolo Bowling Southgate KY" },
-  { "submittedDateTime": 1660601726, "completedDateTime": 1660608000, "amount": 11.71, "memo": "CHIPOTLE 2579 COVINGTON KY" },
-  { "submittedDateTime": 1660598471, "completedDateTime": 1660608000, "amount": 21.93, "memo": "TST* Rotolo Bowling Southgate KY null XXXXXXXXXXXX4754" },
-  { "submittedDateTime": 1660754490, "completedDateTime": 1660780800, "amount": -148.33, "memo": "BEST BUY 00001610 FLORENCE KY" },
-  { "submittedDateTime": 1660788377, "completedDateTime": 1660867200, "amount": 7.99, "memo": "SKYLINE CHILI 1033 CINCINNATI OH" },
-  { "submittedDateTime": 1660996883, "completedDateTime": 1661040000, "amount": 13, "memo": "THE ECHO RESTAURANT CINCINNATI OH" },
-  { "submittedDateTime": 1661298114, "completedDateTime": 1661299200, "amount": 23.98, "memo": "FRONTIERCD5NUT DENVER CO" },
-  { "submittedDateTime": 1661235170, "completedDateTime": 1661299200, "amount": 123.98, "memo": "FRONTIERQCM3YJ DENVER CO" },
-  { "submittedDateTime": 1661238933, "completedDateTime": 1661299200, "amount": 153.6, "memo": "AMERICAN00178489934733 NORWALK CT" },
-  { "submittedDateTime": 1661331753, "completedDateTime": 1661385600, "amount": 18.1, "memo": "PRICELN*TVL PROTECT 800-774-2354 CT" },
-  { "submittedDateTime": 1661442699, "completedDateTime": 1661472000, "amount": 15.99, "memo": "TVP INC/LA ROSA S NORW CINCINNATI OH" },
-  { "submittedDateTime": 1661529911, "completedDateTime": 1661558400, "amount": -319.66, "memo": "ONLINE PAYMENT, THANK YOU" },
-  { "submittedDateTime": 1661473770, "completedDateTime": 1661558400, "amount": -530.85, "memo": "ONLINE PAYMENT, THANK YOU" },
-  { "submittedDateTime": 1661496115, "completedDateTime": 1661558400, "amount": 29.56, "memo": "THE HOME DEPOT #3832 CINCINNATI OH" },
-  { "submittedDateTime": 1661580164, "completedDateTime": 1661644800, "amount": 12.93, "memo": "PENN STATION 10 CINCINNATI OH" },
-  { "submittedDateTime": 1661625114, "completedDateTime": 1661644800, "amount": 53.58, "memo": "WAL-MART #2250 CINCINNATI OH" },
-  { "submittedDateTime": 1661586220, "completedDateTime": 1661644800, "amount": 9.69, "memo": "China Max CINCINNATI OH" },
-  { "submittedDateTime": 1661666495, "completedDateTime": 1661731200, "amount": 5.51, "memo": "ICI*FEECITY OF NORWOOD 866-342-9266 MA" },
-  { "submittedDateTime": 1661727743, "completedDateTime": 1661731200, "amount": 220.48, "memo": "CITY OF NORWOOD 513-458-4500 OH" },
-  { "submittedDateTime": 1661787793, "completedDateTime": 1661817600, "amount": 62, "memo": "FRONTIERQCM3YJ DENVER CO" },
-  { "submittedDateTime": 1661853982, "completedDateTime": 1661904000, "amount": 7.64, "memo": "KFC/PHX I675001 DENVER CO" },
-  { "submittedDateTime": 1661845485, "completedDateTime": 1661904000, "amount": 29.95, "memo": "MOERLEIN BREW PUB A CV CINCINNATI OH" },
-  { "submittedDateTime": 1661890894, "completedDateTime": 1661904000, "amount": 36.59, "memo": "HENDERSONTAXI LAS VEGAS NV" },
-  { "submittedDateTime": 1661909994, "completedDateTime": 1661990400, "amount": 486.99, "memo": "LONDON SUITS LAS VEGAS NV" },
-  { "submittedDateTime": 1661938285, "completedDateTime": 1661990400, "amount": 17.08, "memo": "FLAMINGO CASINO SVCS B LAS VEGAS NV" },
-  { "submittedDateTime": 1662113857, "completedDateTime": 1662163200, "amount": 24.5, "memo": "AREA15 LAS VEGAS LAS VEGAS NV" },
-  { "submittedDateTime": 1662145319, "completedDateTime": 1662163200, "amount": 67, "memo": "FRONTIERCD5NUT DENVER CO" },
-  { "submittedDateTime": 1662130202, "completedDateTime": 1662163200, "amount": 79, "memo": "HOTELTONIGHTFLAMINGO 8333380302 CA null XXXXXXXXXXXX3562" },
-  { "submittedDateTime": 1662112808, "completedDateTime": 1662163200, "amount": 9, "memo": "EMPORIUM LAS VEGAS LAS VEGAS NV" },
-  { "submittedDateTime": 1662084694, "completedDateTime": 1662163200, "amount": 9, "memo": "EMPORIUM LAS VEGAS LAS VEGAS NV" },
-  { "submittedDateTime": 1662140674, "completedDateTime": 1662163200, "amount": 144, "memo": "CAT S MEOW OF VEGAS LAS VEGAS NV" },
-  { "submittedDateTime": 1662172463, "completedDateTime": 1662249600, "amount": 45.3, "memo": "FLAMINGO HOTEL LAS VEG LAS VEGAS NV" },
-  { "submittedDateTime": 1662305572, "completedDateTime": 1662336000, "amount": 65.91, "memo": "CIN BELL ELEC PAY 513-5652210 OH" },
-  { "submittedDateTime": 1662385522, "completedDateTime": 1662422400, "amount": 52.41, "memo": "ZAP*ZAPPOS.COM 800-927-7671 NV" },
-  { "submittedDateTime": 1662338880, "completedDateTime": 1662422400, "amount": 40.25, "memo": "AA WOK DAYTON KY" },
-  { "submittedDateTime": 1662407302, "completedDateTime": 1662422400, "amount": 66, "memo": "CINCINNATI AIRPORT 986 ERLANGER KY" },
-  { "submittedDateTime": 1662400659, "completedDateTime": 1662422400, "amount": 12.93, "memo": "GOOGLE *YouTubePremium 650-253-0000 CA" },
-  { "submittedDateTime": 1662446499, "completedDateTime": 1662508800, "amount": 50.94, "memo": "HELLOFRESH 646-8463663 NY" },
-  { "submittedDateTime": 1662466472, "completedDateTime": 1662508800, "amount": 224.26, "memo": "SPI*DUKE-ENERGY 800-777-9898 NC" },
-  { "submittedDateTime": 1662573857, "completedDateTime": 1662595200, "amount": 5.39, "memo": "CKO*PATREON* MEMBERSHI 833-9728766 CA" },
-  { "submittedDateTime": 1662655677, "completedDateTime": 1662681600, "amount": 30, "memo": "VISIBLE 8663313527 CO" },
-  { "submittedDateTime": 1662743316, "completedDateTime": 1662768000, "amount": 16.59, "memo": "LA ROSA'S HYDE PARK 513-984-3870 OH" },
-  { "submittedDateTime": 1662714820, "completedDateTime": 1662768000, "amount": 97.93, "memo": "RED BANK FINE WINE CINCINNATI OH" },
-  { "submittedDateTime": 1662710332, "completedDateTime": 1662768000, "amount": 18.26, "memo": "THE HOME DEPOT #3832 CINCINNATI OH" },
-  { "submittedDateTime": 1663051411, "completedDateTime": 1663113600, "amount": 45.67, "memo": "Tesla Insurance Servic Fremont CA null XXXXXXXXXXXX3777" },
-  { "submittedDateTime": 1663088903, "completedDateTime": 1663113600, "amount": 77.21, "memo": "HELLOFRESH 646-846-3663 NY" },
-  { "submittedDateTime": 1663160350, "completedDateTime": 1663200000, "amount": 73.89, "memo": "TURO INC.* TRIP SEP 19 SAN FRANCISCO CA null XXXXXXXXXXXX2971" },
-  { "submittedDateTime": 1663273433, "completedDateTime": 1663286400, "amount": 6.97, "memo": "WM SUPERCENTER #2250 CINCINNATI OH" },
-  { "submittedDateTime": 1663352608, "completedDateTime": 1663372800, "amount": 19.26, "memo": "SALT FORK STATE PARK G CAMBRIDGE OH" },
-  { "submittedDateTime": 1663311342, "completedDateTime": 1663372800, "amount": 20.52, "memo": "SALT FORK STATE PARK G CAMBRIDGE OH" },
-  { "submittedDateTime": 1663603691, "completedDateTime": 1663632000, "amount": 39.19, "memo": "WAL-MART #2250 CINCINNATI OH" },
-  { "submittedDateTime": 1663547347, "completedDateTime": 1663632000, "amount": 49.1, "memo": "SPEEDWAY 09576 CINCINN CINCINNATI OH" },
-  { "submittedDateTime": 1663597173, "completedDateTime": 1663632000, "amount": 44.9, "memo": "dbrand Order 6472053971 CAN" },
-  { "submittedDateTime": 1663709349, "completedDateTime": 1663718400, "amount": 98.61, "memo": "HELLOFRESH 646-8463663 NY" },
-  { "submittedDateTime": 1663801424, "completedDateTime": 1663804800, "amount": -41, "memo": "AUTOPAY 220614032635645RAUTOPAY AUTO-PMT" },
-  { "submittedDateTime": 1663795495, "completedDateTime": 1663804800, "amount": -44.9, "memo": "dbrand Order 6472053971 CAN" },
-  { "submittedDateTime": 1663744997, "completedDateTime": 1663804800, "amount": 58.3, "memo": "WM SUPERCENTER #2250 CINCINNATI OH" },
-  { "submittedDateTime": 1663787299, "completedDateTime": 1663804800, "amount": 36.9, "memo": "dbrand Order 6472053971 CAN" },
-  { "submittedDateTime": 1663995984, "completedDateTime": 1664064000, "amount": -36.9, "memo": "dbrand Order 6472053971 CAN" },
-  { "submittedDateTime": 1664124433, "completedDateTime": 1664150400, "amount": -21.31, "memo": "WAL-MART #2250 CINCINNATI OH" },
-  { "submittedDateTime": 1664136937, "completedDateTime": 1664150400, "amount": -21.53, "memo": "WAL-MART #2250 CINCINNATI OH" },
-  { "submittedDateTime": 1664113464, "completedDateTime": 1664150400, "amount": 58.81, "memo": "WM SUPERCENTER #2250 CINCINNATI OH" },
-  { "submittedDateTime": 1664238300, "completedDateTime": 1664323200, "amount": 98.61, "memo": "HELLOFRESH 646-846-3663 NY" },
-  { "submittedDateTime": 1664391126, "completedDateTime": 1664409600, "amount": -41, "memo": "ONLINE PAYMENT, THANK YOU" },
-  { "submittedDateTime": 1664338901, "completedDateTime": 1664409600, "amount": 119, "memo": "CIRCUITBOARDREPAIR.NET MADISON WI" },
-  { "submittedDateTime": 1664461844, "completedDateTime": 1664496000, "amount": 7.34, "memo": "VISIBLE 8663313527 CO" },
-  { "submittedDateTime": 1664586199, "completedDateTime": 1664668800, "amount": 223.66, "memo": "SPI*DUKE-ENERGY 800-777-9898 NC" },
-  { "submittedDateTime": 1664887112, "completedDateTime": 1664928000, "amount": -83, "memo": "CIRCUITBOARDREPAIR.NET MADISON WI" },
-  { "submittedDateTime": 1664912538, "completedDateTime": 1664928000, "amount": 98.61, "memo": "HELLOFRESH 3472000291 NY null XXXXXXXXXXXX0862" },
-  { "submittedDateTime": 1664979385, "completedDateTime": 1665014400, "amount": -129.67, "memo": "THE HOME DEPOT #3832 CINCINNATI OH" },
-  { "submittedDateTime": 1665001304, "completedDateTime": 1665014400, "amount": 12.99, "memo": "PENN STATION 10 CINCINNATI OH" },
-  { "submittedDateTime": 1665004758, "completedDateTime": 1665014400, "amount": 12.93, "memo": "GOOGLE *YouTubePremium 650-253-0000 CA" },
-  { "submittedDateTime": 1664939579, "completedDateTime": 1665014400, "amount": 5.27, "memo": "MARATHON PETRO140699 CINCINNATI OH" },
-  { "submittedDateTime": 1664969323, "completedDateTime": 1665014400, "amount": 150, "memo": "THE HOME DEPOT #3832 CINCINNATI OH" },
-  { "submittedDateTime": 1664968744, "completedDateTime": 1665014400, "amount": 307.01, "memo": "THE HOME DEPOT 3832 CINCINNATI OH" },
-  { "submittedDateTime": 1664960641, "completedDateTime": 1665014400, "amount": 613.38, "memo": "THE HOME DEPOT 3832 CINCINNATI OH" },
-  { "submittedDateTime": 1665070142, "completedDateTime": 1665100800, "amount": 34.27, "memo": "THE HOME DEPOT #3832 CINCINNATI OH" },
-  { "submittedDateTime": 1665250691, "completedDateTime": 1665273600, "amount": 50, "memo": "VISIBLE 8663313527 CO" },
-  { "submittedDateTime": 1665495476, "completedDateTime": 1665532800, "amount": 107.78, "memo": "HELLOFRESH 646-846-3663 NY" },
-  { "submittedDateTime": 1665463451, "completedDateTime": 1665532800, "amount": 119.38, "memo": "WAL-MART #2250 CINCINNATI OH" },
-  { "submittedDateTime": 1665596205, "completedDateTime": 1665619200, "amount": 65.91, "memo": "CIN BELL ELEC PAY 513-5652210 OH" },
-  { "submittedDateTime": 1665684646, "completedDateTime": 1665705600, "amount": 50.84, "memo": "Tesla Insurance Servic Fremont CA null XXXXXXXXXXXX3777" },
-  { "submittedDateTime": 1665709612, "completedDateTime": 1665792000, "amount": -2197.87, "memo": "ONLINE PAYMENT, THANK YOU" },
-  { "submittedDateTime": 1666126384, "completedDateTime": 1666137600, "amount": 4.98, "memo": "HELLOFRESH 646-846-3663 NY" },
-  { "submittedDateTime": 1666077347, "completedDateTime": 1666137600, "amount": 100.87, "memo": "HELLOFRESH 3472000291 NY null XXXXXXXXXXXX0862" },
-  { "submittedDateTime": 1666166921, "completedDateTime": 1666224000, "amount": 10, "memo": "SQ *WILD SIDE EXPERIEN Burlington KY" },
-  { "submittedDateTime": 1666336828, "completedDateTime": 1666396800, "amount": -41, "memo": "AUTOPAY 220614032635645RAUTOPAY AUTO-PMT" },
-  { "submittedDateTime": 1666322450, "completedDateTime": 1666396800, "amount": -879.24, "memo": "THE HOME DEPOT 3832 CINCINNATI OH" },
-  { "submittedDateTime": 1666352398, "completedDateTime": 1666396800, "amount": -70.03, "memo": "THE HOME DEPOT #3832 CINCINNATI OH" },
-  { "submittedDateTime": 1666564580, "completedDateTime": 1666569600, "amount": 17.52, "memo": "DD DOORDASH JERSEYMIK 8559731040 CA" },
-  { "submittedDateTime": 1666698134, "completedDateTime": 1666742400, "amount": 72.93, "memo": "HELLOFRESH 646-846-3663 NY" },
-  { "submittedDateTime": 1667028866, "completedDateTime": 1667088000, "amount": 211.3, "memo": "SPI*DUKE-ENERGY 800-777-9898 NC" },
-  { "submittedDateTime": 1667179301, "completedDateTime": 1667260800, "amount": -41, "memo": "ONLINE PAYMENT, THANK YOU" },
-  { "submittedDateTime": 1667568832, "completedDateTime": 1667606400, "amount": 65.91, "memo": "ALTAFIBER CINBELL EPAY 513-5652210 OH" },
-  { "submittedDateTime": 1667552736, "completedDateTime": 1667606400, "amount": 11.25, "memo": "DD DOORDASH JERSEYMIK 8559731040 CA null XXXXXXXXXXXX5584" },
-  { "submittedDateTime": 1667610344, "completedDateTime": 1667692800, "amount": 12.93, "memo": "GOOGLE *YouTubePremium 650-253-0000 CA" },
-  { "submittedDateTime": 1667700791, "completedDateTime": 1667779200, "amount": 67.05, "memo": "WAL-MART #2250 CINCINNATI OH" },
-  { "submittedDateTime": 1667751171, "completedDateTime": 1667779200, "amount": 17.75, "memo": "CANCUN MEXICAN BAR AND NORWOOD OH" },
-  { "submittedDateTime": 1667915269, "completedDateTime": 1667952000, "amount": 50, "memo": "VISIBLE 8663313527 CO" },
-  { "submittedDateTime": 1667903737, "completedDateTime": 1667952000, "amount": 4.99, "memo": "HELLOFRESH 646-846-3663 NY" },
-  { "submittedDateTime": 1667925891, "completedDateTime": 1667952000, "amount": 96.89, "memo": "HELLOFRESH 646-846-3663 NY" },
-  { "submittedDateTime": 1668011993, "completedDateTime": 1668038400, "amount": 11.5, "memo": "SQ *WILD SIDE EXPERIEN Burlington KY" },
-  { "submittedDateTime": 1668087441, "completedDateTime": 1668124800, "amount": -1237.89, "memo": "ONLINE PAYMENT, THANK YOU" },
-  { "submittedDateTime": 1668059976, "completedDateTime": 1668124800, "amount": 21.6, "memo": "CHUY'S 039 FLORENCE KY" },
-  { "submittedDateTime": 1668186126, "completedDateTime": 1668211200, "amount": 75.44, "memo": "PLAYSTATION NETWORK 800-345-7669 CA" },
-  { "submittedDateTime": 1668310887, "completedDateTime": 1668384000, "amount": 66.67, "memo": "Tesla Insurance Servic Fremont CA null XXXXXXXXXXXX3777" },
-  { "submittedDateTime": 1668496466, "completedDateTime": 1668556800, "amount": 94.87, "memo": "HELLOFRESH 646-846-3663 NY" },
-  { "submittedDateTime": 1668480465, "completedDateTime": 1668556800, "amount": 5.63, "memo": "THE HOME DEPOT #3832 CINCINNATI OH" },
-  { "submittedDateTime": 1668524827, "completedDateTime": 1668556800, "amount": 25.79, "memo": "THE HOME DEPOT #3832 CINCINNATI OH" },
-  { "submittedDateTime": 1669411721, "completedDateTime": 1669420800, "amount": 13, "memo": "CINCINNATI ZOO ONLINE 5132814700 OH" },
-  { "submittedDateTime": 1669335804, "completedDateTime": 1669420800, "amount": 50.58, "memo": "THE PUB AT ROOKWOOD CINCINNATI OH" },
-  { "submittedDateTime": 1669453417, "completedDateTime": 1669507200, "amount": 12.99, "memo": "PENN STATION 10 CINCINNATI OH" },
-  { "submittedDateTime": 1669682432, "completedDateTime": 1669766400, "amount": 9, "memo": "SQ *BAM BAM'S Erlanger KY" },
-  { "submittedDateTime": 1669740801, "completedDateTime": 1669766400, "amount": 11, "memo": "SQ *BAM BAM'S Erlanger KY" },
-  { "submittedDateTime": 1669715015, "completedDateTime": 1669766400, "amount": 112.87, "memo": "HELLOFRESH 646-846-3663 NY" },
-  { "submittedDateTime": 1669843874, "completedDateTime": 1669852800, "amount": 5.51, "memo": "ICI*FEECITY OF NORWOOD 866-342-9266 MA" },
-  { "submittedDateTime": 1669818626, "completedDateTime": 1669852800, "amount": 220.48, "memo": "CITY OF NORWOOD 513-458-4500 OH" },
-  { "submittedDateTime": 1669778149, "completedDateTime": 1669852800, "amount": 300.28, "memo": "SPI*DUKE-ENERGY 800-777-9898 NC" },
-  { "submittedDateTime": 1670135501, "completedDateTime": 1670198400, "amount": 21.56, "memo": "SQ *QUEEN CITY NOVELTY Cincinnati OH" },
-  { "submittedDateTime": 1670113462, "completedDateTime": 1670198400, "amount": 18.15, "memo": "CANCUN MEXICAN BAR AND NORWOOD OH" },
-  { "submittedDateTime": 1670151606, "completedDateTime": 1670198400, "amount": 59.26, "memo": "SQ *DJC CONCESSIONS LL Cincinnati OH" },
-  { "submittedDateTime": 1670244386, "completedDateTime": 1670284800, "amount": 10.25, "memo": "DD DOORDASH JERSEYMIK 8559731040 CA null XXXXXXXXXXXX5584" },
-  { "submittedDateTime": 1670231154, "completedDateTime": 1670284800, "amount": 12.93, "memo": "GOOGLE *YouTubePremium 650-253-0000 CA" },
-  { "submittedDateTime": 1670320486, "completedDateTime": 1670371200, "amount": 112.87, "memo": "HELLOFRESH 646-846-3663 NY" },
-  { "submittedDateTime": 1670505326, "completedDateTime": 1670544000, "amount": 50, "memo": "VISIBLE 8663313527 CO" },
-  { "submittedDateTime": 1670596699, "completedDateTime": 1670630400, "amount": -912.5, "memo": "ONLINE PAYMENT, THANK YOU" },
-  { "submittedDateTime": 1670761213, "completedDateTime": 1670803200, "amount": 11.98, "memo": "TACO BELL 32033 CINCINNATI OH" },
-  { "submittedDateTime": 1670720827, "completedDateTime": 1670803200, "amount": 36.78, "memo": "CANCUN MEXICAN BAR AND NORWOOD OH" },
-  { "submittedDateTime": 1670931307, "completedDateTime": 1670976000, "amount": 72.51, "memo": "Tesla Insurance Servic Fremont CA null XXXXXXXXXXXX3777" },
-  { "submittedDateTime": 1670899767, "completedDateTime": 1670976000, "amount": 112.87, "memo": "HELLOFRESH 646-846-3663 NY" }
+  {
+    "accountNumber": 750266561847,
+    "submittedDateTime": 1641028386,
+    "completedDateTime": 1641081600,
+    "amount": 59.99,
+    "memo": "Microsoft Redmond WA null XXXXXXXXXXXX6681"
+  },
+  {
+    "accountNumber": 8755129424701580,
+    "submittedDateTime": 1641147914,
+    "completedDateTime": 1641168000,
+    "amount": 13.88,
+    "memo": "PENN STATION 10 CINCINNATI OH"
+  },
+  {
+    "accountNumber": 771640338305,
+    "submittedDateTime": 1641098000,
+    "completedDateTime": 1641168000,
+    "amount": 20.38,
+    "memo": "DOUBLE DRAGON II CINCINNATI OH"
+  },
+  {
+    "accountNumber": 590761751601,
+    "submittedDateTime": 1641307864,
+    "completedDateTime": 1641340800,
+    "amount": 11.64,
+    "memo": "35 PIADA FLORENCE FLORENCE KY"
+  },
+  {
+    "accountNumber": 863866434270,
+    "submittedDateTime": 1641283386,
+    "completedDateTime": 1641340800,
+    "amount": 240.43,
+    "memo": "SPI*DUKE-ENERGY 800-777-9898 NC"
+  },
+  {
+    "accountNumber": 228410255662,
+    "submittedDateTime": 1641386769,
+    "completedDateTime": 1641427200,
+    "amount": -49.53,
+    "memo": "THE HOME DEPOT #3832 CINCINNATI OH"
+  },
+  {
+    "accountNumber": 968412565877,
+    "submittedDateTime": 1641376118,
+    "completedDateTime": 1641427200,
+    "amount": -59.44,
+    "memo": "THE HOME DEPOT #3832 CINCINNATI OH"
+  },
+  {
+    "accountNumber": 627541466323,
+    "submittedDateTime": 1641373753,
+    "completedDateTime": 1641427200,
+    "amount": 65.91,
+    "memo": "CIN BELL ELEC PAY 513-5652210 OH"
+  },
+  {
+    "accountNumber": 771519988061,
+    "submittedDateTime": 1641360498,
+    "completedDateTime": 1641427200,
+    "amount": 452.49,
+    "memo": "CAPITAL GRILLE 0138052 CINCINNATI OH"
+  },
+  {
+    "accountNumber": 968412565877,
+    "submittedDateTime": 1641465323,
+    "completedDateTime": 1641513600,
+    "amount": -2418.36,
+    "memo": "ONLINE PAYMENT, THANK YOU"
+  },
+  {
+    "accountNumber": 973891075646,
+    "submittedDateTime": 1641677431,
+    "completedDateTime": 1641686400,
+    "amount": 30,
+    "memo": "VISIBLE 8663313527 CO"
+  },
+  {
+    "accountNumber": 567751798401,
+    "submittedDateTime": 1642044319,
+    "completedDateTime": 1642118400,
+    "amount": 21.95,
+    "memo": "DOUBLE DRAGON II CINCINNATI OH"
+  },
+  {
+    "accountNumber": 702136833361,
+    "submittedDateTime": 1642584578,
+    "completedDateTime": 1642636800,
+    "amount": 48.08,
+    "memo": "WM SUPERCENTER #2250 CINCINNATI OH"
+  },
+  {
+    "accountNumber": 398225850477,
+    "submittedDateTime": 1642890329,
+    "completedDateTime": 1642896000,
+    "amount": 16.1,
+    "memo": "CANCUN MEXICAN BAR AND NORWOOD OH"
+  },
+  {
+    "accountNumber": 450379505851,
+    "submittedDateTime": 1643200536,
+    "completedDateTime": 1643241600,
+    "amount": 17.14,
+    "memo": "FIVE GUYS OH 1056 QSR CINCINNATI OH"
+  },
+  {
+    "accountNumber": 567751798401,
+    "submittedDateTime": 1643398824,
+    "completedDateTime": 1643414400,
+    "amount": 30.92,
+    "memo": "DOUBLE DRAGON II CINCINNATI OH"
+  },
+  {
+    "accountNumber": 1072336678888600,
+    "submittedDateTime": 1643839078,
+    "completedDateTime": 1643846400,
+    "amount": 2.78,
+    "memo": "LOWES #01585* CINCINNATI OH"
+  },
+  {
+    "accountNumber": 702136833361,
+    "submittedDateTime": 1643960770,
+    "completedDateTime": 1644019200,
+    "amount": -1132.5,
+    "memo": "ONLINE PAYMENT, THANK YOU"
+  },
+  {
+    "accountNumber": 567751798401,
+    "submittedDateTime": 1643994735,
+    "completedDateTime": 1644019200,
+    "amount": 16.1,
+    "memo": "CANCUN MEXICAN BAR AND NORWOOD OH"
+  },
+  {
+    "accountNumber": 1072336678888600,
+    "submittedDateTime": 1644031517,
+    "completedDateTime": 1644105600,
+    "amount": 11.99,
+    "memo": "PENN STATION 10 CINCINNATI OH"
+  },
+  {
+    "accountNumber": 697163844059,
+    "submittedDateTime": 1644213367,
+    "completedDateTime": 1644278400,
+    "amount": 39.55,
+    "memo": "HOMEDEPOT.COM 800-430-3376 GA"
+  },
+  {
+    "accountNumber": 154068856018,
+    "submittedDateTime": 1644207179,
+    "completedDateTime": 1644278400,
+    "amount": 11.56,
+    "memo": "TVP INC/LA ROSA S NORW 513-984-3870 OH"
+  },
+  {
+    "accountNumber": 627541466323,
+    "submittedDateTime": 1644359255,
+    "completedDateTime": 1644364800,
+    "amount": 30,
+    "memo": "VISIBLE 8663313527 CO"
+  },
+  {
+    "accountNumber": 1072336678888600,
+    "submittedDateTime": 1644619578,
+    "completedDateTime": 1644624000,
+    "amount": 281.99,
+    "memo": "HOMEDEPOT.COM 800-430-3376 GA"
+  },
+  {
+    "accountNumber": 201893813588,
+    "submittedDateTime": 1644564856,
+    "completedDateTime": 1644624000,
+    "amount": 156.75,
+    "memo": "HOMEDEPOT.COM 800-430-3376 GA"
+  },
+  {
+    "accountNumber": 384302539441,
+    "submittedDateTime": 1645002573,
+    "completedDateTime": 1645056000,
+    "amount": -39.55,
+    "memo": "THE HOME DEPOT #3832 CINCINNATI OH"
+  },
+  {
+    "accountNumber": 810077691050,
+    "submittedDateTime": 1644976684,
+    "completedDateTime": 1645056000,
+    "amount": -109.49,
+    "memo": "THE HOME DEPOT #3832 CINCINNATI OH"
+  },
+  {
+    "accountNumber": 306781755424,
+    "submittedDateTime": 1646384394,
+    "completedDateTime": 1646438400,
+    "amount": -57.58,
+    "memo": "ONLINE PAYMENT, THANK YOU"
+  },
+  {
+    "accountNumber": 697163844059,
+    "submittedDateTime": 1646486204,
+    "completedDateTime": 1646524800,
+    "amount": 12.93,
+    "memo": "GOOGLE *YouTubePremium g.co/helppay# CA"
+  },
+  {
+    "accountNumber": 8215830979251800,
+    "submittedDateTime": 1646583689,
+    "completedDateTime": 1646611200,
+    "amount": 48.33,
+    "memo": "TST* FIFTY WEST BREWIN CINCINNATI OH"
+  },
+  {
+    "accountNumber": 771640338305,
+    "submittedDateTime": 1646565817,
+    "completedDateTime": 1646611200,
+    "amount": 30.93,
+    "memo": "DOUBLE DRAGON II CINCINNATI OH"
+  },
+  {
+    "accountNumber": 627541466323,
+    "submittedDateTime": 1646733390,
+    "completedDateTime": 1646784000,
+    "amount": 30,
+    "memo": "VISIBLE 8663313527 CO"
+  },
+  {
+    "accountNumber": 1072336678888600,
+    "submittedDateTime": 1647036661,
+    "completedDateTime": 1647043200,
+    "amount": 269.87,
+    "memo": "SPI*DUKE-ENERGY 800-777-9898 NC"
+  },
+  {
+    "accountNumber": 702136833361,
+    "submittedDateTime": 1646995888,
+    "completedDateTime": 1647043200,
+    "amount": 34.66,
+    "memo": "DAVE & BUSTERS #96 FLORENCE KY"
+  },
+  {
+    "accountNumber": 973891075646,
+    "submittedDateTime": 1647170440,
+    "completedDateTime": 1647216000,
+    "amount": 9.64,
+    "memo": "WM SUPERCENTER #2250 CINCINNATI OH"
+  },
+  {
+    "accountNumber": 869780232178,
+    "submittedDateTime": 1647435541,
+    "completedDateTime": 1647475200,
+    "amount": 16.6,
+    "memo": "CANCUN MEXICAN BAR AND NORWOOD OH"
+  },
+  {
+    "accountNumber": 750266561847,
+    "submittedDateTime": 1647535031,
+    "completedDateTime": 1647561600,
+    "amount": 97.13,
+    "memo": "THIRD EYE BREWING CINCINNATI OH"
+  },
+  {
+    "accountNumber": 810077691050,
+    "submittedDateTime": 1647750054,
+    "completedDateTime": 1647820800,
+    "amount": 14,
+    "memo": "THE ECHO RESTAURANT CINCINNATI OH"
+  },
+  {
+    "accountNumber": 863866434270,
+    "submittedDateTime": 1648118098,
+    "completedDateTime": 1648166400,
+    "amount": 13.93,
+    "memo": "SPEEDWAY 05402 9369 ME MENTOR OH"
+  },
+  {
+    "accountNumber": 450379505851,
+    "submittedDateTime": 1648289363,
+    "completedDateTime": 1648339200,
+    "amount": 11.5,
+    "memo": "TST* Noras Public Hous Willoughby Hi OH"
+  },
+  {
+    "accountNumber": 1072336678888600,
+    "submittedDateTime": 1648423140,
+    "completedDateTime": 1648425600,
+    "amount": 18,
+    "memo": "TST* THE 1899 PUB WILLOUGHBY OH"
+  },
+  {
+    "accountNumber": 750266561847,
+    "submittedDateTime": 1648345659,
+    "completedDateTime": 1648425600,
+    "amount": 22.48,
+    "memo": "DOUBLE DRAGON II CINCINNATI OH"
+  },
+  {
+    "accountNumber": 398225850477,
+    "submittedDateTime": 1648420155,
+    "completedDateTime": 1648425600,
+    "amount": 45.78,
+    "memo": "KROGER #418 NORWOOD OH"
+  },
+  {
+    "accountNumber": 228410255662,
+    "submittedDateTime": 1648391136,
+    "completedDateTime": 1648425600,
+    "amount": 6.38,
+    "memo": "WENDY'S 219 MENTOR OH"
+  },
+  {
+    "accountNumber": 450379505851,
+    "submittedDateTime": 1648389085,
+    "completedDateTime": 1648425600,
+    "amount": 20.25,
+    "memo": "FIREBIRDS COLUMBUS COLUMBUS OH"
+  },
+  {
+    "accountNumber": 771519988061,
+    "submittedDateTime": 1648516938,
+    "completedDateTime": 1648598400,
+    "amount": 13.48,
+    "memo": "PENN STATION 10 - ECOM CINCINNATI OH"
+  },
+  {
+    "accountNumber": 384302539441,
+    "submittedDateTime": 1648587363,
+    "completedDateTime": 1648598400,
+    "amount": 16.1,
+    "memo": "CANCUN MEXICAN BAR AND NORWOOD OH"
+  },
+  {
+    "accountNumber": 154068856018,
+    "submittedDateTime": 1648626231,
+    "completedDateTime": 1648684800,
+    "amount": -5,
+    "memo": "DD DOORDASH POTBELLYS 8559731040 CA"
+  },
+  {
+    "accountNumber": 455810450311,
+    "submittedDateTime": 1648682404,
+    "completedDateTime": 1648684800,
+    "amount": 1.51,
+    "memo": "365 MARKET 888 432-32 TROY MI"
+  },
+  {
+    "accountNumber": 8215830979251800,
+    "submittedDateTime": 1648606968,
+    "completedDateTime": 1648684800,
+    "amount": 11.91,
+    "memo": "SKYLINE CHILI 1033 CINCINNATI OH"
+  },
+  {
+    "accountNumber": 154068856018,
+    "submittedDateTime": 1648771564,
+    "completedDateTime": 1648857600,
+    "amount": 15.49,
+    "memo": "JIMMY JOHNS - 2554 CINCINNATI OH"
+  },
+  {
+    "accountNumber": 254438198713,
+    "submittedDateTime": 1648858771,
+    "completedDateTime": 1648944000,
+    "amount": -595.48,
+    "memo": "ONLINE PAYMENT, THANK YOU"
+  },
+  {
+    "accountNumber": 750266561847,
+    "submittedDateTime": 1648858359,
+    "completedDateTime": 1648944000,
+    "amount": 11.31,
+    "memo": "TACO BELL 15353 COVINGTON KY"
+  },
+  {
+    "accountNumber": 702136833361,
+    "submittedDateTime": 1648981416,
+    "completedDateTime": 1649030400,
+    "amount": 48.48,
+    "memo": "KROGER #465 CINCINNATI OH"
+  },
+  {
+    "accountNumber": 228410255662,
+    "submittedDateTime": 1649054503,
+    "completedDateTime": 1649116800,
+    "amount": 140.25,
+    "memo": "SERVICE FEE 888-658-5465 TN"
+  },
+  {
+    "accountNumber": 201893813588,
+    "submittedDateTime": 1649060396,
+    "completedDateTime": 1649116800,
+    "amount": 7500,
+    "memo": "US TREAS TAX PYMT 888-658-5465 TN"
+  },
+  {
+    "accountNumber": 745844482971,
+    "submittedDateTime": 1649046226,
+    "completedDateTime": 1649116800,
+    "amount": 16.1,
+    "memo": "CANCUN MEXICAN BAR AND NORWOOD OH"
+  },
+  {
+    "accountNumber": 590761751601,
+    "submittedDateTime": 1649130853,
+    "completedDateTime": 1649203200,
+    "amount": 11.48,
+    "memo": "KFC G135916 NORWOOD OH"
+  },
+  {
+    "accountNumber": 745844482971,
+    "submittedDateTime": 1649202398,
+    "completedDateTime": 1649203200,
+    "amount": 12.93,
+    "memo": "GOOGLE *YouTubePremium g.co/helppay# CA"
+  },
+  {
+    "accountNumber": 973891075646,
+    "submittedDateTime": 1649213317,
+    "completedDateTime": 1649289600,
+    "amount": -7750,
+    "memo": "PAYMENT THANK YOU"
+  },
+  {
+    "accountNumber": 810077691050,
+    "submittedDateTime": 1649422697,
+    "completedDateTime": 1649462400,
+    "amount": 6.87,
+    "memo": "TACO BELL 15353 COVINGTON KY"
+  },
+  {
+    "accountNumber": 627541466323,
+    "submittedDateTime": 1649453603,
+    "completedDateTime": 1649462400,
+    "amount": 390.84,
+    "memo": "ACMETOOLS.COM 8773452263 ND"
+  },
+  {
+    "accountNumber": 455810450311,
+    "submittedDateTime": 1649422223,
+    "completedDateTime": 1649462400,
+    "amount": 30,
+    "memo": "VISIBLE 8663313527 CO"
+  },
+  {
+    "accountNumber": 771519988061,
+    "submittedDateTime": 1649616524,
+    "completedDateTime": 1649635200,
+    "amount": 18.15,
+    "memo": "CANCUN MEXICAN BAR AND NORWOOD OH"
+  },
+  {
+    "accountNumber": 450379505851,
+    "submittedDateTime": 1649700097,
+    "completedDateTime": 1649721600,
+    "amount": 11.53,
+    "memo": "SKYLINE CHILI DENT CINCINNATI OH"
+  },
+  {
+    "accountNumber": 869780232178,
+    "submittedDateTime": 1649815335,
+    "completedDateTime": 1649894400,
+    "amount": 12.78,
+    "memo": "LA ROSA'S HYDE PARK 513-984-3870 OH"
+  },
+  {
+    "accountNumber": 685109477442,
+    "submittedDateTime": 1650032382,
+    "completedDateTime": 1650067200,
+    "amount": 65.91,
+    "memo": "CIN BELL ELEC PAY 513-5652210 OH"
+  },
+  {
+    "accountNumber": 154068856018,
+    "submittedDateTime": 1650102590,
+    "completedDateTime": 1650153600,
+    "amount": 173.08,
+    "memo": "SPI*DUKE-ENERGY 800-777-9898 NC"
+  },
+  {
+    "accountNumber": 627541466323,
+    "submittedDateTime": 1650230099,
+    "completedDateTime": 1650240000,
+    "amount": -35,
+    "memo": "ONLINE PAYMENT, THANK YOU"
+  },
+  {
+    "accountNumber": 750266561847,
+    "submittedDateTime": 1650281837,
+    "completedDateTime": 1650326400,
+    "amount": 2354,
+    "memo": "KY REVENUE DEPT 5028753733 KY"
+  },
+  {
+    "accountNumber": 702136833361,
+    "submittedDateTime": 1650357256,
+    "completedDateTime": 1650412800,
+    "amount": 59.55,
+    "memo": "KROGER #355 CINCINNATI OH"
+  },
+  {
+    "accountNumber": 306781755424,
+    "submittedDateTime": 1650354466,
+    "completedDateTime": 1650412800,
+    "amount": 14.34,
+    "memo": "EL TORO OF CINCINNATI CINCINNATI OH"
+  },
+  {
+    "accountNumber": 8755129424701580,
+    "submittedDateTime": 1650457052,
+    "completedDateTime": 1650499200,
+    "amount": 201.58,
+    "memo": "INTUIT *TURBOTAX CL.INTUIT.COM CA"
+  },
+  {
+    "accountNumber": 201893813588,
+    "submittedDateTime": 1650699705,
+    "completedDateTime": 1650758400,
+    "amount": -624.26,
+    "memo": "ONLINE PAYMENT, THANK YOU"
+  },
+  {
+    "accountNumber": 8755129424701580,
+    "submittedDateTime": 1650916539,
+    "completedDateTime": 1650931200,
+    "amount": 29.72,
+    "memo": "KROGER #465 CINCINNATI OH"
+  },
+  {
+    "accountNumber": 771519988061,
+    "submittedDateTime": 1651031305,
+    "completedDateTime": 1651104000,
+    "amount": 33.39,
+    "memo": "HOMEDEPOT.COM 800-430-3376 GA"
+  },
+  {
+    "accountNumber": 201893813588,
+    "submittedDateTime": 1651563451,
+    "completedDateTime": 1651622400,
+    "amount": 15.39,
+    "memo": "SP BLOWERBAND FAIRFAX VA"
+  },
+  {
+    "accountNumber": 702136833361,
+    "submittedDateTime": 1651566832,
+    "completedDateTime": 1651622400,
+    "amount": 91.62,
+    "memo": "GRIOTS GARAGE 253-9222400 WA"
+  },
+  {
+    "accountNumber": 198252465357,
+    "submittedDateTime": 1651668659,
+    "completedDateTime": 1651708800,
+    "amount": 65.91,
+    "memo": "CIN BELL ELEC PAY 513-5652210 OH"
+  },
+  {
+    "accountNumber": 8215830979251800,
+    "submittedDateTime": 1651766892,
+    "completedDateTime": 1651795200,
+    "amount": 198.87,
+    "memo": "SPI*DUKE-ENERGY 800-777-9898 NC"
+  },
+  {
+    "accountNumber": 1072336678888600,
+    "submittedDateTime": 1651758913,
+    "completedDateTime": 1651795200,
+    "amount": 12.93,
+    "memo": "GOOGLE *YouTubePremium g.co/helppay# CA"
+  },
+  {
+    "accountNumber": 702136833361,
+    "submittedDateTime": 1651873705,
+    "completedDateTime": 1651881600,
+    "amount": 348,
+    "memo": "VUE*COMPTIA MRKETPLCE 800-511-3478 MN"
+  },
+  {
+    "accountNumber": 198252465357,
+    "submittedDateTime": 1651993222,
+    "completedDateTime": 1652054400,
+    "amount": 30,
+    "memo": "VISIBLE 8663313527 CO"
+  },
+  {
+    "accountNumber": 771640338305,
+    "submittedDateTime": 1652068774,
+    "completedDateTime": 1652140800,
+    "amount": 322.32,
+    "memo": "LOWES #00907* 866-483-7521 NC"
+  },
+  {
+    "accountNumber": 8755129424701580,
+    "submittedDateTime": 1652087819,
+    "completedDateTime": 1652140800,
+    "amount": 11.83,
+    "memo": "HOMEDEPOT.COM 800-430-3376 GA"
+  },
+  {
+    "accountNumber": 455810450311,
+    "submittedDateTime": 1652068218,
+    "completedDateTime": 1652140800,
+    "amount": 11.97,
+    "memo": "HOMEDEPOT.COM 800-430-3376 GA"
+  },
+  {
+    "accountNumber": 869780232178,
+    "submittedDateTime": 1652325662,
+    "completedDateTime": 1652400000,
+    "amount": 20.25,
+    "memo": "PMT*OH BUREAU MOTOR VE COLUMBUS OH"
+  },
+  {
+    "accountNumber": 8215830979251800,
+    "submittedDateTime": 1652417738,
+    "completedDateTime": 1652486400,
+    "amount": -62,
+    "memo": "ONLINE PAYMENT, THANK YOU"
+  },
+  {
+    "accountNumber": 450379505851,
+    "submittedDateTime": 1652590939,
+    "completedDateTime": 1652659200,
+    "amount": 58.27,
+    "memo": "WAL-MART #2250 CINCINNATI OH"
+  },
+  {
+    "accountNumber": 422842313902,
+    "submittedDateTime": 1652623862,
+    "completedDateTime": 1652659200,
+    "amount": 11.65,
+    "memo": "MCALISTER'S 102341 FLORENCE KY"
+  },
+  {
+    "accountNumber": 750266561847,
+    "submittedDateTime": 1652776517,
+    "completedDateTime": 1652832000,
+    "amount": -50.17,
+    "memo": "WAL-MART #2250 CINCINNATI OH"
+  },
+  {
+    "accountNumber": 771640338305,
+    "submittedDateTime": 1652780747,
+    "completedDateTime": 1652832000,
+    "amount": 24.55,
+    "memo": "WM SUPERCENTER #2250 CINCINNATI OH"
+  },
+  {
+    "accountNumber": 702136833361,
+    "submittedDateTime": 1652808735,
+    "completedDateTime": 1652832000,
+    "amount": 24.55,
+    "memo": "WAL-MART #3749 CINCINNATI OH"
+  },
+  {
+    "accountNumber": 384302539441,
+    "submittedDateTime": 1652838245,
+    "completedDateTime": 1652918400,
+    "amount": -4072.46,
+    "memo": "ONLINE PAYMENT, THANK YOU"
+  },
+  {
+    "accountNumber": 8215830979251800,
+    "submittedDateTime": 1652957044,
+    "completedDateTime": 1653004800,
+    "amount": 11.83,
+    "memo": "HOMEDEPOT.COM 800-430-3376 GA"
+  },
+  {
+    "accountNumber": 685109477442,
+    "submittedDateTime": 1653610101,
+    "completedDateTime": 1653696000,
+    "amount": 5.66,
+    "memo": "ICI*FEECITY OF NORWOOD 866-342-9266 MA"
+  },
+  {
+    "accountNumber": 8215830979251800,
+    "submittedDateTime": 1653690363,
+    "completedDateTime": 1653696000,
+    "amount": 226.36,
+    "memo": "CITY OF NORWOOD 513-458-4500 OH"
+  },
+  {
+    "accountNumber": 8215830979251800,
+    "submittedDateTime": 1653674579,
+    "completedDateTime": 1653696000,
+    "amount": 130.52,
+    "memo": "SPI*DUKE-ENERGY 800-777-9898 NC"
+  },
+  {
+    "accountNumber": 8755129424701580,
+    "submittedDateTime": 1653912749,
+    "completedDateTime": 1653955200,
+    "amount": 18.18,
+    "memo": "Etsy.com - BlueThreadG Brooklyn NY"
+  },
+  {
+    "accountNumber": 750266561847,
+    "submittedDateTime": 1653875878,
+    "completedDateTime": 1653955200,
+    "amount": 172.9,
+    "memo": "Tesla_US_Service 8777983752 CA null XXXXXXXXXXXX3777"
+  },
+  {
+    "accountNumber": 771640338305,
+    "submittedDateTime": 1653963958,
+    "completedDateTime": 1654041600,
+    "amount": 22.59,
+    "memo": "HOMEDEPOT.COM 800-430-3376 GA"
+  },
+  {
+    "accountNumber": 228410255662,
+    "submittedDateTime": 1654470452,
+    "completedDateTime": 1654473600,
+    "amount": 12.93,
+    "memo": "GOOGLE *YouTubePremium 650-253-0000 CA"
+  },
+  {
+    "accountNumber": 745844482971,
+    "submittedDateTime": 1654457448,
+    "completedDateTime": 1654473600,
+    "amount": 19.8,
+    "memo": "LONGHORN STEAK 0125046 FLORENCE KY"
+  },
+  {
+    "accountNumber": 771519988061,
+    "submittedDateTime": 1654677119,
+    "completedDateTime": 1654732800,
+    "amount": 30,
+    "memo": "VISIBLE 8663313527 CO"
+  },
+  {
+    "accountNumber": 477378744576,
+    "submittedDateTime": 1654869313,
+    "completedDateTime": 1654905600,
+    "amount": -1085.99,
+    "memo": "ONLINE PAYMENT, THANK YOU"
+  },
+  {
+    "accountNumber": 8215830979251800,
+    "submittedDateTime": 1655103654,
+    "completedDateTime": 1655164800,
+    "amount": 61.94,
+    "memo": "Tesla Insurance Servic Fremont CA null XXXXXXXXXXXX3777"
+  },
+  {
+    "accountNumber": 863866434270,
+    "submittedDateTime": 1655253372,
+    "completedDateTime": 1655337600,
+    "amount": 70.75,
+    "memo": "SP IFIXIT SAN LUIS OBIS CA"
+  },
+  {
+    "accountNumber": 373565734409,
+    "submittedDateTime": 1655365521,
+    "completedDateTime": 1655424000,
+    "amount": 65.91,
+    "memo": "CIN BELL ELEC PAY 513-5652210 OH"
+  },
+  {
+    "accountNumber": 373565734409,
+    "submittedDateTime": 1655631542,
+    "completedDateTime": 1655683200,
+    "amount": 72,
+    "memo": "SQ *CATHOLIC KOLPING S Cincinnati OH"
+  },
+  {
+    "accountNumber": 8755129424701580,
+    "submittedDateTime": 1656253425,
+    "completedDateTime": 1656288000,
+    "amount": -35,
+    "memo": "AUTOPAY 220614032635645RAUTOPAY AUTO-PMT"
+  },
+  {
+    "accountNumber": 685109477442,
+    "submittedDateTime": 1656370482,
+    "completedDateTime": 1656374400,
+    "amount": 0.66,
+    "memo": "Tesla Insurance Servic Fremont CA null XXXXXXXXXXXX3777"
+  },
+  {
+    "accountNumber": 771519988061,
+    "submittedDateTime": 1656350702,
+    "completedDateTime": 1656374400,
+    "amount": 18,
+    "memo": "THE DAVID PAKMAN SHOW BOSTON MA"
+  },
+  {
+    "accountNumber": 750266561847,
+    "submittedDateTime": 1656310402,
+    "completedDateTime": 1656374400,
+    "amount": 64.68,
+    "memo": "WALMART.COM AA 8009666546 AR"
+  },
+  {
+    "accountNumber": 743989385362,
+    "submittedDateTime": 1656657064,
+    "completedDateTime": 1656720000,
+    "amount": -318.94,
+    "memo": "ONLINE PAYMENT, THANK YOU"
+  },
+  {
+    "accountNumber": 477378744576,
+    "submittedDateTime": 1656711977,
+    "completedDateTime": 1656720000,
+    "amount": 40.74,
+    "memo": "SPI*DUKE-ENERGY 800-777-9898 NC"
+  },
+  {
+    "accountNumber": 228410255662,
+    "submittedDateTime": 1656965531,
+    "completedDateTime": 1656979200,
+    "amount": 65.91,
+    "memo": "CIN BELL ELEC PAY 513-5652210 OH"
+  },
+  {
+    "accountNumber": 973891075646,
+    "submittedDateTime": 1657005948,
+    "completedDateTime": 1657065600,
+    "amount": 12.93,
+    "memo": "GOOGLE *YouTubePremium 650-253-0000 CA"
+  },
+  {
+    "accountNumber": 750266561847,
+    "submittedDateTime": 1657276487,
+    "completedDateTime": 1657324800,
+    "amount": -119.58,
+    "memo": "ONLINE PAYMENT, THANK YOU"
+  },
+  {
+    "accountNumber": 477378744576,
+    "submittedDateTime": 1657286422,
+    "completedDateTime": 1657324800,
+    "amount": 30,
+    "memo": "VISIBLE 8663313527 CO"
+  },
+  {
+    "accountNumber": 306781755424,
+    "submittedDateTime": 1657288732,
+    "completedDateTime": 1657324800,
+    "amount": 0,
+    "memo": "MEMBERSHIP FEE JUL 22-JUN 23"
+  },
+  {
+    "accountNumber": 201893813588,
+    "submittedDateTime": 1658165625,
+    "completedDateTime": 1658188800,
+    "amount": 11.51,
+    "memo": "TST* Rotolo Bowling Southgate KY"
+  },
+  {
+    "accountNumber": 201893813588,
+    "submittedDateTime": 1658179935,
+    "completedDateTime": 1658188800,
+    "amount": 23.35,
+    "memo": "TST* Rotolo Bowling Southgate KY"
+  },
+  {
+    "accountNumber": 455810450311,
+    "submittedDateTime": 1658249501,
+    "completedDateTime": 1658275200,
+    "amount": 12.18,
+    "memo": "CHILI'S FLORENCE #1706 FLORENCE KY"
+  },
+  {
+    "accountNumber": 398225850477,
+    "submittedDateTime": 1658262651,
+    "completedDateTime": 1658275200,
+    "amount": 15.68,
+    "memo": "CHEDDAR'S 0202134 FLORENCE KY"
+  },
+  {
+    "accountNumber": 627541466323,
+    "submittedDateTime": 1658370327,
+    "completedDateTime": 1658448000,
+    "amount": 14.71,
+    "memo": "SKYLINE CHILI 1003 FLORENCE KY"
+  },
+  {
+    "accountNumber": 306781755424,
+    "submittedDateTime": 1658475079,
+    "completedDateTime": 1658534400,
+    "amount": 31.25,
+    "memo": "KROGER #418 NORWOOD OH"
+  },
+  {
+    "accountNumber": 1072336678888600,
+    "submittedDateTime": 1658589123,
+    "completedDateTime": 1658620800,
+    "amount": 71.15,
+    "memo": "WALMART.COM AA 8009666546 AR"
+  },
+  {
+    "accountNumber": 8755129424701580,
+    "submittedDateTime": 1658861079,
+    "completedDateTime": 1658880000,
+    "amount": -41,
+    "memo": "AUTOPAY 220614032635645RAUTOPAY AUTO-PMT"
+  },
+  {
+    "accountNumber": 228410255662,
+    "submittedDateTime": 1658858403,
+    "completedDateTime": 1658880000,
+    "amount": 60.61,
+    "memo": "Tesla Insurance Servic Fremont CA null XXXXXXXXXXXX3777"
+  },
+  {
+    "accountNumber": 685109477442,
+    "submittedDateTime": 1658839612,
+    "completedDateTime": 1658880000,
+    "amount": 12.39,
+    "memo": "PANERA BREAD #204911 P FLORENCE KY"
+  },
+  {
+    "accountNumber": 201893813588,
+    "submittedDateTime": 1658927342,
+    "completedDateTime": 1658966400,
+    "amount": 14.18,
+    "memo": "PANERA BREAD #204911 P FLORENCE KY"
+  },
+  {
+    "accountNumber": 869780232178,
+    "submittedDateTime": 1659047925,
+    "completedDateTime": 1659052800,
+    "amount": -241.83,
+    "memo": "ONLINE PAYMENT, THANK YOU"
+  },
+  {
+    "accountNumber": 154068856018,
+    "submittedDateTime": 1658990031,
+    "completedDateTime": 1659052800,
+    "amount": 49.04,
+    "memo": "PLAYSTATION NETWORK 800-345-7669 CA"
+  },
+  {
+    "accountNumber": 306781755424,
+    "submittedDateTime": 1659194635,
+    "completedDateTime": 1659225600,
+    "amount": -129.67,
+    "memo": "THE HOME DEPOT #3832 CINCINNATI OH"
+  },
+  {
+    "accountNumber": 750266561847,
+    "submittedDateTime": 1659179473,
+    "completedDateTime": 1659225600,
+    "amount": 150,
+    "memo": "THE HOME DEPOT #3832 CINCINNATI OH"
+  },
+  {
+    "accountNumber": 743989385362,
+    "submittedDateTime": 1659277259,
+    "completedDateTime": 1659312000,
+    "amount": 14.18,
+    "memo": "PANERA BREAD #204911 P FLORENCE KY"
+  },
+  {
+    "accountNumber": 384302539441,
+    "submittedDateTime": 1659352780,
+    "completedDateTime": 1659398400,
+    "amount": 14.18,
+    "memo": "PANERA BREAD #204911 P FLORENCE KY"
+  },
+  {
+    "accountNumber": 750266561847,
+    "submittedDateTime": 1659480516,
+    "completedDateTime": 1659484800,
+    "amount": 1.9,
+    "memo": "WENDY'S - TURFWAY FLORENCE KY"
+  },
+  {
+    "accountNumber": 477378744576,
+    "submittedDateTime": 1659519130,
+    "completedDateTime": 1659571200,
+    "amount": -111.91,
+    "memo": "ONLINE PAYMENT, THANK YOU"
+  },
+  {
+    "accountNumber": 455810450311,
+    "submittedDateTime": 1659661398,
+    "completedDateTime": 1659744000,
+    "amount": 12.93,
+    "memo": "GOOGLE *YouTubePremium 650-253-0000 CA"
+  },
+  {
+    "accountNumber": 8755129424701580,
+    "submittedDateTime": 1659865073,
+    "completedDateTime": 1659916800,
+    "amount": 13.23,
+    "memo": "PANERA BREAD #204911 P FLORENCE KY"
+  },
+  {
+    "accountNumber": 477378744576,
+    "submittedDateTime": 1659955588,
+    "completedDateTime": 1660003200,
+    "amount": 30,
+    "memo": "VISIBLE 8663313527 CO"
+  },
+  {
+    "accountNumber": 968412565877,
+    "submittedDateTime": 1659937864,
+    "completedDateTime": 1660003200,
+    "amount": 15.18,
+    "memo": "PANERA BREAD #204911 P FLORENCE KY null XXXXXXXXXXXX4754"
+  },
+  {
+    "accountNumber": 863866434270,
+    "submittedDateTime": 1660051703,
+    "completedDateTime": 1660089600,
+    "amount": 14.18,
+    "memo": "PANERA BREAD #204911 P FLORENCE KY"
+  },
+  {
+    "accountNumber": 1072336678888600,
+    "submittedDateTime": 1660131122,
+    "completedDateTime": 1660176000,
+    "amount": 12.65,
+    "memo": "SQ *BAM BAM'S Florence KY"
+  },
+  {
+    "accountNumber": 973891075646,
+    "submittedDateTime": 1660382713,
+    "completedDateTime": 1660435200,
+    "amount": 60.61,
+    "memo": "Tesla Insurance Servic Fremont CA null XXXXXXXXXXXX3777"
+  },
+  {
+    "accountNumber": 8755129424701580,
+    "submittedDateTime": 1660416586,
+    "completedDateTime": 1660435200,
+    "amount": 65.91,
+    "memo": "CIN BELL ELEC PAY 513-5652210 OH"
+  },
+  {
+    "accountNumber": 771519988061,
+    "submittedDateTime": 1660418457,
+    "completedDateTime": 1660435200,
+    "amount": 1.05,
+    "memo": "WENDY'S COVINGTON KY"
+  },
+  {
+    "accountNumber": 8755129424701580,
+    "submittedDateTime": 1660466876,
+    "completedDateTime": 1660521600,
+    "amount": 148.33,
+    "memo": "BEST BUY 00001610 FLORENCE KY"
+  },
+  {
+    "accountNumber": 810077691050,
+    "submittedDateTime": 1660462801,
+    "completedDateTime": 1660521600,
+    "amount": 241.17,
+    "memo": "SPI*DUKE-ENERGY 800-777-9898 NC"
+  },
+  {
+    "accountNumber": 8755129424701580,
+    "submittedDateTime": 1660605572,
+    "completedDateTime": 1660608000,
+    "amount": 7.41,
+    "memo": "TST* Rotolo Bowling Southgate KY"
+  },
+  {
+    "accountNumber": 422842313902,
+    "submittedDateTime": 1660534887,
+    "completedDateTime": 1660608000,
+    "amount": 11.71,
+    "memo": "CHIPOTLE 2579 COVINGTON KY"
+  },
+  {
+    "accountNumber": 968412565877,
+    "submittedDateTime": 1660591095,
+    "completedDateTime": 1660608000,
+    "amount": 21.93,
+    "memo": "TST* Rotolo Bowling Southgate KY null XXXXXXXXXXXX4754"
+  },
+  {
+    "accountNumber": 6688393282945650,
+    "submittedDateTime": 1660753903,
+    "completedDateTime": 1660780800,
+    "amount": -148.33,
+    "memo": "BEST BUY 00001610 FLORENCE KY"
+  },
+  {
+    "accountNumber": 477378744576,
+    "submittedDateTime": 1660830830,
+    "completedDateTime": 1660867200,
+    "amount": 7.99,
+    "memo": "SKYLINE CHILI 1033 CINCINNATI OH"
+  },
+  {
+    "accountNumber": 450379505851,
+    "submittedDateTime": 1661012050,
+    "completedDateTime": 1661040000,
+    "amount": 13,
+    "memo": "THE ECHO RESTAURANT CINCINNATI OH"
+  },
+  {
+    "accountNumber": 154068856018,
+    "submittedDateTime": 1661286252,
+    "completedDateTime": 1661299200,
+    "amount": 23.98,
+    "memo": "FRONTIERCD5NUT DENVER CO"
+  },
+  {
+    "accountNumber": 968412565877,
+    "submittedDateTime": 1661251758,
+    "completedDateTime": 1661299200,
+    "amount": 123.98,
+    "memo": "FRONTIERQCM3YJ DENVER CO"
+  },
+  {
+    "accountNumber": 745844482971,
+    "submittedDateTime": 1661289119,
+    "completedDateTime": 1661299200,
+    "amount": 153.6,
+    "memo": "AMERICAN00178489934733 NORWALK CT"
+  },
+  {
+    "accountNumber": 6688393282945650,
+    "submittedDateTime": 1661333070,
+    "completedDateTime": 1661385600,
+    "amount": 18.1,
+    "memo": "PRICELN*TVL PROTECT 800-774-2354 CT"
+  },
+  {
+    "accountNumber": 702136833361,
+    "submittedDateTime": 1661385963,
+    "completedDateTime": 1661472000,
+    "amount": 15.99,
+    "memo": "TVP INC/LA ROSA S NORW CINCINNATI OH"
+  },
+  {
+    "accountNumber": 567751798401,
+    "submittedDateTime": 1661527545,
+    "completedDateTime": 1661558400,
+    "amount": -319.66,
+    "memo": "ONLINE PAYMENT, THANK YOU"
+  },
+  {
+    "accountNumber": 750266561847,
+    "submittedDateTime": 1661542118,
+    "completedDateTime": 1661558400,
+    "amount": -530.85,
+    "memo": "ONLINE PAYMENT, THANK YOU"
+  },
+  {
+    "accountNumber": 771519988061,
+    "submittedDateTime": 1661554780,
+    "completedDateTime": 1661558400,
+    "amount": 29.56,
+    "memo": "THE HOME DEPOT #3832 CINCINNATI OH"
+  },
+  {
+    "accountNumber": 450379505851,
+    "submittedDateTime": 1661610243,
+    "completedDateTime": 1661644800,
+    "amount": 12.93,
+    "memo": "PENN STATION 10 CINCINNATI OH"
+  },
+  {
+    "accountNumber": 384302539441,
+    "submittedDateTime": 1661590256,
+    "completedDateTime": 1661644800,
+    "amount": 53.58,
+    "memo": "WAL-MART #2250 CINCINNATI OH"
+  },
+  {
+    "accountNumber": 8755129424701580,
+    "submittedDateTime": 1661639211,
+    "completedDateTime": 1661644800,
+    "amount": 9.69,
+    "memo": "China Max CINCINNATI OH"
+  },
+  {
+    "accountNumber": 590761751601,
+    "submittedDateTime": 1661663485,
+    "completedDateTime": 1661731200,
+    "amount": 5.51,
+    "memo": "ICI*FEECITY OF NORWOOD 866-342-9266 MA"
+  },
+  {
+    "accountNumber": 398225850477,
+    "submittedDateTime": 1661665247,
+    "completedDateTime": 1661731200,
+    "amount": 220.48,
+    "memo": "CITY OF NORWOOD 513-458-4500 OH"
+  },
+  {
+    "accountNumber": 477378744576,
+    "submittedDateTime": 1661799529,
+    "completedDateTime": 1661817600,
+    "amount": 62,
+    "memo": "FRONTIERQCM3YJ DENVER CO"
+  },
+  {
+    "accountNumber": 771519988061,
+    "submittedDateTime": 1661850633,
+    "completedDateTime": 1661904000,
+    "amount": 7.64,
+    "memo": "KFC/PHX I675001 DENVER CO"
+  },
+  {
+    "accountNumber": 973891075646,
+    "submittedDateTime": 1661863330,
+    "completedDateTime": 1661904000,
+    "amount": 29.95,
+    "memo": "MOERLEIN BREW PUB A CV CINCINNATI OH"
+  },
+  {
+    "accountNumber": 306781755424,
+    "submittedDateTime": 1661885398,
+    "completedDateTime": 1661904000,
+    "amount": 36.59,
+    "memo": "HENDERSONTAXI LAS VEGAS NV"
+  },
+  {
+    "accountNumber": 869780232178,
+    "submittedDateTime": 1661982228,
+    "completedDateTime": 1661990400,
+    "amount": 486.99,
+    "memo": "LONDON SUITS LAS VEGAS NV"
+  },
+  {
+    "accountNumber": 702136833361,
+    "submittedDateTime": 1661950949,
+    "completedDateTime": 1661990400,
+    "amount": 17.08,
+    "memo": "FLAMINGO CASINO SVCS B LAS VEGAS NV"
+  },
+  {
+    "accountNumber": 627541466323,
+    "submittedDateTime": 1662146344,
+    "completedDateTime": 1662163200,
+    "amount": 24.5,
+    "memo": "AREA15 LAS VEGAS LAS VEGAS NV"
+  },
+  {
+    "accountNumber": 973891075646,
+    "submittedDateTime": 1662115547,
+    "completedDateTime": 1662163200,
+    "amount": 67,
+    "memo": "FRONTIERCD5NUT DENVER CO"
+  },
+  {
+    "accountNumber": 702136833361,
+    "submittedDateTime": 1662086779,
+    "completedDateTime": 1662163200,
+    "amount": 79,
+    "memo": "HOTELTONIGHTFLAMINGO 8333380302 CA null XXXXXXXXXXXX3562"
+  },
+  {
+    "accountNumber": 567751798401,
+    "submittedDateTime": 1662115085,
+    "completedDateTime": 1662163200,
+    "amount": 9,
+    "memo": "EMPORIUM LAS VEGAS LAS VEGAS NV"
+  },
+  {
+    "accountNumber": 8755129424701580,
+    "submittedDateTime": 1662137070,
+    "completedDateTime": 1662163200,
+    "amount": 9,
+    "memo": "EMPORIUM LAS VEGAS LAS VEGAS NV"
+  },
+  {
+    "accountNumber": 968412565877,
+    "submittedDateTime": 1662112826,
+    "completedDateTime": 1662163200,
+    "amount": 144,
+    "memo": "CAT S MEOW OF VEGAS LAS VEGAS NV"
+  },
+  {
+    "accountNumber": 8215830979251800,
+    "submittedDateTime": 1662215976,
+    "completedDateTime": 1662249600,
+    "amount": 45.3,
+    "memo": "FLAMINGO HOTEL LAS VEG LAS VEGAS NV"
+  },
+  {
+    "accountNumber": 810077691050,
+    "submittedDateTime": 1662315027,
+    "completedDateTime": 1662336000,
+    "amount": 65.91,
+    "memo": "CIN BELL ELEC PAY 513-5652210 OH"
+  },
+  {
+    "accountNumber": 750266561847,
+    "submittedDateTime": 1662392352,
+    "completedDateTime": 1662422400,
+    "amount": 52.41,
+    "memo": "ZAP*ZAPPOS.COM 800-927-7671 NV"
+  },
+  {
+    "accountNumber": 1072336678888600,
+    "submittedDateTime": 1662338112,
+    "completedDateTime": 1662422400,
+    "amount": 40.25,
+    "memo": "AA WOK DAYTON KY"
+  },
+  {
+    "accountNumber": 697163844059,
+    "submittedDateTime": 1662378635,
+    "completedDateTime": 1662422400,
+    "amount": 66,
+    "memo": "CINCINNATI AIRPORT 986 ERLANGER KY"
+  },
+  {
+    "accountNumber": 685109477442,
+    "submittedDateTime": 1662407636,
+    "completedDateTime": 1662422400,
+    "amount": 12.93,
+    "memo": "GOOGLE *YouTubePremium 650-253-0000 CA"
+  },
+  {
+    "accountNumber": 8215830979251800,
+    "submittedDateTime": 1662429437,
+    "completedDateTime": 1662508800,
+    "amount": 50.94,
+    "memo": "HELLOFRESH 646-8463663 NY"
+  },
+  {
+    "accountNumber": 968412565877,
+    "submittedDateTime": 1662498107,
+    "completedDateTime": 1662508800,
+    "amount": 224.26,
+    "memo": "SPI*DUKE-ENERGY 800-777-9898 NC"
+  },
+  {
+    "accountNumber": 810077691050,
+    "submittedDateTime": 1662510272,
+    "completedDateTime": 1662595200,
+    "amount": 5.39,
+    "memo": "CKO*PATREON* MEMBERSHI 833-9728766 CA"
+  },
+  {
+    "accountNumber": 702136833361,
+    "submittedDateTime": 1662675121,
+    "completedDateTime": 1662681600,
+    "amount": 30,
+    "memo": "VISIBLE 8663313527 CO"
+  },
+  {
+    "accountNumber": 198252465357,
+    "submittedDateTime": 1662721949,
+    "completedDateTime": 1662768000,
+    "amount": 16.59,
+    "memo": "LA ROSA'S HYDE PARK 513-984-3870 OH"
+  },
+  {
+    "accountNumber": 750266561847,
+    "submittedDateTime": 1662706395,
+    "completedDateTime": 1662768000,
+    "amount": 97.93,
+    "memo": "RED BANK FINE WINE CINCINNATI OH"
+  },
+  {
+    "accountNumber": 398225850477,
+    "submittedDateTime": 1662700857,
+    "completedDateTime": 1662768000,
+    "amount": 18.26,
+    "memo": "THE HOME DEPOT #3832 CINCINNATI OH"
+  },
+  {
+    "accountNumber": 398225850477,
+    "submittedDateTime": 1663103337,
+    "completedDateTime": 1663113600,
+    "amount": 45.67,
+    "memo": "Tesla Insurance Servic Fremont CA null XXXXXXXXXXXX3777"
+  },
+  {
+    "accountNumber": 869780232178,
+    "submittedDateTime": 1663105192,
+    "completedDateTime": 1663113600,
+    "amount": 77.21,
+    "memo": "HELLOFRESH 646-846-3663 NY"
+  },
+  {
+    "accountNumber": 869780232178,
+    "submittedDateTime": 1663167070,
+    "completedDateTime": 1663200000,
+    "amount": 73.89,
+    "memo": "TURO INC.* TRIP SEP 19 SAN FRANCISCO CA null XXXXXXXXXXXX2971"
+  },
+  {
+    "accountNumber": 422842313902,
+    "submittedDateTime": 1663268810,
+    "completedDateTime": 1663286400,
+    "amount": 6.97,
+    "memo": "WM SUPERCENTER #2250 CINCINNATI OH"
+  },
+  {
+    "accountNumber": 422842313902,
+    "submittedDateTime": 1663314233,
+    "completedDateTime": 1663372800,
+    "amount": 19.26,
+    "memo": "SALT FORK STATE PARK G CAMBRIDGE OH"
+  },
+  {
+    "accountNumber": 8755129424701580,
+    "submittedDateTime": 1663343304,
+    "completedDateTime": 1663372800,
+    "amount": 20.52,
+    "memo": "SALT FORK STATE PARK G CAMBRIDGE OH"
+  },
+  {
+    "accountNumber": 254438198713,
+    "submittedDateTime": 1663582192,
+    "completedDateTime": 1663632000,
+    "amount": 39.19,
+    "memo": "WAL-MART #2250 CINCINNATI OH"
+  },
+  {
+    "accountNumber": 455810450311,
+    "submittedDateTime": 1663594262,
+    "completedDateTime": 1663632000,
+    "amount": 49.1,
+    "memo": "SPEEDWAY 09576 CINCINN CINCINNATI OH"
+  },
+  {
+    "accountNumber": 201893813588,
+    "submittedDateTime": 1663602876,
+    "completedDateTime": 1663632000,
+    "amount": 44.9,
+    "memo": "dbrand Order 6472053971 CAN"
+  },
+  {
+    "accountNumber": 869780232178,
+    "submittedDateTime": 1663681974,
+    "completedDateTime": 1663718400,
+    "amount": 98.61,
+    "memo": "HELLOFRESH 646-8463663 NY"
+  },
+  {
+    "accountNumber": 771640338305,
+    "submittedDateTime": 1663792860,
+    "completedDateTime": 1663804800,
+    "amount": -41,
+    "memo": "AUTOPAY 220614032635645RAUTOPAY AUTO-PMT"
+  },
+  {
+    "accountNumber": 398225850477,
+    "submittedDateTime": 1663736534,
+    "completedDateTime": 1663804800,
+    "amount": -44.9,
+    "memo": "dbrand Order 6472053971 CAN"
+  },
+  {
+    "accountNumber": 6688393282945650,
+    "submittedDateTime": 1663798127,
+    "completedDateTime": 1663804800,
+    "amount": 58.3,
+    "memo": "WM SUPERCENTER #2250 CINCINNATI OH"
+  },
+  {
+    "accountNumber": 702136833361,
+    "submittedDateTime": 1663752238,
+    "completedDateTime": 1663804800,
+    "amount": 36.9,
+    "memo": "dbrand Order 6472053971 CAN"
+  },
+  {
+    "accountNumber": 771519988061,
+    "submittedDateTime": 1663988368,
+    "completedDateTime": 1664064000,
+    "amount": -36.9,
+    "memo": "dbrand Order 6472053971 CAN"
+  },
+  {
+    "accountNumber": 627541466323,
+    "submittedDateTime": 1664091574,
+    "completedDateTime": 1664150400,
+    "amount": -21.31,
+    "memo": "WAL-MART #2250 CINCINNATI OH"
+  },
+  {
+    "accountNumber": 745844482971,
+    "submittedDateTime": 1664113053,
+    "completedDateTime": 1664150400,
+    "amount": -21.53,
+    "memo": "WAL-MART #2250 CINCINNATI OH"
+  },
+  {
+    "accountNumber": 8755129424701580,
+    "submittedDateTime": 1664108956,
+    "completedDateTime": 1664150400,
+    "amount": 58.81,
+    "memo": "WM SUPERCENTER #2250 CINCINNATI OH"
+  },
+  {
+    "accountNumber": 771640338305,
+    "submittedDateTime": 1664303141,
+    "completedDateTime": 1664323200,
+    "amount": 98.61,
+    "memo": "HELLOFRESH 646-846-3663 NY"
+  },
+  {
+    "accountNumber": 455810450311,
+    "submittedDateTime": 1664338927,
+    "completedDateTime": 1664409600,
+    "amount": -41,
+    "memo": "ONLINE PAYMENT, THANK YOU"
+  },
+  {
+    "accountNumber": 810077691050,
+    "submittedDateTime": 1664400023,
+    "completedDateTime": 1664409600,
+    "amount": 119,
+    "memo": "CIRCUITBOARDREPAIR.NET MADISON WI"
+  },
+  {
+    "accountNumber": 8215830979251800,
+    "submittedDateTime": 1664467481,
+    "completedDateTime": 1664496000,
+    "amount": 7.34,
+    "memo": "VISIBLE 8663313527 CO"
+  },
+  {
+    "accountNumber": 968412565877,
+    "submittedDateTime": 1664615329,
+    "completedDateTime": 1664668800,
+    "amount": 223.66,
+    "memo": "SPI*DUKE-ENERGY 800-777-9898 NC"
+  },
+  {
+    "accountNumber": 373565734409,
+    "submittedDateTime": 1664927567,
+    "completedDateTime": 1664928000,
+    "amount": -83,
+    "memo": "CIRCUITBOARDREPAIR.NET MADISON WI"
+  },
+  {
+    "accountNumber": 702136833361,
+    "submittedDateTime": 1664887994,
+    "completedDateTime": 1664928000,
+    "amount": 98.61,
+    "memo": "HELLOFRESH 3472000291 NY null XXXXXXXXXXXX0862"
+  },
+  {
+    "accountNumber": 771640338305,
+    "submittedDateTime": 1664986351,
+    "completedDateTime": 1665014400,
+    "amount": -129.67,
+    "memo": "THE HOME DEPOT #3832 CINCINNATI OH"
+  },
+  {
+    "accountNumber": 567751798401,
+    "submittedDateTime": 1664971690,
+    "completedDateTime": 1665014400,
+    "amount": 12.99,
+    "memo": "PENN STATION 10 CINCINNATI OH"
+  },
+  {
+    "accountNumber": 973891075646,
+    "submittedDateTime": 1664952862,
+    "completedDateTime": 1665014400,
+    "amount": 12.93,
+    "memo": "GOOGLE *YouTubePremium 650-253-0000 CA"
+  },
+  {
+    "accountNumber": 745844482971,
+    "submittedDateTime": 1664977129,
+    "completedDateTime": 1665014400,
+    "amount": 5.27,
+    "memo": "MARATHON PETRO140699 CINCINNATI OH"
+  },
+  {
+    "accountNumber": 968412565877,
+    "submittedDateTime": 1664977587,
+    "completedDateTime": 1665014400,
+    "amount": 150,
+    "memo": "THE HOME DEPOT #3832 CINCINNATI OH"
+  },
+  {
+    "accountNumber": 590761751601,
+    "submittedDateTime": 1664984973,
+    "completedDateTime": 1665014400,
+    "amount": 307.01,
+    "memo": "THE HOME DEPOT 3832 CINCINNATI OH"
+  },
+  {
+    "accountNumber": 422842313902,
+    "submittedDateTime": 1664991857,
+    "completedDateTime": 1665014400,
+    "amount": 613.38,
+    "memo": "THE HOME DEPOT 3832 CINCINNATI OH"
+  },
+  {
+    "accountNumber": 198252465357,
+    "submittedDateTime": 1665094523,
+    "completedDateTime": 1665100800,
+    "amount": 34.27,
+    "memo": "THE HOME DEPOT #3832 CINCINNATI OH"
+  },
+  {
+    "accountNumber": 477378744576,
+    "submittedDateTime": 1665197837,
+    "completedDateTime": 1665273600,
+    "amount": 50,
+    "memo": "VISIBLE 8663313527 CO"
+  },
+  {
+    "accountNumber": 697163844059,
+    "submittedDateTime": 1665448924,
+    "completedDateTime": 1665532800,
+    "amount": 107.78,
+    "memo": "HELLOFRESH 646-846-3663 NY"
+  },
+  {
+    "accountNumber": 627541466323,
+    "submittedDateTime": 1665471047,
+    "completedDateTime": 1665532800,
+    "amount": 119.38,
+    "memo": "WAL-MART #2250 CINCINNATI OH"
+  },
+  {
+    "accountNumber": 685109477442,
+    "submittedDateTime": 1665558680,
+    "completedDateTime": 1665619200,
+    "amount": 65.91,
+    "memo": "CIN BELL ELEC PAY 513-5652210 OH"
+  },
+  {
+    "accountNumber": 477378744576,
+    "submittedDateTime": 1665701385,
+    "completedDateTime": 1665705600,
+    "amount": 50.84,
+    "memo": "Tesla Insurance Servic Fremont CA null XXXXXXXXXXXX3777"
+  },
+  {
+    "accountNumber": 254438198713,
+    "submittedDateTime": 1665791991,
+    "completedDateTime": 1665792000,
+    "amount": -2197.87,
+    "memo": "ONLINE PAYMENT, THANK YOU"
+  },
+  {
+    "accountNumber": 750266561847,
+    "submittedDateTime": 1666098090,
+    "completedDateTime": 1666137600,
+    "amount": 4.98,
+    "memo": "HELLOFRESH 646-846-3663 NY"
+  },
+  {
+    "accountNumber": 697163844059,
+    "submittedDateTime": 1666128798,
+    "completedDateTime": 1666137600,
+    "amount": 100.87,
+    "memo": "HELLOFRESH 3472000291 NY null XXXXXXXXXXXX0862"
+  },
+  {
+    "accountNumber": 567751798401,
+    "submittedDateTime": 1666223881,
+    "completedDateTime": 1666224000,
+    "amount": 10,
+    "memo": "SQ *WILD SIDE EXPERIEN Burlington KY"
+  },
+  {
+    "accountNumber": 477378744576,
+    "submittedDateTime": 1666354154,
+    "completedDateTime": 1666396800,
+    "amount": -41,
+    "memo": "AUTOPAY 220614032635645RAUTOPAY AUTO-PMT"
+  },
+  {
+    "accountNumber": 1072336678888600,
+    "submittedDateTime": 1666310598,
+    "completedDateTime": 1666396800,
+    "amount": -879.24,
+    "memo": "THE HOME DEPOT 3832 CINCINNATI OH"
+  },
+  {
+    "accountNumber": 810077691050,
+    "submittedDateTime": 1666367611,
+    "completedDateTime": 1666396800,
+    "amount": -70.03,
+    "memo": "THE HOME DEPOT #3832 CINCINNATI OH"
+  },
+  {
+    "accountNumber": 743989385362,
+    "submittedDateTime": 1666549069,
+    "completedDateTime": 1666569600,
+    "amount": 17.52,
+    "memo": "DD DOORDASH JERSEYMIK 8559731040 CA"
+  },
+  {
+    "accountNumber": 627541466323,
+    "submittedDateTime": 1666667923,
+    "completedDateTime": 1666742400,
+    "amount": 72.93,
+    "memo": "HELLOFRESH 646-846-3663 NY"
+  },
+  {
+    "accountNumber": 869780232178,
+    "submittedDateTime": 1667029425,
+    "completedDateTime": 1667088000,
+    "amount": 211.3,
+    "memo": "SPI*DUKE-ENERGY 800-777-9898 NC"
+  },
+  {
+    "accountNumber": 450379505851,
+    "submittedDateTime": 1667204510,
+    "completedDateTime": 1667260800,
+    "amount": -41,
+    "memo": "ONLINE PAYMENT, THANK YOU"
+  },
+  {
+    "accountNumber": 810077691050,
+    "submittedDateTime": 1667579760,
+    "completedDateTime": 1667606400,
+    "amount": 65.91,
+    "memo": "ALTAFIBER CINBELL EPAY 513-5652210 OH"
+  },
+  {
+    "accountNumber": 685109477442,
+    "submittedDateTime": 1667571657,
+    "completedDateTime": 1667606400,
+    "amount": 11.25,
+    "memo": "DD DOORDASH JERSEYMIK 8559731040 CA null XXXXXXXXXXXX5584"
+  },
+  {
+    "accountNumber": 154068856018,
+    "submittedDateTime": 1667643869,
+    "completedDateTime": 1667692800,
+    "amount": 12.93,
+    "memo": "GOOGLE *YouTubePremium 650-253-0000 CA"
+  },
+  {
+    "accountNumber": 968412565877,
+    "submittedDateTime": 1667769818,
+    "completedDateTime": 1667779200,
+    "amount": 67.05,
+    "memo": "WAL-MART #2250 CINCINNATI OH"
+  },
+  {
+    "accountNumber": 422842313902,
+    "submittedDateTime": 1667726422,
+    "completedDateTime": 1667779200,
+    "amount": 17.75,
+    "memo": "CANCUN MEXICAN BAR AND NORWOOD OH"
+  },
+  {
+    "accountNumber": 455810450311,
+    "submittedDateTime": 1667921526,
+    "completedDateTime": 1667952000,
+    "amount": 50,
+    "memo": "VISIBLE 8663313527 CO"
+  },
+  {
+    "accountNumber": 198252465357,
+    "submittedDateTime": 1667883912,
+    "completedDateTime": 1667952000,
+    "amount": 4.99,
+    "memo": "HELLOFRESH 646-846-3663 NY"
+  },
+  {
+    "accountNumber": 1072336678888600,
+    "submittedDateTime": 1667947763,
+    "completedDateTime": 1667952000,
+    "amount": 96.89,
+    "memo": "HELLOFRESH 646-846-3663 NY"
+  },
+  {
+    "accountNumber": 306781755424,
+    "submittedDateTime": 1667984480,
+    "completedDateTime": 1668038400,
+    "amount": 11.5,
+    "memo": "SQ *WILD SIDE EXPERIEN Burlington KY"
+  },
+  {
+    "accountNumber": 685109477442,
+    "submittedDateTime": 1668052048,
+    "completedDateTime": 1668124800,
+    "amount": -1237.89,
+    "memo": "ONLINE PAYMENT, THANK YOU"
+  },
+  {
+    "accountNumber": 450379505851,
+    "submittedDateTime": 1668086872,
+    "completedDateTime": 1668124800,
+    "amount": 21.6,
+    "memo": "CHUY'S 039 FLORENCE KY"
+  },
+  {
+    "accountNumber": 228410255662,
+    "submittedDateTime": 1668151365,
+    "completedDateTime": 1668211200,
+    "amount": 75.44,
+    "memo": "PLAYSTATION NETWORK 800-345-7669 CA"
+  },
+  {
+    "accountNumber": 228410255662,
+    "submittedDateTime": 1668383409,
+    "completedDateTime": 1668384000,
+    "amount": 66.67,
+    "memo": "Tesla Insurance Servic Fremont CA null XXXXXXXXXXXX3777"
+  },
+  {
+    "accountNumber": 627541466323,
+    "submittedDateTime": 1668479072,
+    "completedDateTime": 1668556800,
+    "amount": 94.87,
+    "memo": "HELLOFRESH 646-846-3663 NY"
+  },
+  {
+    "accountNumber": 8215830979251800,
+    "submittedDateTime": 1668486562,
+    "completedDateTime": 1668556800,
+    "amount": 5.63,
+    "memo": "THE HOME DEPOT #3832 CINCINNATI OH"
+  },
+  {
+    "accountNumber": 373565734409,
+    "submittedDateTime": 1668518894,
+    "completedDateTime": 1668556800,
+    "amount": 25.79,
+    "memo": "THE HOME DEPOT #3832 CINCINNATI OH"
+  },
+  {
+    "accountNumber": 254438198713,
+    "submittedDateTime": 1669401090,
+    "completedDateTime": 1669420800,
+    "amount": 13,
+    "memo": "CINCINNATI ZOO ONLINE 5132814700 OH"
+  },
+  {
+    "accountNumber": 228410255662,
+    "submittedDateTime": 1669341716,
+    "completedDateTime": 1669420800,
+    "amount": 50.58,
+    "memo": "THE PUB AT ROOKWOOD CINCINNATI OH"
+  },
+  {
+    "accountNumber": 771519988061,
+    "submittedDateTime": 1669446932,
+    "completedDateTime": 1669507200,
+    "amount": 12.99,
+    "memo": "PENN STATION 10 CINCINNATI OH"
+  },
+  {
+    "accountNumber": 590761751601,
+    "submittedDateTime": 1669758041,
+    "completedDateTime": 1669766400,
+    "amount": 9,
+    "memo": "SQ *BAM BAM'S Erlanger KY"
+  },
+  {
+    "accountNumber": 373565734409,
+    "submittedDateTime": 1669688123,
+    "completedDateTime": 1669766400,
+    "amount": 11,
+    "memo": "SQ *BAM BAM'S Erlanger KY"
+  },
+  {
+    "accountNumber": 228410255662,
+    "submittedDateTime": 1669743233,
+    "completedDateTime": 1669766400,
+    "amount": 112.87,
+    "memo": "HELLOFRESH 646-846-3663 NY"
+  },
+  {
+    "accountNumber": 810077691050,
+    "submittedDateTime": 1669819263,
+    "completedDateTime": 1669852800,
+    "amount": 5.51,
+    "memo": "ICI*FEECITY OF NORWOOD 866-342-9266 MA"
+  },
+  {
+    "accountNumber": 702136833361,
+    "submittedDateTime": 1669838626,
+    "completedDateTime": 1669852800,
+    "amount": 220.48,
+    "memo": "CITY OF NORWOOD 513-458-4500 OH"
+  },
+  {
+    "accountNumber": 384302539441,
+    "submittedDateTime": 1669799280,
+    "completedDateTime": 1669852800,
+    "amount": 300.28,
+    "memo": "SPI*DUKE-ENERGY 800-777-9898 NC"
+  },
+  {
+    "accountNumber": 455810450311,
+    "submittedDateTime": 1670193521,
+    "completedDateTime": 1670198400,
+    "amount": 21.56,
+    "memo": "SQ *QUEEN CITY NOVELTY Cincinnati OH"
+  },
+  {
+    "accountNumber": 450379505851,
+    "submittedDateTime": 1670118946,
+    "completedDateTime": 1670198400,
+    "amount": 18.15,
+    "memo": "CANCUN MEXICAN BAR AND NORWOOD OH"
+  },
+  {
+    "accountNumber": 8755129424701580,
+    "submittedDateTime": 1670144125,
+    "completedDateTime": 1670198400,
+    "amount": 59.26,
+    "memo": "SQ *DJC CONCESSIONS LL Cincinnati OH"
+  },
+  {
+    "accountNumber": 306781755424,
+    "submittedDateTime": 1670271633,
+    "completedDateTime": 1670284800,
+    "amount": 10.25,
+    "memo": "DD DOORDASH JERSEYMIK 8559731040 CA null XXXXXXXXXXXX5584"
+  },
+  {
+    "accountNumber": 702136833361,
+    "submittedDateTime": 1670248371,
+    "completedDateTime": 1670284800,
+    "amount": 12.93,
+    "memo": "GOOGLE *YouTubePremium 650-253-0000 CA"
+  },
+  {
+    "accountNumber": 810077691050,
+    "submittedDateTime": 1670339528,
+    "completedDateTime": 1670371200,
+    "amount": 112.87,
+    "memo": "HELLOFRESH 646-846-3663 NY"
+  },
+  {
+    "accountNumber": 697163844059,
+    "submittedDateTime": 1670541208,
+    "completedDateTime": 1670544000,
+    "amount": 50,
+    "memo": "VISIBLE 8663313527 CO"
+  },
+  {
+    "accountNumber": 198252465357,
+    "submittedDateTime": 1670596204,
+    "completedDateTime": 1670630400,
+    "amount": -912.5,
+    "memo": "ONLINE PAYMENT, THANK YOU"
+  },
+  {
+    "accountNumber": 228410255662,
+    "submittedDateTime": 1670792146,
+    "completedDateTime": 1670803200,
+    "amount": 11.98,
+    "memo": "TACO BELL 32033 CINCINNATI OH"
+  },
+  {
+    "accountNumber": 810077691050,
+    "submittedDateTime": 1670733133,
+    "completedDateTime": 1670803200,
+    "amount": 36.78,
+    "memo": "CANCUN MEXICAN BAR AND NORWOOD OH"
+  },
+  {
+    "accountNumber": 697163844059,
+    "submittedDateTime": 1670916978,
+    "completedDateTime": 1670976000,
+    "amount": 72.51,
+    "memo": "Tesla Insurance Servic Fremont CA null XXXXXXXXXXXX3777"
+  },
+  {
+    "accountNumber": 398225850477,
+    "submittedDateTime": 1670905371,
+    "completedDateTime": 1670976000,
+    "amount": 112.87,
+    "memo": "HELLOFRESH 646-846-3663 NY"
+  }
 ]

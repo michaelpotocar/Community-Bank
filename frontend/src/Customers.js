@@ -1,8 +1,7 @@
 import { useState, useMemo, useContext } from 'react';
 import axios from 'axios';
 import Context from './Context';
-import { useParams, Link } from 'react-router-dom';
-import moment from 'moment';
+import { Link } from 'react-router-dom';
 import {
   Button,
   Paper,
@@ -23,7 +22,7 @@ function Customers() {
   const [customers, setCustomers] = useState("Loading");
 
   useMemo(() => {
-    if (api_id != '') {
+    if (api_id !== '') {
       axios.get(`https://${api_id}.execute-api.us-west-2.amazonaws.com/prod/customers`)
         .then(response => {
           setCustomers(response.data.customers);
@@ -34,74 +33,62 @@ function Customers() {
     }
   }, [api_id]);
 
-  const Item = styled(Paper)(({ theme }) => ({
-    backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-    ...theme.typography.body2,
-    padding: theme.spacing(1),
-    textAlign: 'center',
-    color: theme.palette.text.secondary,
-  }));
-
   return (
     !loading &&
+    <Grid container spacing={1}
+      justifyContent="center">
 
-    <>
-      <Grid container spacing={1}
+      <Grid item xs={12} />
+      <Grid item xs={12} />
+      <Grid item xs={12} />
+      <Grid item xs={12} />
+      <Grid item xs={12} />
+
+      <Grid container
         justifyContent="center"
-      >
-        <Grid item xs={3} >
+        spacing={1}>
+
+        <Grid item xs={12} />
+
+        <Grid item xs={12}>
+          <Typography align='center' variant="h3">
+            Welcome, Please make a Selection
+          </Typography>
         </Grid>
-        <Grid item xs={9} />
 
-        <Grid item xs={9} >
-        </Grid>
+        <Grid item xs={12} />
+        <Grid item xs={12} />
 
-        <Grid container
-          justifyContent="center"
-          spacing={1}>
+        <Grid item xs={9}>
+          <TableContainer component={Paper}>
+            <Table >
+              <TableHead>
+                <TableRow>
+                  <TableCell align="center">Customer</TableCell>
+                  <TableCell align="center">Details</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {customers.map(customer => (
+                  <TableRow
+                    key={customer.customerId}
+                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                    <TableCell align="center">{customer.firstName} {customer.lastName}</TableCell>
+                    <TableCell align="center">
+                      <Link to={`/customer/${customer.id}`} >
+                        <Button variant="contained" fullWidth={true}>View Accounts</Button>
+                      </Link>
 
-          <Grid item xs={12} />
-
-          <Grid item xs={12}>
-            <Typography align='center' variant="h2">
-              Welcome, Please make a Selection
-            </Typography>
-          </Grid>
-
-          <Grid item xs={9}>
-            <TableContainer component={Paper}>
-              <Table >
-                <TableHead>
-                  <TableRow>
-                    <TableCell align="center">Customer</TableCell>
-                    <TableCell align="center">Details</TableCell>
+                    </TableCell>
                   </TableRow>
-                </TableHead>
-                <TableBody>
-                  {customers.map(customer => (
-                    <TableRow
-                      key={customer.customerId}
-                      sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                    >
-                      <TableCell align="center">{customer.firstName} {customer.lastName}</TableCell>
-                      <TableCell align="center">
-                        <Link to={`/customer/${customer.id}`} >
-                          <Button variant="contained" fullWidth={true}>View Accounts</Button>
-                        </Link>
-
-                      </TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </TableContainer>
-          </Grid>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
         </Grid>
-
-
       </Grid>
-    </>
 
+    </Grid>
   );
 };
 

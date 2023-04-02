@@ -54,73 +54,78 @@ function CustomerAccounts() {
 
   return (
     !loading.includes(true) &&
+    <Grid container spacing={1}
+      justifyContent="center">
 
-    <>
-      <Grid container spacing={1}
-        justifyContent="center"
-      >
-        <Grid item xs={3} >
-        </Grid>
-        <Grid item xs={9} />
+      <Grid item xs={12} />
+      <Grid item xs={12} />
 
-        <Grid item xs={9} >
-        </Grid>
-
-        <Grid container
-          justifyContent="center"
-          spacing={1}>
-
-          <Grid item xs={12} />
-
-          <Grid item xs={1} />
-          <Grid item xs={3}>
-            <Link to={`/`} >
-              <Button variant="contained" > Return&nbsp;to Customer&nbsp;Selection</Button>
-            </Link>
-          </Grid>
-          <Grid item xs={8} />
-
-          <Grid item xs={12}>
-            <Typography align='center' variant="h2">
-              Hi {customer.firstName}!
-            </Typography>
-          </Grid>
-
-          <Grid item xs={9}>
-            <TableContainer component={Paper}>
-              <Table >
-                <TableHead>
-                  <TableRow>
-                    <TableCell align="center">Account</TableCell>
-                    <TableCell align="center">Balance</TableCell>
-                    <TableCell align="center">Details</TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {accounts.filter(account => account.type !== 'external').map(account => (
-                    <TableRow
-                      key={account.accountId}
-                      sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                    >
-                      <TableCell align="center">{account.nickname}</TableCell>
-                      <TableCell align="center">Balance: ${(Math.round(account.balance * 100) / 100).toFixed(2)}</TableCell>
-                      <TableCell align="center">
-                        <Link to={`/customer/${customerId}/account/${account.accountId}`} >
-                          <Button variant="contained" fullWidth={true} >View Transactions</Button>
-                        </Link>
-
-                      </TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </TableContainer>
-          </Grid>
-        </Grid>
-
-
+      <Grid item xs={1} />
+      <Grid item xs={3}>
+        <Link to={`/`} >
+          <Button variant="contained" > Return&nbsp;to Customer&nbsp;Selection</Button>
+        </Link>
       </Grid>
-    </>
+      <Grid item xs={8} />
+
+      <Grid item xs={12}>
+        <Typography align='center' variant="h3">
+          Hi {customer.firstName}!
+        </Typography>
+      </Grid>
+
+      <Grid item xs={9}>
+        <TableContainer component={Paper}>
+          <Table >
+            <TableHead>
+              <TableRow>
+                <TableCell align="center">Account</TableCell>
+                <TableCell align="center">Type</TableCell>
+                <TableCell align="center">Balance</TableCell>
+                <TableCell align="center">Details</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {accounts.filter(account => account.type !== 'external').map(account => (
+                <TableRow
+                  key={account.accountId}
+                  sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                  <TableCell align="center">{account.nickname}</TableCell>
+                  <TableCell align="center">{account.type}</TableCell>
+                  <TableCell align="center">Balance: ${(Math.round(account.balance * 100) / 100).toFixed(2)}</TableCell>
+                  <TableCell align="center">
+                    <Link to={`/customer/${customerId}/account/${account.accountId}`} >
+                      <Button variant="contained" fullWidth={true} >View Transactions</Button>
+                    </Link>
+
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </Grid>
+
+      <Grid item xs={12} />
+      <Grid item xs={12} />
+
+      <Grid item >
+        <Link to={`/customer/${customerId}/createaccount`} >
+          <Button variant="contained" fullWidth="true" > Add&nbsp;New&nbsp;Account</Button>
+        </Link>
+      </Grid>
+      <Grid item >
+        <Link to={`/customer/${customerId}/transfer`} >
+          <Button variant="contained" fullWidth="true" > Payments&nbsp;and&nbsp;Transfers&nbsp;</Button>
+        </Link>
+      </Grid>
+      <Grid item  >
+        <Link to={`/customer/${customerId}/receivepayment`} >
+          <Button variant="contained" fullWidth="true" > Accept&nbsp;Payments&nbsp;</Button>
+        </Link>
+      </Grid>
+
+    </Grid>
   );
 };
 

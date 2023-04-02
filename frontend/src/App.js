@@ -7,6 +7,9 @@ import AccountTransactions from './AccountTransactions';
 import { Routes, Route } from 'react-router-dom';
 import Context from './Context';
 import { useState, useMemo } from 'react';
+import CreateAccount from './CreateAccount';
+import ReceivePayment from './ReceivePayment';
+import Transfer from './Transfer';
 
 function App() {
 
@@ -37,6 +40,9 @@ function App() {
                     <Route path='/' element={<Customers />}> </Route>
                     <Route path='/customer/:customerId' element={<CustomerAccounts />}> </Route>
                     <Route path='/customer/:customerId/account/:accountId' element={<AccountTransactions />}> </Route>
+                    <Route path='/customer/:customerId/createaccount' element={<CreateAccount />}> </Route>
+                    <Route path='/customer/:customerId/transfer' element={<ReceivePayment />}> </Route>
+                    <Route path='/customer/:customerId/receivepayment' element={<Transfer />}> </Route>
                 </Routes>
             </Context.Provider>
         </ThemeProvider>

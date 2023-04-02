@@ -142,7 +142,7 @@ export const handler = async function (event, context) {
             if (newBalance < 0) {
                 let delta = -newBalance;
                 let amount = transaction.amount + Math.ceil(delta / 100) * 100 * (index + 1) + 100;
-                let memo = amount > 0 ? 'Balance Transfer' : 'Payment - Thank You';
+                let memo = amount > 0 ? 'Deposit' : 'Withdrawl';
                 transaction.amount = amount;
                 transaction.memo = memo;
                 balance += amount;
@@ -195,7 +195,7 @@ export const handler = async function (event, context) {
     for (let account of savingsAccounts) {
 
         let amount = (account.index + 1) * 100;
-        let submittedDateTime = 1640995200 + ((account.index + 1) / (accounts.length + 1)) * 86400;
+        let submittedDateTime = Math.ceil(1640995200 + ((account.index + 1) / (accounts.length + 1)) * 86400);
         let completedDateTime = Math.ceil(submittedDateTime / 86400) * 86400;
 
         let newTransaction = {

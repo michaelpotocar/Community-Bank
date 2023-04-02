@@ -142,15 +142,24 @@ Resources:
     Properties:
       FunctionName:
         Ref: GetCustomersLambda
-      ProvisionedConcurrencyConfig:
-        ProvisionedConcurrentExecutions: 1
 
+  GetCustomersLambdaAlias:
+    Type: AWS::Lambda::Alias
+    Properties:
+      FunctionName:
+        Ref: GetCustomersLambda
+      FunctionVersion:
+        Fn::GetAtt: [ GetCustomersLambdaVersion, Version ]
+      Name: prod
+      # ProvisionedConcurrencyConfig:
+      #   ProvisionedConcurrentExecutions: 10
+      
   GetCustomersPermission:
     Type: AWS::Lambda::Permission
     Properties:
       Action: lambda:InvokeFunction
       FunctionName:
-        Ref: GetCustomersLambdaVersion
+        Ref: GetCustomersLambdaAlias
       Principal: apigateway.amazonaws.com
       SourceArn:
         Fn::Sub:
@@ -174,15 +183,24 @@ Resources:
     Properties:
       FunctionName:
         Ref: GetCustomerLambda
-      ProvisionedConcurrencyConfig:
-        ProvisionedConcurrentExecutions: 1
+
+  GetCustomerLambdaAlias:
+    Type: AWS::Lambda::Alias
+    Properties:
+      FunctionName:
+        Ref: GetCustomerLambda
+      FunctionVersion:
+        Fn::GetAtt: [ GetCustomerLambdaVersion, Version ]
+      Name: prod
+      # ProvisionedConcurrencyConfig:
+      #   ProvisionedConcurrentExecutions: 10
 
   GetCustomerPermission:
     Type: AWS::Lambda::Permission
     Properties:
       Action: lambda:InvokeFunction
       FunctionName:
-        Ref: GetCustomerLambdaVersion
+        Ref: GetCustomerLambdaAlias
       Principal: apigateway.amazonaws.com
       SourceArn:
         Fn::Sub:
@@ -206,15 +224,24 @@ Resources:
     Properties:
       FunctionName:
         Ref: GetCustomerAccountsLambda
-      ProvisionedConcurrencyConfig:
-        ProvisionedConcurrentExecutions: 1
+
+  GetCustomerAccountsLambdaAlias:
+    Type: AWS::Lambda::Alias
+    Properties:
+      FunctionName:
+        Ref: GetCustomerAccountsLambda
+      FunctionVersion:
+        Fn::GetAtt: [ GetCustomerAccountsLambdaVersion, Version ]
+      Name: prod
+      # ProvisionedConcurrencyConfig:
+      #   ProvisionedConcurrentExecutions: 10
 
   GetCustomerAccountsPermission:
     Type: AWS::Lambda::Permission
     Properties:
       Action: lambda:InvokeFunction
       FunctionName:
-        Ref: GetCustomerAccountsLambdaVersion
+        Ref: GetCustomerAccountsLambdaAlias
       Principal: apigateway.amazonaws.com
       SourceArn:
         Fn::Sub:
@@ -238,15 +265,24 @@ Resources:
     Properties:
       FunctionName:
         Ref: GetCustomerAccountLambda
-      ProvisionedConcurrencyConfig:
-        ProvisionedConcurrentExecutions: 1
+
+  GetCustomerAccountLambdaAlias:
+    Type: AWS::Lambda::Alias
+    Properties:
+      FunctionName:
+        Ref: GetCustomerAccountLambda
+      FunctionVersion:
+        Fn::GetAtt: [ GetCustomerAccountLambdaVersion, Version ]
+      Name: prod
+      # ProvisionedConcurrencyConfig:
+      #   ProvisionedConcurrentExecutions: 10
 
   GetCustomerAccountPermission:
     Type: AWS::Lambda::Permission
     Properties:
       Action: lambda:InvokeFunction
       FunctionName:
-        Ref: GetCustomerAccountLambdaVersion
+        Ref: GetCustomerAccountLambdaAlias
       Principal: apigateway.amazonaws.com
       SourceArn:
         Fn::Sub:
@@ -270,15 +306,24 @@ Resources:
     Properties:
       FunctionName:
         Ref: GetAccountTransactionsLambda
-      ProvisionedConcurrencyConfig:
-        ProvisionedConcurrentExecutions: 1
+
+  GetAccountTransactionsLambdaAlias:
+    Type: AWS::Lambda::Alias
+    Properties:
+      FunctionName:
+        Ref: GetAccountTransactionsLambda
+      FunctionVersion:
+        Fn::GetAtt: [ GetAccountTransactionsLambdaVersion, Version ]
+      Name: prod
+      # ProvisionedConcurrencyConfig:
+      #   ProvisionedConcurrentExecutions: 10
 
   GetAccountTransactionsPermission:
     Type: AWS::Lambda::Permission
     Properties:
       Action: lambda:InvokeFunction
       FunctionName:
-        Ref: GetAccountTransactionsLambdaVersion
+        Ref: GetAccountTransactionsLambdaAlias
       Principal: apigateway.amazonaws.com
       SourceArn:
         Fn::Sub:

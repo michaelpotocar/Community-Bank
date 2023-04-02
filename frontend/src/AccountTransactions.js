@@ -62,60 +62,61 @@ function AccountTransactions() {
 
   return (
     !loading.includes(true) &&
+    <Grid container
+      justifyContent="center"
+      spacing={1}>
 
-    <>
-      <Grid container
-        justifyContent="center"
-        spacing={1}>
+      <Grid item xs={12} />
+      <Grid item xs={12} />
 
-        <Grid item xs={12} />
+      <Grid item xs={1} />
+      <Grid item xs={3}>
+        <Link to={`/customer/${customerId}`} >
+          <Button variant="contained" >Return&nbsp;to Account&nbsp;Selection</Button>
+        </Link>
+      </Grid>
+      <Grid item xs={8} />
 
-        <Grid item xs={1} />
-        <Grid item xs={3}>
-          <Link to={`/customer/${customerId}`} >
-            <Button variant="contained" >Return&nbsp;to Account&nbsp;Selection</Button>
-          </Link>
-        </Grid>
-        <Grid item xs={8} />
+      <Grid item xs={2} />
+      <Grid item xs={3}>
+        <Typography align='center' variant="h4">
+          {account.nickname} {account.type.charAt(0).toUpperCase() + account.type.slice(1)}
+        </Typography>
+      </Grid>
+      <Grid item xs={2} />
+      <Grid item xs={3}>
+        <Typography align='center' variant="h4">
+          Balance: ${(Math.round(account.balance * 100) / 100).toFixed(2)}
+        </Typography>
+      </Grid>
+      <Grid item xs={2} />
 
-        <Grid item xs={12}>
-          <Typography align='center' variant="h4">
-            {account.nickname} - Balance: ${(Math.round(account.balance * 100) / 100).toFixed(2)}
-          </Typography>
-        </Grid>
-
-        <Grid item xs={9}>
-          <TableContainer component={Paper}>
-            <Table >
-              <TableHead>
-                <TableRow>
-                  <TableCell align="center">Date</TableCell>
-                  <TableCell align="center">Memo</TableCell>
-                  <TableCell align="center">Amount</TableCell>
+      <Grid item xs={9}>
+        <TableContainer component={Paper}>
+          <Table >
+            <TableHead>
+              <TableRow>
+                <TableCell align="center">Date</TableCell>
+                <TableCell align="center">Memo</TableCell>
+                <TableCell align="center">Amount</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {transactions.map((transaction) => (
+                <TableRow
+                  key={transaction.completedTime}
+                  sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                  <TableCell align="center">{moment.unix(transaction.completedDateTime).format('dddd, MMMM Do, YYYY')}</TableCell>
+                  <TableCell align="center">{transaction.memo}</TableCell>
+                  <TableCell align="center">{(Math.round(transaction.amount * 100) / 100).toFixed(2)}</TableCell>
                 </TableRow>
-              </TableHead>
-              <TableBody>
-                {transactions.map((transaction) => (
-                  <TableRow
-                    key={transaction.completedTime}
-                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                  >
-                    <TableCell align="center">{moment.unix(transaction.completedDateTime).format('dddd, MMMM Do, YYYY')}</TableCell>
-                    <TableCell align="center">{transaction.memo}</TableCell>
-                    <TableCell align="center">{(Math.round(transaction.amount * 100) / 100).toFixed(2)}</TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
-        </Grid>
-
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
       </Grid>
 
-
-
-
-    </>
+    </Grid>
   );
 };
 

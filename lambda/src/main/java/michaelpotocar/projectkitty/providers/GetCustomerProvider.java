@@ -4,11 +4,8 @@ import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 import michaelpotocar.projectkitty.dynamodb.dao.CustomerDao;
 import michaelpotocar.projectkitty.dynamodb.model.Customer;
-import michaelpotocar.projectkitty.dynamodb.model.CustomerStub;
 import michaelpotocar.projectkitty.requests.GetCustomerRequest;
-import michaelpotocar.projectkitty.requests.GetCustomersRequest;
 import michaelpotocar.projectkitty.results.GetCustomerResult;
-import michaelpotocar.projectkitty.results.GetCustomersResult;
 
 import java.util.ArrayList;
 import java.util.List;

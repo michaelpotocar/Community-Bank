@@ -1,8 +1,70 @@
 [
-  { "id": "811259776", "firstName": "Leigh", "lastName": "Rabier" },
-  { "id": "126879020", "firstName": "Nydia", "lastName": "Perotti" },
-  { "id": "790214816", "firstName": "Valentijn", "lastName": "Flintoft" },
-  { "id": "119539015", "firstName": "Nelle", "lastName": "Corbin" },
-  { "id": "367435024", "firstName": "Xerxes", "lastName": "Shutle" },
-  { "id": "161102352", "firstName": "Jone", "lastName": "Bartaletti" }
+  {
+    "id": "923739977",
+    "firstName": "Leigh",
+    "lastName": "Rabier",
+    "friends": [
+      876055831,
+      637818676,
+      906799530,
+      794085645
+    ]
+  },
+  {
+    "id": "876055831",
+    "firstName": "Nydia",
+    "lastName": "Perotti",
+    "friends": [
+      923739977,
+      637818676,
+      589631133,
+      906799530,
+      794085645
+    ]
+  },
+  {
+    "id": "637818676",
+    "firstName": "Valentijn",
+    "lastName": "Flintoft",
+    "friends": [
+      923739977,
+      876055831,
+      589631133,
+      906799530,
+      794085645
+    ]
+  },
+  {
+    "id": "589631133",
+    "firstName": "Nelle",
+    "lastName": "Corbin",
+    "friends": [
+      876055831,
+      637818676,
+      794085645
+    ]
+  },
+  {
+    "id": "906799530",
+    "firstName": "Xerxes",
+    "lastName": "Shutle",
+    "friends": [
+      923739977,
+      876055831,
+      637818676,
+      794085645
+    ]
+  },
+  {
+    "id": "794085645",
+    "firstName": "Jone",
+    "lastName": "Bartaletti",
+    "friends": [
+      923739977,
+      876055831,
+      637818676,
+      589631133,
+      906799530
+    ]
+  }
 ]

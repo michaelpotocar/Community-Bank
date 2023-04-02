@@ -3,15 +3,10 @@ package michaelpotocar.projectkitty.dynamodb.dao;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBQueryExpression;
-import com.amazonaws.services.dynamodbv2.datamodeling.PaginatedQueryList;
-import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 import michaelpotocar.projectkitty.dynamodb.DynamoDbMapperProvider;
 import michaelpotocar.projectkitty.dynamodb.model.Account;
-import michaelpotocar.projectkitty.dynamodb.model.Transaction;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class AccountDao {
 
