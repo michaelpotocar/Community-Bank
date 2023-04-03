@@ -12,16 +12,16 @@ paths:
             Access-Control-Allow-Origin:
               type: "string"
       x-amazon-apigateway-integration:
-        type: "aws"
-        httpMethod: "POST"
-        uri:
-          Fn::Sub:
-            "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${GetCustomersLambdaAlias}/invocations"
         responses:
           default:
             statusCode: "200"
             responseParameters:
               method.response.header.Access-Control-Allow-Origin: "'*'"
+        httpMethod: "POST"
+        uri:
+          Fn::Sub:
+            "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${GetCustomersLambdaAlias}/invocations"
+        type: "aws"
         passthroughBehavior: "when_no_match"
   /customers/{customerId}:
     get:
@@ -39,16 +39,16 @@ paths:
             Access-Control-Allow-Origin:
               type: "string"
       x-amazon-apigateway-integration:
-        type: "aws"
-        httpMethod: "POST"
-        uri:
-          Fn::Sub:
-            "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${GetCustomerLambdaAlias}/invocations"
         responses:
           default:
             statusCode: "200"
             responseParameters:
               method.response.header.Access-Control-Allow-Origin: "'*'"
+        httpMethod: "POST"
+        uri:
+          Fn::Sub:
+            "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${GetCustomerLambdaAlias}/invocations"
+        type: "aws"
         requestTemplates:
           application/json: "{\n    \"customerId\": \"$input.params('customerId')\"\n}"
         passthroughBehavior: "when_no_match"
@@ -68,16 +68,16 @@ paths:
             Access-Control-Allow-Origin:
               type: "string"
       x-amazon-apigateway-integration:
-        type: "aws"
-        httpMethod: "POST"
-        uri:
-          Fn::Sub:
-            "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${GetCustomerAccountsLambdaAlias}/invocations"
         responses:
           default:
             statusCode: "200"
             responseParameters:
               method.response.header.Access-Control-Allow-Origin: "'*'"
+        httpMethod: "POST"
+        uri:
+          Fn::Sub:
+            "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${GetCustomerAccountsLambdaAlias}/invocations"
+        type: "aws"
         requestTemplates:
           application/json: "{\n    \"customerId\": \"$input.params('customerId')\"\n}"
         passthroughBehavior: "when_no_match"
@@ -101,16 +101,16 @@ paths:
             Access-Control-Allow-Origin:
               type: "string"
       x-amazon-apigateway-integration:
-        type: "aws"
-        httpMethod: "POST"
-        uri:
-          Fn::Sub:
-            "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${GetCustomerAccountLambdaAlias}/invocations"
         responses:
           default:
             statusCode: "200"
             responseParameters:
               method.response.header.Access-Control-Allow-Origin: "'*'"
+        httpMethod: "POST"
+        uri:
+          Fn::Sub:
+            "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${GetCustomerAccountLambdaAlias}/invocations"
+        type: "aws"
         requestTemplates:
           application/json: "{\n    \"customerId\": \"$input.params('customerId')\",\n    \"accountId\"\
             : \"$input.params('accountId')\"\n}"
@@ -135,17 +135,50 @@ paths:
             Access-Control-Allow-Origin:
               type: "string"
       x-amazon-apigateway-integration:
-        type: "aws"
-        httpMethod: "POST"
-        uri:
-          Fn::Sub:
-            "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${GetAccountTransactionsLambdaAlias}/invocations"
         responses:
           default:
             statusCode: "200"
             responseParameters:
               method.response.header.Access-Control-Allow-Origin: "'*'"
+        httpMethod: "POST"
+        uri:
+          Fn::Sub:
+            "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${GetAccountTransactionsLambdaAlias}/invocations"
+        type: "aws"
         requestTemplates:
           application/json: "{\n    \"customerId\": \"$input.params('customerId')\",\n    \"accountId\"\
             : \"$input.params('accountId')\"\n}"
+        passthroughBehavior: "when_no_templates"
+  /customers/{customerId}/createaccount:
+    post:
+      consumes:
+      - "application/json"
+      parameters:
+      - name: "customerId"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        "200":
+          description: "200 response"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+      x-amazon-apigateway-integration:
+        responses:
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+        httpMethod: "POST"
+        uri:
+          Fn::Sub:
+            "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${PostCreateAccountLambdaAlias}/invocations"
+        type: "aws"
+        requestTemplates:
+          application/json: "{\n    \"customerId\": \"$input.params('customerId')\"\
+            ,\n    \"type\": $input.json('$.type'),\n    \"nickname\": $input.json('$.nickname'),\n\
+            \    \"accountNumber\": $input.json('$.accountNumber'),\n    \"routingNumber\"\
+            : $input.json('$.routingNumber'),\n    \"creditLimit\": $input.json('$.creditLimit')\n\
+            }"
         passthroughBehavior: "when_no_templates"

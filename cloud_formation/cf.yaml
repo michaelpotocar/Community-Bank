@@ -329,6 +329,47 @@ Resources:
         Fn::Sub:
           "arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${ApiGateway}/*/*/*"
 
+  PostCreateAccountLambda:
+    Type: AWS::Lambda::Function
+    Properties:
+      Handler: michaelpotocar.projectkitty.providers.PostCreateAccountProvider::handleRequest
+      Role:
+        Fn::GetAtt: [ LambdaRole , "Arn" ]
+      Runtime: java11
+      Code:
+        S3Bucket: projectkitty
+        S3Key: "lambda-1.0-SNAPSHOT.zip"
+      MemorySize: 256
+      Timeout: 60
+
+  PostCreateAccountLambdaVersion:
+    Type: AWS::Lambda::Version
+    Properties:
+      FunctionName:
+        Ref: PostCreateAccountLambda
+
+  PostCreateAccountLambdaAlias:
+    Type: AWS::Lambda::Alias
+    Properties:
+      FunctionName:
+        Ref: PostCreateAccountLambda
+      FunctionVersion:
+        Fn::GetAtt: [ PostCreateAccountLambdaVersion, Version ]
+      Name: prod
+      # ProvisionedConcurrencyConfig:
+      #   ProvisionedConcurrentExecutions: 10
+
+  PostCreateAccountPermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName:
+        Ref: PostCreateAccountLambdaAlias
+      Principal: apigateway.amazonaws.com
+      SourceArn:
+        Fn::Sub:
+          "arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${ApiGateway}/*/*/*"
+
   ApiGatewayDeployment:
     Type: AWS::ApiGateway::Deployment
     Properties:

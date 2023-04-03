@@ -103,22 +103,6 @@ echo 'Stack Created'
 
 echo ''
 
-api_id=`aws apigateway get-rest-apis \
-  --profile bt \
-  --region us-west-2 \
-  | jq -r '.items[] | select(.name == "ProjectKitty") | .id'`
-
-echo $api_id > '/Users/michaelpotocar/Developer/Bloomtech/bd-team-project-project-kitty/frontend/public/.ignore/api_id'
-
-api_message="API ID: ${api_id}"
-echo "${api_message}"
-
-postman_api_key=`cat /Users/michaelpotocar/Developer/Bloomtech/bd-team-project-project-kitty/.ignore/postman_api_key`
-postman_collection=`cat /Users/michaelpotocar/Developer/Bloomtech/bd-team-project-project-kitty/.ignore/postman_collection`
-
-postman login --with-api-key ${postman_api_key} \
-  > /dev/null
-postman collection run ${postman_collection} \
-  --global-var api_id=${api_id}
+/Users/michaelpotocar/Developer/Bloomtech/bd-team-project-project-kitty/cloud_formation/2.5_postman.sh
 
 echo ''

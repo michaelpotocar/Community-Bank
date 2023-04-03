@@ -13,7 +13,7 @@ public class Account {
     private Double balance;
     private String nickname;
     private String type;
-    private Double creditLimit;
+    private Long creditLimit;
 
     public Account() {
     }
@@ -74,10 +74,10 @@ public class Account {
     }
 
     @DynamoDBAttribute(attributeName = "creditLimit")
-    public Double getCreditLimit() {
+    public Long getCreditLimit() {
         return this.creditLimit;
     }
-    public void setCreditLimit(Double creditLimit) {
+    public void setCreditLimit(Long creditLimit) {
         this.creditLimit = creditLimit;
     }
 }

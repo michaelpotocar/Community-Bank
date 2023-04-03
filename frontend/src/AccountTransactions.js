@@ -15,7 +15,6 @@ import {
   TableCell,
   TableBody,
 } from '@mui/material';
-import { styled } from '@mui/material/styles';
 
 function AccountTransactions() {
   const { api_id } = useContext(Context);
@@ -25,7 +24,7 @@ function AccountTransactions() {
   const [transactions, setTransactions] = useState('Loading');
 
   useMemo(() => {
-    if (api_id != '') {
+    if (api_id !== '') {
       axios.get(`https://${api_id}.execute-api.us-west-2.amazonaws.com/prod/customers/${customerId}/accounts/${accountId}`)
         .then(response => {
           setAccount(response.data.account);
@@ -52,19 +51,11 @@ function AccountTransactions() {
     }
   }, [api_id]);
 
-  const Item = styled(Paper)(({ theme }) => ({
-    backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-    ...theme.typography.body2,
-    padding: theme.spacing(1),
-    textAlign: 'center',
-    color: theme.palette.text.secondary,
-  }));
-
   return (
     !loading.includes(true) &&
     <Grid container
-      justifyContent="center"
-      spacing={1}>
+      spacing={1}
+      justifyContent="center">
 
       <Grid item xs={12} />
       <Grid item xs={12} />
@@ -77,19 +68,46 @@ function AccountTransactions() {
       </Grid>
       <Grid item xs={8} />
 
-      <Grid item xs={2} />
-      <Grid item xs={3}>
-        <Typography align='center' variant="h4">
-          {account.nickname} {account.type.charAt(0).toUpperCase() + account.type.slice(1)}
-        </Typography>
-      </Grid>
-      <Grid item xs={2} />
-      <Grid item xs={3}>
-        <Typography align='center' variant="h4">
-          Balance: ${(Math.round(account.balance * 100) / 100).toFixed(2)}
-        </Typography>
-      </Grid>
-      <Grid item xs={2} />
+      {account.type == 'credit' &&
+        (<>
+          <Grid item xs={2.5}>
+            <Typography align='center' variant="h6">
+              {account.nickname} {account.type.charAt(0).toUpperCase() + account.type.slice(1)}
+            </Typography>
+          </Grid>
+          <Grid item xs={2.5}>
+            <Typography align='center' variant="h6">
+              Credit&nbsp;Limit: ${account.creditLimit}
+            </Typography>
+          </Grid>
+          <Grid item xs={2.5}>
+            <Typography align='center' variant="h6">
+              Credit&nbsp;Available: ${account.creditLimit - account.balance}
+            </Typography>
+          </Grid>
+          <Grid item xs={2.5}>
+            <Typography align='center' variant="h6">
+              Balance: ${(Math.round(account.balance * 100) / 100).toFixed(2)}
+            </Typography>
+          </Grid>
+        </>)
+        ||
+        (<>
+          <Grid item xs={2} />
+          <Grid item xs={3}>
+            <Typography align='center' variant="h4">
+              {account.nickname} {account.type.charAt(0).toUpperCase() + account.type.slice(1)}
+            </Typography>
+          </Grid>
+          <Grid item xs={2} />
+          <Grid item xs={3}>
+            <Typography align='center' variant="h4">
+              Balance: ${(Math.round(account.balance * 100) / 100).toFixed(2)}
+            </Typography>
+          </Grid>
+          <Grid item xs={2} />
+        </>
+        )}
 
       <Grid item xs={9}>
         <TableContainer component={Paper}>

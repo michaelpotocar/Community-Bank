@@ -14,7 +14,6 @@ import {
   TableCell,
   TableBody,
 } from '@mui/material';
-import { styled } from '@mui/material/styles';
 
 function Customers() {
   const { api_id } = useContext(Context);
@@ -35,7 +34,8 @@ function Customers() {
 
   return (
     !loading &&
-    <Grid container spacing={1}
+    <Grid container
+      spacing={1}
       justifyContent="center">
 
       <Grid item xs={12} />

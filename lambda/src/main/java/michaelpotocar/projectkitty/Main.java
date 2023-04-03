@@ -12,26 +12,21 @@ import michaelpotocar.projectkitty.dynamodb.model.AccountStub;
 import michaelpotocar.projectkitty.dynamodb.model.Customer;
 import michaelpotocar.projectkitty.dynamodb.model.CustomerStub;
 import michaelpotocar.projectkitty.dynamodb.model.Transaction;
-import michaelpotocar.projectkitty.providers.GetCustomerAccountProvider;
-import michaelpotocar.projectkitty.providers.GetCustomerAccountsProvider;
-import michaelpotocar.projectkitty.providers.GetCustomersProvider;
-import michaelpotocar.projectkitty.providers.GetAccountTransactionsProvider;
-import michaelpotocar.projectkitty.requests.GetCustomerAccountsRequest;
-import michaelpotocar.projectkitty.requests.GetCustomerAccountRequest;
-import michaelpotocar.projectkitty.requests.GetCustomersRequest;
-import michaelpotocar.projectkitty.requests.GetAccountTransactionsRequest;
-import michaelpotocar.projectkitty.results.GetCustomerAccountsResult;
-import michaelpotocar.projectkitty.results.GetCustomerAccountResult;
-import michaelpotocar.projectkitty.results.GetCustomersResult;
-import michaelpotocar.projectkitty.results.GetAccountTransactionsResult;
+import michaelpotocar.projectkitty.providers.*;
+import michaelpotocar.projectkitty.requests.*;
+import michaelpotocar.projectkitty.results.*;
 
 public class Main {
 
-    public Main() {
+    public static void main(String[] args) {
+
+        postCreateAccount();
+
     }
 
-    public static void main(String[] args) {
-        getCustomerAccount();
+    public static void postCreateAccount() {
+        PostCreateAccountRequest request = new PostCreateAccountRequest(923739977L, "credit", "13", 2L, 3L, 4L);
+        PostCreateAccountResult result = (new PostCreateAccountProvider()).handleRequest(request, null);
     }
 
     public static void getCustomerAccounts() {
@@ -79,7 +74,7 @@ public class Main {
         account.setBalance(1.11);
         account.setNickname("My new account");
         account.setType("credit");
-        account.setCreditLimit(5000.0);
+        account.setCreditLimit(5000L);
         account.setCustomerId(1L);
         Customer customer = new Customer();
         customer.setFirstName("Mike");

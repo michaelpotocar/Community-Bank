@@ -24,7 +24,7 @@ function ReceivePayment() {
   const [accounts, setAccounts] = useState('Loading');
 
   useMemo(() => {
-    if (api_id != '') {
+    if (api_id !== '') {
       axios.get(`https://${api_id}.execute-api.us-west-2.amazonaws.com/prod/customers/${customerId}`)
         .then(response => {
           setCustomer(response.data.customer);
@@ -46,7 +46,8 @@ function ReceivePayment() {
   return (
     !loading.includes(true) &&
 
-    <Grid container spacing={1}
+    <Grid container
+      spacing={1}
       justifyContent="center">
 
     </Grid>
