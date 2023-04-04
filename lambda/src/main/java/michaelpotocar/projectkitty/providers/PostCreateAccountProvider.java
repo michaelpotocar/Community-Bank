@@ -1,11 +1,7 @@
 package michaelpotocar.projectkitty.providers;
 
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBSaveExpression;
-import com.amazonaws.services.dynamodbv2.model.ExpectedAttributeValue;
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
-import michaelpotocar.projectkitty.dynamodb.DynamoDbMapperProvider;
 import michaelpotocar.projectkitty.dynamodb.dao.CustomerDao;
 import michaelpotocar.projectkitty.dynamodb.model.Account;
 import michaelpotocar.projectkitty.dynamodb.model.Customer;

@@ -7,9 +7,6 @@ import michaelpotocar.projectkitty.dynamodb.model.Customer;
 import michaelpotocar.projectkitty.requests.GetCustomerRequest;
 import michaelpotocar.projectkitty.results.GetCustomerResult;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class GetCustomerProvider implements RequestHandler<GetCustomerRequest, GetCustomerResult> {
     public GetCustomerProvider() {
     }
@@ -22,7 +19,7 @@ public class GetCustomerProvider implements RequestHandler<GetCustomerRequest, G
 
         GetCustomerResult result = new GetCustomerResult(customer);
 
-        System.out.println("Result: " + result.toString());
+        System.out.println("Result: " + result);
         return result;
     }
 }

@@ -1,28 +1,15 @@
 package michaelpotocar.projectkitty.results;
 
+import lombok.*;
+
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
 public class PostTransferResult {
+    @With
+    @Getter
+    @Setter
     private String message;
 
-    public PostTransferResult() {
-    }
-
-    public PostTransferResult(String message) {
-        this.message = message;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    @Override
-    public String toString() {
-        return "PostCreateAccountResult{" +
-                ", message='" + message + '\'' +
-                '}';
-    }
 }
 

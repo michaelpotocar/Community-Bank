@@ -20,6 +20,7 @@ import {
   TextField
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
+import { currencyFormatted, wordFormatted } from './Utilities';
 
 function Transfer() {
   const { api_id } = useContext(Context);
@@ -156,14 +157,15 @@ function Transfer() {
               value={fundingAccountField}
               label="Funding Account"
               onChange={event => { setFundingAccountField(event.target.value); }}>
-              {customer.accounts.filter(() => true).map(account => {
-                return (
-                  <MenuItem
-                    key={account.accountId}
-                    value={account.accountId}>
-                    {account.nickname}
-                  </MenuItem>);
-              })}
+              {customer.accounts.filter(account => ['checking', 'savings', 'external']
+                .includes(account.type)).map(account => {
+                  return (
+                    <MenuItem
+                      key={account.accountId}
+                      value={account.accountId}>
+                      {account.nickname} {wordFormatted(account.type)} {typeof account.balance == 'number' ? '- Available: ' + currencyFormatted(account.balance) : ""}
+                    </MenuItem>);
+                })}
             </Select>
           </FormControl>
 
@@ -175,12 +177,20 @@ function Transfer() {
               onChange={event => {
                 setTargetAccountField(event.target.value);
               }}>
-              {customer.accounts.filter(() => true).map(account => {
+              {(() => {
+                if (transferTypeField == 'standard') {
+                  return customer.accounts.filter(account => ['checking', 'savings', 'external'].includes(account.type));
+                } else if (transferTypeField == 'credit') {
+                  return customer.accounts.filter(account => ['credit'].includes(account.type));
+                } else {
+                  return [];
+                }
+              })().map(account => {
                 return (
                   <MenuItem
                     key={account.accountId}
                     value={account.accountId}>
-                    {account.nickname}
+                    {account.nickname} {wordFormatted(account.type)} {typeof account.balance == 'number' ? `- ${account.type == 'credit' ? 'Balance' : 'Available'}: ` + currencyFormatted(account.balance) : ""}
                   </MenuItem>
                 );
               })}

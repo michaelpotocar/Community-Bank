@@ -1,29 +1,15 @@
 package michaelpotocar.projectkitty.requests;
 
+import lombok.*;
+
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
 public class GetCustomerRequest {
 
+    @With
+    @Getter
+    @Setter
     private Long customerId;
 
-    public GetCustomerRequest() {
-
-    }
-
-    public GetCustomerRequest(Long customerId) {
-        this.customerId = customerId;
-    }
-
-    public Long getCustomerId() {
-        return customerId;
-    }
-
-    public void setCustomerId(Long customerId) {
-        this.customerId = customerId;
-    }
-
-    @Override
-    public String toString() {
-        return "GetCustomerRequest{" +
-                "customerId=" + customerId +
-                '}';
-    }
 }

@@ -19,7 +19,7 @@ public class GetCustomersProvider implements RequestHandler<GetCustomersRequest,
 
         GetCustomersResult result = new GetCustomersResult(customers);
 
-        System.out.println("Result: " + result.toString());
+        System.out.println("Result: " + result);
         return result;
     }
 }

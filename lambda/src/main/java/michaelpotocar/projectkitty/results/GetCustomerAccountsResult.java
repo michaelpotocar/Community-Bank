@@ -1,31 +1,17 @@
 package michaelpotocar.projectkitty.results;
 
+import lombok.*;
 import michaelpotocar.projectkitty.dynamodb.model.Account;
 
 import java.util.List;
 
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
 public class GetCustomerAccountsResult {
+    @With
+    @Getter
+    @Setter
     private List<Account> accounts;
 
-    public GetCustomerAccountsResult() {
-    }
-
-    public GetCustomerAccountsResult(List<Account> accounts) {
-        this.accounts = accounts;
-    }
-
-    public List<Account> getAccounts() {
-        return accounts;
-    }
-
-    public void setAccounts(List<Account> accounts) {
-        this.accounts = accounts;
-    }
-
-    @Override
-    public String toString() {
-        return "GetAccountsResult{" +
-                "accounts=" + accounts +
-                '}';
-    }
 }
