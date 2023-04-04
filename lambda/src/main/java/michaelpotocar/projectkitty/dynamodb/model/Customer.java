@@ -10,7 +10,7 @@ import java.util.List;
 )
 public class Customer {
     private Long id;
-    private List<AccountStub> accounts;
+    private List<Account> accounts;
     private List<CustomerStub> contacts;
     private String firstName;
     private String lastName;
@@ -27,10 +27,10 @@ public class Customer {
     }
 
     @DynamoDBAttribute(attributeName = "accounts")
-    public List<AccountStub> getAccounts() {
+    public List<Account> getAccounts() {
         return this.accounts;
     }
-    public void setAccounts(List<AccountStub> accounts) {
+    public void setAccounts(List<Account> accounts) {
         this.accounts = accounts;
     }
 

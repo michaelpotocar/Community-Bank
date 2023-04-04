@@ -2,8 +2,9 @@ package michaelpotocar.projectkitty.providers;
 
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
-import michaelpotocar.projectkitty.dynamodb.dao.AccountDao;
+import michaelpotocar.projectkitty.dynamodb.dao.CustomerDao;
 import michaelpotocar.projectkitty.dynamodb.model.Account;
+import michaelpotocar.projectkitty.dynamodb.model.Customer;
 import michaelpotocar.projectkitty.requests.GetCustomerAccountsRequest;
 import michaelpotocar.projectkitty.results.GetCustomerAccountsResult;
 
@@ -15,13 +16,20 @@ public class GetCustomerAccountsProvider implements RequestHandler<GetCustomerAc
 
     public GetCustomerAccountsResult handleRequest(GetCustomerAccountsRequest input, Context context) {
         System.out.println("Input: " + input.toString());
-        Long customerID = input.getCustomerId();
+        Long customerId = input.getCustomerId();
 
-        List<Account> accounts  = AccountDao.getAccounts(customerID);
+        Customer customer = CustomerDao.getCustomer(customerId);
+
+        if (customer == null) {
+            GetCustomerAccountsResult result = new GetCustomerAccountsResult(null);
+            System.out.println("No Customer Exists: " + result);
+            return result;
+        }
+
+        List<Account> accounts = customer.getAccounts();
 
         GetCustomerAccountsResult result = new GetCustomerAccountsResult(accounts);
-
-        System.out.println("Result: " + result.toString());
+        System.out.println("Result: " + result);
         return result;
     }
 }

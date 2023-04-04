@@ -10,6 +10,8 @@ import { useState, useMemo } from 'react';
 import CreateAccount from './CreateAccount';
 import ReceivePayment from './ReceivePayment';
 import Transfer from './Transfer';
+import NotFound from './NotFound';
+import Error from './Error';
 
 function App() {
 
@@ -41,8 +43,10 @@ function App() {
                     <Route path='/customer/:customerId' element={<CustomerAccounts />}> </Route>
                     <Route path='/customer/:customerId/account/:accountId' element={<AccountTransactions />}> </Route>
                     <Route path='/customer/:customerId/createaccount' element={<CreateAccount />}> </Route>
-                    <Route path='/customer/:customerId/transfer' element={<ReceivePayment />}> </Route>
-                    <Route path='/customer/:customerId/receivepayment' element={<Transfer />}> </Route>
+                    <Route path='/customer/:customerId/transfer' element={<Transfer />}> </Route>
+                    <Route path='/customer/:customerId/receivepayment' element={<ReceivePayment />}> </Route>
+                    <Route path='/error' element={<Error />}> </Route>
+                    <Route path='*' element={<NotFound />}> </Route>
                 </Routes>
             </Context.Provider>
         </ThemeProvider>

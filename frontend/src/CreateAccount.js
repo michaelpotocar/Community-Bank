@@ -1,7 +1,7 @@
 import { useState, useMemo, useContext } from 'react';
 import axios from 'axios';
 import Context from './Context';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, Navigate, useNavigate } from 'react-router-dom';
 import {
   Button,
   Paper,
@@ -26,7 +26,6 @@ function CreateAccount() {
   const { customerId } = useParams();
   const [loading, setLoading] = useState([true]);
   const [customer, setCustomer] = useState('Loading');
-  const [accounts, setAccounts] = useState('Loading');
 
   const [accountTypeField, setAccountTypeField] = useState('');
   const [nicknameField, setNicknameField] = useState('');
@@ -38,7 +37,11 @@ function CreateAccount() {
   const [routingNumberField, setRoutingNumberField] = useState('');
   const [routingNumberFieldError, setRoutingNumberFieldError] = useState(false);
   const [routingNumberFieldErrorMessage, setRoutingNumberFieldErrorMessage] = useState('');
-  const [creditLimitField, setCreditLimitField] = useState('');
+  const [creditLimitField, setCreditLimitField] = useState(() => {
+    return Math.ceil(Math.random() * 7) * 500;
+  });
+
+  const navigate = useNavigate();
 
   useMemo(() => {
     if (api_id !== '') {
@@ -49,10 +52,8 @@ function CreateAccount() {
         }).catch(err => {
           console.log(err);
         });
-
     }
   }, [api_id]);
-
 
   const changeNicknameField = (event) => {
     const input = event.target.value;
@@ -100,7 +101,6 @@ function CreateAccount() {
   };
 
   const submitter = () => {
-    console.log();
     axios.post(`https://${api_id}.execute-api.us-west-2.amazonaws.com/prod/customers/${customerId}/createaccount`, {
       type: accountTypeField,
       nickname: nicknameField,
@@ -109,12 +109,11 @@ function CreateAccount() {
       creditLimit: creditLimitField
     })
       .then((response) => {
-        console.log(response.data);
+        navigate(`/customer/${customerId}`);
       })
       .catch((error) => {
-        console.error(error);
+        navigate('/error', { state: error });
       });
-
   };
 
   return (
@@ -126,9 +125,14 @@ function CreateAccount() {
 
       <Grid item xs={12} />
       <Grid item xs={12} />
-      <Grid item xs={12} />
-      <Grid item xs={12} />
-      <Grid item xs={12} />
+
+      <Grid item xs={1} />
+      <Grid item xs={3}>
+        <Link to={`/customer/${customerId}`} >
+          <Button variant="contained" >Return&nbsp;to Account&nbsp;Selection</Button>
+        </Link>
+      </Grid>
+      <Grid item xs={8} />
 
       <Grid item xs={4} />
       <Grid item xs={4}>
@@ -141,11 +145,11 @@ function CreateAccount() {
       <Grid item xs={12} />
       <Grid item xs={12} />
 
-      <Grid item xs={4}>
+      <Grid item xs={8}>
         <Grid container
           justifyContent="center">
-          <FormControl fullWidth>
 
+          <FormControl fullWidth margin="normal">
             <InputLabel>Account Type</InputLabel>
             <Select
               value={accountTypeField}
@@ -158,48 +162,63 @@ function CreateAccount() {
               <MenuItem value={"credit"}>Credit</MenuItem>
               <MenuItem value={"external"}>External</MenuItem>
             </Select>
+          </FormControl>
 
+          <FormControl fullWidth margin="normal">
             <TextField
               label="Nickname"
               variant="outlined"
               error={nicknameFieldError}
               helperText={nicknameFieldErrorMessage}
               value={nicknameField}
-              onChange={changeNicknameField}
-              margin="normal" />
+              onChange={changeNicknameField} />
+          </FormControl>
 
-            {accountTypeField == 'external' && <TextField
-              label="Account Number"
-              variant="outlined"
-              error={accountNumberFieldError}
-              helperText={accountNumberFieldErrorMessage}
-              value={accountNumberField}
-              onChange={changeAccountNumberField}
-              margin="normal" />}
+          {accountTypeField == 'external' &&
+            <FormControl fullWidth margin="normal">
+              <TextField
+                label="Account Number"
+                variant="outlined"
+                error={accountNumberFieldError}
+                helperText={accountNumberFieldErrorMessage}
+                value={accountNumberField}
+                onChange={changeAccountNumberField} />
+            </FormControl>}
 
-            {accountTypeField == 'external' && <TextField
-              label="Routing Number"
-              variant="outlined"
-              error={routingNumberFieldError}
-              helperText={routingNumberFieldErrorMessage}
-              value={routingNumberField}
-              onChange={changeRoutingNumberField}
-              margin="normal" />}
+          {accountTypeField == 'external' &&
+            <FormControl fullWidth margin="normal">
+              <TextField
+                label="Routing Number"
+                variant="outlined"
+                error={routingNumberFieldError}
+                helperText={routingNumberFieldErrorMessage}
+                value={routingNumberField}
+                onChange={changeRoutingNumberField} />
+            </FormControl>}
 
-            {accountTypeField == 'credit' && <TextField
-              label="Credit Limit"
-              variant="outlined"
-              disabled={true}
-              value={creditLimitField}
-              margin="normal" />}
+          {accountTypeField == 'credit' &&
+            <FormControl fullWidth margin="normal">
+              <TextField
+                label="Credit Limit"
+                variant="outlined"
+                disabled={true}
+                value={creditLimitField} />
+            </FormControl>}
 
+          <FormControl fullWidth margin="normal">
             <Button
               variant="contained"
               onClick={submitter}>
               Submit
             </Button>
-
           </FormControl>
+
+          <Grid item xs={12} />
+          <Grid item xs={12} />
+          <Grid item xs={12} />
+          <Grid item xs={12} />
+          <Grid item xs={12} />
+
         </Grid >
       </Grid>
 

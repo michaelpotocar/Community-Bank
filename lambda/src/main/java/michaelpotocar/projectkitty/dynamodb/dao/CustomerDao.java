@@ -9,19 +9,23 @@ import michaelpotocar.projectkitty.dynamodb.model.Customer;
 
 public class CustomerDao {
 
+    static DynamoDBMapper ddbMapper = DynamoDbMapperProvider.getDynamoDbMapper();
+
     public CustomerDao() {
     }
 
     public static Customer getCustomer(Long id) {
-        DynamoDBMapper ddbMapper = DynamoDbMapperProvider.getDynamoDbMapper();
         Customer customer = ddbMapper.load(Customer.class, id);
         return customer;
     }
 
     public static List<Customer> getAllCustomers() {
-        DynamoDBMapper ddbMapper = DynamoDbMapperProvider.getDynamoDbMapper();
         DynamoDBScanExpression scanExpression = new DynamoDBScanExpression();
         List<Customer> customers = ddbMapper.scan(Customer.class, scanExpression);
         return customers;
+    }
+
+    public static void save(Customer customer) {
+        ddbMapper.save(customer);
     }
 }

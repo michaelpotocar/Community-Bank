@@ -1,8 +1,8 @@
 package michaelpotocar.projectkitty.results;
 
-import java.util.List;
-
 import michaelpotocar.projectkitty.dynamodb.model.Account;
+
+import java.util.List;
 
 public class GetCustomerAccountsResult {
     private List<Account> accounts;

@@ -8,7 +8,6 @@ import java.util.List;
 
 import michaelpotocar.projectkitty.dynamodb.DynamoDbMapperProvider;
 import michaelpotocar.projectkitty.dynamodb.model.Account;
-import michaelpotocar.projectkitty.dynamodb.model.AccountStub;
 import michaelpotocar.projectkitty.dynamodb.model.Customer;
 import michaelpotocar.projectkitty.dynamodb.model.CustomerStub;
 import michaelpotocar.projectkitty.dynamodb.model.Transaction;
@@ -20,8 +19,21 @@ public class Main {
 
     public static void main(String[] args) {
 
-        postCreateAccount();
+        postTransfer();
 
+    }
+
+    public static void postTransfer() {
+        Long customerId = 637818676L;
+        String type = "standard";
+        String fundingAccount = "973891075646127000000001";
+        String targetAccount = "810077691050127000000001";
+        Long contactId = 0L;
+        Double amount = 1.0;
+        String memo = "";
+
+        PostTransferRequest request = new PostTransferRequest( customerId,  type,  fundingAccount,  targetAccount,  contactId,  amount,  memo );
+        PostTransferResult result = (new PostTransferProvider()).handleRequest(request, null);
     }
 
     public static void postCreateAccount() {
@@ -35,7 +47,7 @@ public class Main {
     }
 
     public static void getCustomerAccount() {
-        GetCustomerAccountRequest request = new GetCustomerAccountRequest(126879020L, "441629877739127000000001");
+        GetCustomerAccountRequest request = new GetCustomerAccountRequest(637818676L, "810077691050127000000001");
         GetCustomerAccountResult result = (new GetCustomerAccountProvider()).handleRequest(request, null);
     }
 
@@ -75,19 +87,18 @@ public class Main {
         account.setNickname("My new account");
         account.setType("credit");
         account.setCreditLimit(5000L);
-        account.setCustomerId(1L);
         Customer customer = new Customer();
         customer.setFirstName("Mike");
         customer.setLastName("P");
         customer.setId(1L);
-        AccountStub accountStub = new AccountStub();
+        Account accountStub = new Account();
         accountStub.setAccountId(account.getAccountId());
         accountStub.setBalance(account.getBalance());
         accountStub.setNickname(account.getNickname());
         accountStub.setType(account.getType());
-        List<AccountStub> accountStubs = new ArrayList();
-        accountStubs.add(accountStub);
-        customer.setAccounts(accountStubs);
+        List<Account> accounts = new ArrayList();
+        accounts.add(accountStub);
+        customer.setAccounts(accounts);
         CustomerStub customerStub = new CustomerStub();
         customerStub.setFirstName("Billy");
         customerStub.setLastName("P");

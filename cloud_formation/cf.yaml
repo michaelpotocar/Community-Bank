@@ -12,21 +12,6 @@ Resources:
       BillingMode: PAY_PER_REQUEST
       TableName: "Customers"
 
-  AccountsTable:
-    Type: AWS::DynamoDB::Table
-    Properties:
-      AttributeDefinitions:
-        - AttributeName: "customerId"
-          AttributeType: "N"
-        - AttributeName: "accountId"
-          AttributeType: "S"
-      KeySchema:
-        - AttributeName: "customerId"
-          KeyType: "HASH"
-        - AttributeName: "accountId"
-          KeyType: "RANGE"
-      BillingMode: PAY_PER_REQUEST
-      TableName: "Accounts"
   TransactionsTable:
     Type: AWS::DynamoDB::Table
     Properties:
@@ -106,7 +91,7 @@ Resources:
     Type: AWS::CloudFormation::CustomResource
     DependsOn:
       - CustomersTable
-      - AccountsTable
+      # - AccountsTable
       - TransactionsTable
     Properties:
       ServiceToken:
@@ -151,8 +136,8 @@ Resources:
       FunctionVersion:
         Fn::GetAtt: [ GetCustomersLambdaVersion, Version ]
       Name: prod
-      # ProvisionedConcurrencyConfig:
-      #   ProvisionedConcurrentExecutions: 10
+      ProvisionedConcurrencyConfig:
+        ProvisionedConcurrentExecutions: 1
       
   GetCustomersPermission:
     Type: AWS::Lambda::Permission
@@ -192,8 +177,8 @@ Resources:
       FunctionVersion:
         Fn::GetAtt: [ GetCustomerLambdaVersion, Version ]
       Name: prod
-      # ProvisionedConcurrencyConfig:
-      #   ProvisionedConcurrentExecutions: 10
+      ProvisionedConcurrencyConfig:
+        ProvisionedConcurrentExecutions: 1
 
   GetCustomerPermission:
     Type: AWS::Lambda::Permission
@@ -233,8 +218,8 @@ Resources:
       FunctionVersion:
         Fn::GetAtt: [ GetCustomerAccountsLambdaVersion, Version ]
       Name: prod
-      # ProvisionedConcurrencyConfig:
-      #   ProvisionedConcurrentExecutions: 10
+      ProvisionedConcurrencyConfig:
+        ProvisionedConcurrentExecutions: 1
 
   GetCustomerAccountsPermission:
     Type: AWS::Lambda::Permission
@@ -274,8 +259,8 @@ Resources:
       FunctionVersion:
         Fn::GetAtt: [ GetCustomerAccountLambdaVersion, Version ]
       Name: prod
-      # ProvisionedConcurrencyConfig:
-      #   ProvisionedConcurrentExecutions: 10
+      ProvisionedConcurrencyConfig:
+        ProvisionedConcurrentExecutions: 1
 
   GetCustomerAccountPermission:
     Type: AWS::Lambda::Permission
@@ -315,8 +300,8 @@ Resources:
       FunctionVersion:
         Fn::GetAtt: [ GetAccountTransactionsLambdaVersion, Version ]
       Name: prod
-      # ProvisionedConcurrencyConfig:
-      #   ProvisionedConcurrentExecutions: 10
+      ProvisionedConcurrencyConfig:
+        ProvisionedConcurrentExecutions: 1
 
   GetAccountTransactionsPermission:
     Type: AWS::Lambda::Permission
@@ -356,8 +341,8 @@ Resources:
       FunctionVersion:
         Fn::GetAtt: [ PostCreateAccountLambdaVersion, Version ]
       Name: prod
-      # ProvisionedConcurrencyConfig:
-      #   ProvisionedConcurrentExecutions: 10
+      ProvisionedConcurrencyConfig:
+        ProvisionedConcurrentExecutions: 1
 
   PostCreateAccountPermission:
     Type: AWS::Lambda::Permission
@@ -365,6 +350,47 @@ Resources:
       Action: lambda:InvokeFunction
       FunctionName:
         Ref: PostCreateAccountLambdaAlias
+      Principal: apigateway.amazonaws.com
+      SourceArn:
+        Fn::Sub:
+          "arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${ApiGateway}/*/*/*"
+
+  PostTransferLambda:
+    Type: AWS::Lambda::Function
+    Properties:
+      Handler: michaelpotocar.projectkitty.providers.PostTransferProvider::handleRequest
+      Role:
+        Fn::GetAtt: [ LambdaRole , "Arn" ]
+      Runtime: java11
+      Code:
+        S3Bucket: projectkitty
+        S3Key: "lambda-1.0-SNAPSHOT.zip"
+      MemorySize: 256
+      Timeout: 60
+
+  PostTransferLambdaVersion:
+    Type: AWS::Lambda::Version
+    Properties:
+      FunctionName:
+        Ref: PostTransferLambda
+
+  PostTransferLambdaAlias:
+    Type: AWS::Lambda::Alias
+    Properties:
+      FunctionName:
+        Ref: PostTransferLambda
+      FunctionVersion:
+        Fn::GetAtt: [ PostTransferLambdaVersion, Version ]
+      Name: prod
+      ProvisionedConcurrencyConfig:
+        ProvisionedConcurrentExecutions: 1
+
+  PostTransferPermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName:
+        Ref: PostTransferLambdaAlias
       Principal: apigateway.amazonaws.com
       SourceArn:
         Fn::Sub:

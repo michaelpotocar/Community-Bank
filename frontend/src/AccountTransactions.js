@@ -15,6 +15,7 @@ import {
   TableCell,
   TableBody,
 } from '@mui/material';
+import { currencyFormatted, wordFormatted } from './Utilities';
 
 function AccountTransactions() {
   const { api_id } = useContext(Context);
@@ -72,7 +73,7 @@ function AccountTransactions() {
         (<>
           <Grid item xs={2.5}>
             <Typography align='center' variant="h6">
-              {account.nickname} {account.type.charAt(0).toUpperCase() + account.type.slice(1)}
+              {account.nickname} {wordFormatted(account.type)}
             </Typography>
           </Grid>
           <Grid item xs={2.5}>
@@ -82,12 +83,12 @@ function AccountTransactions() {
           </Grid>
           <Grid item xs={2.5}>
             <Typography align='center' variant="h6">
-              Credit&nbsp;Available: ${account.creditLimit - account.balance}
+              Credit&nbsp;Available: {currencyFormatted(account.creditLimit - account.balance)}
             </Typography>
           </Grid>
           <Grid item xs={2.5}>
             <Typography align='center' variant="h6">
-              Balance: ${(Math.round(account.balance * 100) / 100).toFixed(2)}
+              Balance: {currencyFormatted(account.balance)}
             </Typography>
           </Grid>
         </>)
@@ -96,13 +97,13 @@ function AccountTransactions() {
           <Grid item xs={2} />
           <Grid item xs={3}>
             <Typography align='center' variant="h4">
-              {account.nickname} {account.type.charAt(0).toUpperCase() + account.type.slice(1)}
+              {account.nickname} {wordFormatted(account.type)}
             </Typography>
           </Grid>
           <Grid item xs={2} />
           <Grid item xs={3}>
             <Typography align='center' variant="h4">
-              Balance: ${(Math.round(account.balance * 100) / 100).toFixed(2)}
+              Balance: {currencyFormatted(account.balance)}
             </Typography>
           </Grid>
           <Grid item xs={2} />
@@ -126,13 +127,19 @@ function AccountTransactions() {
                   sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                   <TableCell align="center">{moment.unix(transaction.completedDateTime).format('dddd, MMMM Do, YYYY')}</TableCell>
                   <TableCell align="center">{transaction.memo}</TableCell>
-                  <TableCell align="center">{(Math.round(transaction.amount * 100) / 100).toFixed(2)}</TableCell>
+                  <TableCell align="center">{currencyFormatted(transaction.amount)}</TableCell>
                 </TableRow>
               ))}
             </TableBody>
           </Table>
         </TableContainer>
       </Grid>
+
+      <Grid item xs={12} />
+      <Grid item xs={12} />
+      <Grid item xs={12} />
+      <Grid item xs={12} />
+      <Grid item xs={12} />
 
     </Grid>
   );

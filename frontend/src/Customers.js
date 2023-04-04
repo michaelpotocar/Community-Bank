@@ -43,50 +43,50 @@ function Customers() {
       <Grid item xs={12} />
       <Grid item xs={12} />
       <Grid item xs={12} />
+      <Grid item xs={12} />
 
-      <Grid container
-        justifyContent="center"
-        spacing={1}>
-
-        <Grid item xs={12} />
-
-        <Grid item xs={12}>
-          <Typography align='center' variant="h3">
-            Welcome, Please make a Selection
-          </Typography>
-        </Grid>
-
-        <Grid item xs={12} />
-        <Grid item xs={12} />
-
-        <Grid item xs={9}>
-          <TableContainer component={Paper}>
-            <Table >
-              <TableHead>
-                <TableRow>
-                  <TableCell align="center">Customer</TableCell>
-                  <TableCell align="center">Details</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {customers.map(customer => (
-                  <TableRow
-                    key={customer.customerId}
-                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                    <TableCell align="center">{customer.firstName} {customer.lastName}</TableCell>
-                    <TableCell align="center">
-                      <Link to={`/customer/${customer.id}`} >
-                        <Button variant="contained" fullWidth={true}>View Accounts</Button>
-                      </Link>
-
-                    </TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
-        </Grid>
+      <Grid item xs={12}>
+        <Typography align='center' variant="h3">
+          Welcome, Please make a Selection
+        </Typography>
       </Grid>
+
+      <Grid item xs={12} />
+      <Grid item xs={12} />
+
+      <Grid item xs={9}>
+        <TableContainer component={Paper}>
+          <Table >
+            <TableHead>
+              <TableRow>
+                <TableCell align="center">Customer</TableCell>
+                <TableCell align="center">Details</TableCell>
+              </TableRow>
+            </TableHead>
+
+            <TableBody>
+              {customers.map(customer => (
+                <TableRow
+                  key={customer.customerId}
+                  sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                  <TableCell align="center">{customer.firstName} {customer.lastName}</TableCell>
+                  <TableCell align="center">
+                    <Link to={`/customer/${customer.id}`} >
+                      <Button variant="contained" fullWidth={true}>View Accounts</Button>
+                    </Link>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </Grid>
+
+      <Grid item xs={12} />
+      <Grid item xs={12} />
+      <Grid item xs={12} />
+      <Grid item xs={12} />
+      <Grid item xs={12} />
 
     </Grid>
   );

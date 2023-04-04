@@ -100,7 +100,7 @@ export const handler = async function (event, context) {
             i = n.indexOf(' ', i) + 1;
         }
         account.nickname = n;
-        account.accountId = String(account.accountNumber) + String(account.routingNumber);
+        account.accountId = String(account.accountNumber) + (account.routingNumber !== 0 ? String(account.routingNumber) : "");
 
     });
     transactionAccounts.forEach((account, index) => {
@@ -151,12 +151,6 @@ export const handler = async function (event, context) {
             }
         });
 
-        // account.transactions.sort((a, b) => { return a.submittedDateTime - b.submittedDateTime; });
-        // balance = 0;
-        // account.transactions.forEach((transaction) => {
-        //     balance += transaction.amount;
-        //     console.log(balance);
-        // });
     }
 
     for (let account of creditAccounts) {
@@ -183,13 +177,6 @@ export const handler = async function (event, context) {
             }
         });
 
-        // account.transactions.sort((a, b) => { return a.submittedDateTime - b.submittedDateTime; });
-        // balance = 0;
-        // console.log(`limit: ${account.creditLimit}`);
-        // account.transactions.forEach((transaction) => {
-        //     balance += transaction.amount;
-        //     console.log(balance);
-        // });
     }
 
     for (let account of savingsAccounts) {
@@ -250,38 +237,6 @@ export const handler = async function (event, context) {
         ddbPromises.push(ddbClient.send(new BatchWriteItemCommand(params)));
     }
 
-    ////////////////////////Accounts
-    //Transaction Accounts
-    let mappedAccounts = accounts.map(account => {
-        let mappedAccount = {
-            PutRequest: {
-                Item: {
-                    accountId: { S: String(account.accountId) },
-                    accountNumber: { N: String(account.accountNumber) },
-                    routingNumber: { N: String(account.routingNumber) },
-                    customerId: { N: String(account.customerId) },
-                    nickname: { S: String(account.nickname) },
-                    type: { S: String(account.type) },
-                    balance: { N: String(account.balance) },
-                }
-            }
-        };
-        if (account.type == 'credit') {
-            mappedAccount.PutRequest.Item.creditLimit = { N: String(account.creditLimit) };
-        }
-        return mappedAccount;
-    });
-
-    //Create DynamoBD Promise
-    for (let i = 0; i < Math.ceil(mappedAccounts.length / batchSize); i++) {
-        const batchAccounts = mappedAccounts.filter((({ }, j) =>
-            j >= (batchSize * i) && j < (batchSize * (i + 1))
-        ));
-
-        let params = { RequestItems: { 'Accounts': batchAccounts } };
-        ddbPromises.push(ddbClient.send(new BatchWriteItemCommand(params)));
-    }
-
     ////////////////////////Customers
     //Connect Tables
     let mappedCustomers = customers.map((customer) => {
@@ -299,10 +254,17 @@ export const handler = async function (event, context) {
             let mappedAccount = {
                 M: {
                     accountId: { S: String(account.accountId) },
+                    accountNumber: { N: String(account.accountNumber) },
                     nickname: { S: String(account.nickname) },
                     type: { S: String(account.type) },
                 }
             };
+            if (['checking', 'savings'].includes(account.type)) {
+                mappedAccount.M.routingNumber = { N: String(account.routingNumber) };
+            }
+            if (account.type == 'credit') {
+                mappedAccount.M.creditLimit = { N: String(account.creditLimit) };
+            }
             if (account.type != 'external') {
                 mappedAccount.M.balance = { N: String(account.balance) };
             }

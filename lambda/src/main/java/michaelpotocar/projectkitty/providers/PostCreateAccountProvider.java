@@ -1,15 +1,19 @@
 package michaelpotocar.projectkitty.providers;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBSaveExpression;
+import com.amazonaws.services.dynamodbv2.model.ExpectedAttributeValue;
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 import michaelpotocar.projectkitty.dynamodb.DynamoDbMapperProvider;
-import michaelpotocar.projectkitty.dynamodb.dao.AccountDao;
+import michaelpotocar.projectkitty.dynamodb.dao.CustomerDao;
 import michaelpotocar.projectkitty.dynamodb.model.Account;
+import michaelpotocar.projectkitty.dynamodb.model.Customer;
 import michaelpotocar.projectkitty.requests.PostCreateAccountRequest;
 import michaelpotocar.projectkitty.results.PostCreateAccountResult;
 
 import java.util.Random;
+import java.util.stream.Collectors;
 
 public class PostCreateAccountProvider implements RequestHandler<PostCreateAccountRequest, PostCreateAccountResult> {
     public PostCreateAccountProvider() {
@@ -18,10 +22,28 @@ public class PostCreateAccountProvider implements RequestHandler<PostCreateAccou
     public PostCreateAccountResult handleRequest(PostCreateAccountRequest input, Context context) {
         System.out.println("Input: " + input.toString());
 
-        DynamoDBMapper mapper = DynamoDbMapperProvider.getDynamoDbMapper();
+        switch (input.getType()) {
+            case "checking":
+            case "savings":
+                break;
+            case "credit":
+                break;
+            case "external":
+                break;
+            default:
+                PostCreateAccountResult result = new PostCreateAccountResult(null, "Error: Account Type Is Invalid");
+                System.out.println("Result: " + result);
+                return result;
+        }
+
+        Customer customer = CustomerDao.getCustomer(input.getCustomerId());
+        if(customer == null) {
+            PostCreateAccountResult result = new PostCreateAccountResult(null, "Error: Invalid Customer ID");
+            System.out.println("Result: " + result);
+            return result;
+        }
 
         Account newAccount = new Account();
-        newAccount.setCustomerId(input.getCustomerId());
         newAccount.setType(input.getType());
         newAccount.setNickname(input.getNickname());
 
@@ -59,19 +81,29 @@ public class PostCreateAccountProvider implements RequestHandler<PostCreateAccou
                 newAccount.setAccountNumber(input.getAccountNumber());
                 newAccount.setRoutingNumber(input.getRoutingNumber());
                 break;
-            default:
-                PostCreateAccountResult result = new PostCreateAccountResult(null, "Error: Account Type Is Invalid");
-                System.out.println("Result: " + result);
-                return result;
         }
 
-        try {
-            AccountDao.saveAccount(newAccount);
-        } catch (Exception e) {
-            PostCreateAccountResult result = new PostCreateAccountResult(null, e.toString());
+
+        boolean uniqueIdNumber = !customer.getAccounts().stream().map(a -> a.getAccountId()).collect(Collectors.toSet()).contains(newAccount.getAccountId());
+        boolean uniqueNickname = !customer.getAccounts().stream().map(a -> a.getNickname()).collect(Collectors.toSet()).contains(newAccount.getNickname());
+
+        if(!uniqueIdNumber) {
+            PostCreateAccountResult result = new PostCreateAccountResult(null, "Error: Account ID Not Unique");
             System.out.println("Result: " + result);
             return result;
         }
+
+        if(!uniqueNickname) {
+            PostCreateAccountResult result = new PostCreateAccountResult(null, "Error: Account Nickname Not Unique");
+            System.out.println("Result: " + result);
+            return result;
+        }
+
+        customer.getAccounts().add(newAccount);
+
+        CustomerDao.save(customer);
+
+
 
         PostCreateAccountResult result = new PostCreateAccountResult(newAccount, "Account Created");
         System.out.println("Result: " + result);

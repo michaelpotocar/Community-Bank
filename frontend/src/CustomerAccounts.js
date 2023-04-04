@@ -14,6 +14,7 @@ import {
   TableCell,
   TableBody,
 } from '@mui/material';
+import { currencyFormatted, wordFormatted } from './Utilities';
 
 function CustomerAccounts() {
   const { api_id } = useContext(Context);
@@ -82,8 +83,8 @@ function CustomerAccounts() {
                   key={account.accountId}
                   sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                   <TableCell align="center">{account.nickname}</TableCell>
-                  <TableCell align="center">{account.type}</TableCell>
-                  <TableCell align="center">Balance: ${(Math.round(account.balance * 100) / 100).toFixed(2)}</TableCell>
+                  <TableCell align="center">{wordFormatted(account.type)}</TableCell>
+                  <TableCell align="center">Balance: {currencyFormatted(account.balance)}</TableCell>
                   <TableCell align="center">
                     <Link to={`/customer/${customerId}/account/${account.accountId}`} >
                       <Button variant="contained" fullWidth={true} >View Transactions</Button>
@@ -115,6 +116,12 @@ function CustomerAccounts() {
           <Button variant="contained" fullWidth="true" > Accept&nbsp;Payments&nbsp;</Button>
         </Link>
       </Grid>
+
+      <Grid item xs={12} />
+      <Grid item xs={12} />
+      <Grid item xs={12} />
+      <Grid item xs={12} />
+      <Grid item xs={12} />
 
     </Grid>
   );
