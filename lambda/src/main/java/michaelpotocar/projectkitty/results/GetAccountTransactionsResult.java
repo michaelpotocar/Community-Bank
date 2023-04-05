@@ -7,10 +7,12 @@ import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
+@Data
+@With
 @ToString
 public class GetAccountTransactionsResult {
-    @With
-    @Getter
-    @Setter
     private List<Transaction> transactions;
+    private String message;
+    private String error;
+
 }

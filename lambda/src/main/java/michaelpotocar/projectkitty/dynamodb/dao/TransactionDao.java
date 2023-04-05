@@ -9,10 +9,7 @@ import michaelpotocar.projectkitty.dynamodb.model.Transaction;
 
 public class TransactionDao {
 
-    public TransactionDao() {
-    }
-
-    public static List<Transaction> getAccountTransactions(String accountId) {
+    public static List<Transaction> get(String accountId) {
         DynamoDBMapper ddbMapper = DynamoDbMapperProvider.getDynamoDbMapper();
         Transaction transaction = new Transaction();
         transaction.setAccountId(accountId);
@@ -21,7 +18,7 @@ public class TransactionDao {
         return transactions;
     }
 
-    public static void saveTransaction(Transaction transaction) {
+    public static void save(Transaction transaction) {
         DynamoDBMapper ddbMapper = DynamoDbMapperProvider.getDynamoDbMapper();
         ddbMapper.save(transaction);
     }

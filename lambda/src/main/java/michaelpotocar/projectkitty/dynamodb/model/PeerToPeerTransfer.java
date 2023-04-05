@@ -1,3 +1,4 @@
+
 package michaelpotocar.projectkitty.dynamodb.model;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
@@ -11,17 +12,18 @@ import lombok.*;
 @Data
 @With
 @ToString
-@DynamoDBTable(tableName = "Transactions")
-public class Transaction {
-    @DynamoDBHashKey(attributeName = "accountId")
-    private String accountId;
+@DynamoDBTable(tableName = "PeerToPeerTransfers")
+public class PeerToPeerTransfer {
+    @DynamoDBHashKey(attributeName = "targetCustomerId")
+    private Long targetCustomerId;
     @DynamoDBRangeKey(attributeName = "submittedDateTime")
     private Long submittedDateTime;
+    @DynamoDBAttribute(attributeName = "fundingCustomerId")
+    private Long fundingCustomerId;
     @DynamoDBAttribute(attributeName = "amount")
     private Double amount;
-    @DynamoDBAttribute(attributeName = "completedDateTime")
-    private Long completedDateTime;
     @DynamoDBAttribute(attributeName = "memo")
     private String memo;
-
+    @DynamoDBAttribute(attributeName = "completedDateTime")
+    private Long completedDateTime;
 }

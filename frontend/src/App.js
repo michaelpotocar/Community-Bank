@@ -13,7 +13,7 @@ import Transfer from './Transfer';
 import NotFound from './NotFound';
 import Error from './Error';
 
-function App() {
+export default function App() {
 
     const darkTheme = createTheme({
         palette: {
@@ -52,4 +52,3 @@ function App() {
         </ThemeProvider>
     );
 }
-export default App;

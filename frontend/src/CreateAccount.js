@@ -21,7 +21,7 @@ import {
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
-function CreateAccount() {
+export default function CreateAccount() {
   const { api_id } = useContext(Context);
   const { customerId } = useParams();
   const [loading, setLoading] = useState([true]);
@@ -225,5 +225,3 @@ function CreateAccount() {
     </Grid >
   );
 };
-
-export default CreateAccount;

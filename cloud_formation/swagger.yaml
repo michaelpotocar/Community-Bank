@@ -241,9 +241,9 @@ paths:
               method.response.header.Access-Control-Allow-Origin: "'*'"
         requestTemplates:
           application/json: "{\n    \"customerId\": \"$input.params('customerId')\"\
-            ,\n    \"type\": $input.json('$.type'),\n    \"fundingAccount\": $input.json('$.fundingAccount'),\n\
-            \    \"targetAccount\": $input.json('$.targetAccount'),\n    \"contactId\"\
-            : $input.json('$.contactId'),\n    \"amount\": $input.json('$.amount'),\n\
+            ,\n    \"type\": $input.json('$.type'),\n    \"fundingAccountId\": $input.json('$.fundingAccountId'),\n\
+            \    \"targetAccountId\": $input.json('$.targetAccountId'),\n    \"targetContactId\"\
+            : $input.json('$.targetContactId'),\n    \"amount\": $input.json('$.amount'),\n\
             \    \"memo\": $input.json('$.memo')\n}"
         passthroughBehavior: "when_no_templates"
         type: "aws"
@@ -277,3 +277,33 @@ paths:
           application/json: "{\"statusCode\": 200}"
         passthroughBehavior: "when_no_match"
         type: "mock"
+  /customers/{customerId}/pendingpeertopeertransfers:
+    get:
+      consumes:
+      - "application/json"
+      parameters:
+      - name: "customerId"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        "200":
+          description: "200 response"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+      x-amazon-apigateway-integration:
+        httpMethod: "POST"
+        uri:
+          Fn::Sub:
+            "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${GetPendingPeerToPeerTransfersLambdaAlias}/invocations"
+        responses:
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+        requestTemplates:
+          application/json: "{\n    \"customerId\": \"$input.params('customerId')\"\
+            \n}"
+        passthroughBehavior: "when_no_templates"
+        type: "aws"

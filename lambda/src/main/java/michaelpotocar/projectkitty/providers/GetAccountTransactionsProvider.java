@@ -10,18 +10,17 @@ import michaelpotocar.projectkitty.results.GetAccountTransactionsResult;
 import java.util.List;
 
 public class GetAccountTransactionsProvider implements RequestHandler<GetAccountTransactionsRequest, GetAccountTransactionsResult> {
-    public GetAccountTransactionsProvider() {
-    }
-
     public GetAccountTransactionsResult handleRequest(GetAccountTransactionsRequest input, Context context) {
         System.out.println("Input: " + input.toString());
         String accountId = input.getAccountId();
 
-        List<Transaction> transactions = TransactionDao.getAccountTransactions(accountId);
+        List<Transaction> transactions = TransactionDao.get(accountId);
 
-        GetAccountTransactionsResult result = new GetAccountTransactionsResult(transactions);
+        GetAccountTransactionsResult result = new GetAccountTransactionsResult()
+                .withTransactions(transactions)
+                .withMessage("Success");
 
-        System.out.println("Result: " + result.toString());
+        System.out.println(result);
         return result;
     }
 }

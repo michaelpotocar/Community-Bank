@@ -1,7 +1,7 @@
 package michaelpotocar.projectkitty.results;
 
 import lombok.*;
-import michaelpotocar.projectkitty.dynamodb.model.Account;
+import michaelpotocar.projectkitty.dynamodb.model.PeerToPeerTransfer;
 
 import java.util.List;
 
@@ -10,8 +10,8 @@ import java.util.List;
 @Data
 @With
 @ToString
-public class GetCustomerAccountsResult {
-    private List<Account> accounts;
+public class GetPendingPeerToPeerTransfersResult {
+    private List<PeerToPeerTransfer> p2ps;
     private String message;
     private String error;
 

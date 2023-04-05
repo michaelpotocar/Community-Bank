@@ -7,8 +7,7 @@ import lombok.*;
 @Data
 @With
 @ToString
-public class GetCustomerRequest {
-
+public class GetPendingPeerToPeerTransfersRequest {
     private Long customerId;
 
 }

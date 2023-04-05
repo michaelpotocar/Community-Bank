@@ -1,27 +1,29 @@
 import { useState, useMemo, useContext } from 'react';
 import axios from 'axios';
 import Context from './Context';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import {
   Button,
-  Paper,
   Grid,
   Typography,
-  TableContainer,
-  Table,
-  TableHead,
-  TableRow,
-  TableCell,
-  TableBody,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
 } from '@mui/material';
-import { styled } from '@mui/material/styles';
+import { currencyFormatted, wordFormatted } from './Utilities';
 
-function ReceivePayment() {
+export default function ReceivePayment() {
   const { api_id } = useContext(Context);
   const { customerId } = useParams();
   const [loading, setLoading] = useState([true, true]);
-  const [customer, setCustomer] = useState('Loading');
-  const [accounts, setAccounts] = useState('Loading');
+  const [customer, setCustomer] = useState({});
+  const [p2ps, setP2ps] = useState([]);
+
+  const [paymentField, setPaymentField] = useState('');
+  const [accountField, setAccountField] = useState('');
+
+  const navigate = useNavigate();
 
   useMemo(() => {
     if (api_id !== '') {
@@ -32,16 +34,31 @@ function ReceivePayment() {
         }).catch(err => {
           console.log(err);
         });
+    }
 
-      axios.get(`https://${api_id}.execute-api.us-west-2.amazonaws.com/prod/customers/${customerId}/accounts`)
+    if (api_id !== '') {
+      axios.get(`https://${api_id}.execute-api.us-west-2.amazonaws.com/prod/customers/${customerId}/pendingpeertopeertransfers`)
         .then(response => {
-          setAccounts(response.data.accounts);
+          setP2ps(response.data.p2ps);
           setLoading(loading => { return [loading[0], false]; });
         }).catch(err => {
           console.log(err);
         });
     }
   }, [api_id]);
+
+
+  const submitter = () => {
+    axios.post(`https://${api_id}.execute-api.us-west-2.amazonaws.com/prod/customers/${customerId}/p2p/${paymentField.submittedDateTime}`, {
+      targetAccountId: accountField,
+    })
+      .then((response) => {
+        navigate(`/customer/${customerId}`);
+      })
+      .catch((error) => {
+        navigate('/error', { state: error });
+      });
+  };
 
   return (
     !loading.includes(true) &&
@@ -50,8 +67,86 @@ function ReceivePayment() {
       spacing={1}
       justifyContent="center">
 
-    </Grid>
+      <Grid item xs={12} />
+      <Grid item xs={12} />
+
+      <Grid item xs={1} />
+      <Grid item xs={3}>
+        <Link to={`/customer/${customerId}`} >
+          <Button variant="contained" >Return&nbsp;to Account&nbsp;Selection</Button>
+        </Link>
+      </Grid>
+      <Grid item xs={8} />
+
+      <Grid item xs={4} />
+      <Grid item xs={4}>
+        <Typography align='center' variant="h4">
+          Accept Payments
+        </Typography>
+      </Grid>
+      <Grid item xs={4} />
+
+      <Grid item xs={12} />
+      <Grid item xs={12} />
+
+      <Grid item xs={8}>
+        <Grid container
+          justifyContent="center">
+
+          <FormControl fullWidth margin="normal">
+            <InputLabel>Pending Payments</InputLabel>
+            <Select
+              value={paymentField}
+              label="Pending Payments"
+              onChange={event => { setPaymentField(event.target.value); }}>
+              {p2ps.map(p2p => {
+                return (
+                  <MenuItem
+                    key={p2p}
+                    value={p2p.submittedDateTime}>
+                    {currencyFormatted(p2p.amount)}
+                  </MenuItem>
+                );
+              })}
+            </Select>
+          </FormControl>
+
+          <FormControl fullWidth margin="normal">
+            <InputLabel>Depositing Account</InputLabel>
+            <Select
+              value={accountField}
+              label="Depositing Account"
+              onChange={event => { setAccountField(event.target.value); }}>
+              {customer.accounts.filter(account => ['checking', 'savings', 'external'].includes(account.type))
+                .map(account => {
+                  return (
+                    <MenuItem
+                      key={account.accountId}
+                      value={account.accountId}>
+                      {account.nickname} {wordFormatted(account.type)} {typeof account.balance == 'number' ? '- Available: ' + currencyFormatted(account.balance) : ""}
+                    </MenuItem>);
+                })}
+            </Select>
+          </FormControl>
+
+
+          <FormControl fullWidth margin="normal">
+            <Button
+              variant="contained"
+              onClick={submitter}>
+              Submit
+            </Button>
+          </FormControl>
+
+          <Grid item xs={12} />
+          <Grid item xs={12} />
+          <Grid item xs={12} />
+          <Grid item xs={12} />
+          <Grid item xs={12} />
+
+        </Grid >
+      </Grid>
+
+    </Grid >
   );
 };
-
-export default ReceivePayment;

@@ -16,7 +16,7 @@ import {
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
-function NotFound() {
+export default function NotFound() {
   const { api_id } = useContext(Context);
   const navigate = useNavigate();
 
@@ -47,5 +47,3 @@ function NotFound() {
     </Grid>
   );
 };
-
-export default NotFound;

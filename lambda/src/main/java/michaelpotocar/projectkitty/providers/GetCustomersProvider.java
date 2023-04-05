@@ -9,15 +9,14 @@ import michaelpotocar.projectkitty.requests.GetCustomersRequest;
 import michaelpotocar.projectkitty.results.GetCustomersResult;
 
 public class GetCustomersProvider implements RequestHandler<GetCustomersRequest, GetCustomersResult> {
-    public GetCustomersProvider() {
-    }
-
     public GetCustomersResult handleRequest(GetCustomersRequest input, Context context) {
         System.out.println("Input: " + input.toString());
 
-        List<Customer> customers = CustomerDao.getAllCustomers();
+        List<Customer> customers = CustomerDao.getAll();
 
-        GetCustomersResult result = new GetCustomersResult(customers);
+        GetCustomersResult result = new GetCustomersResult()
+                .withCustomers(customers)
+                .withMessage("Success");
 
         System.out.println("Result: " + result);
         return result;

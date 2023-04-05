@@ -22,7 +22,7 @@ import {
 import { styled } from '@mui/material/styles';
 import { currencyFormatted, wordFormatted } from './Utilities';
 
-function Transfer() {
+export default function Transfer() {
   const { api_id } = useContext(Context);
   const { customerId } = useParams();
   const [loading, setLoading] = useState([true]);
@@ -76,23 +76,14 @@ function Transfer() {
     const input = event.target.value;
     setAcocuntNumberField(input);
 
-    const positiveIntegerRegex = /^\d{0,16}$/;
-    const error = !positiveIntegerRegex.test(input);
-    if (error) {
-      setAcocuntNumberFieldError(true);
-      setAccountNumberFieldErrorMessage("Can only contain up to sixteen digits");
-    } else {
-      setAcocuntNumberFieldError(false);
-      setAccountNumberFieldErrorMessage('');
-    }
   };
 
   const submitter = () => {
     axios.post(`https://${api_id}.execute-api.us-west-2.amazonaws.com/prod/customers/${customerId}/transfer`, {
       type: transferTypeField,
-      fundingAccount: fundingAccountField,
-      targetAccount: targetAccountField,
-      contactId: contactField,
+      fundingAccountId: fundingAccountField,
+      targetAccountId: targetAccountField,
+      targetContactId: contactField,
       amount: amountField,
       memo: memoField
     })
@@ -257,5 +248,3 @@ function Transfer() {
     </Grid >
   );
 };
-
-export default Transfer;

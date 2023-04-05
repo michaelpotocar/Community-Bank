@@ -11,25 +11,24 @@ import michaelpotocar.projectkitty.results.GetCustomerAccountsResult;
 import java.util.List;
 
 public class GetCustomerAccountsProvider implements RequestHandler<GetCustomerAccountsRequest, GetCustomerAccountsResult> {
-    public GetCustomerAccountsProvider() {
-    }
-
     public GetCustomerAccountsResult handleRequest(GetCustomerAccountsRequest input, Context context) {
         System.out.println("Input: " + input.toString());
         Long customerId = input.getCustomerId();
 
-        Customer customer = CustomerDao.getCustomer(customerId);
+        Customer customer = CustomerDao.get(customerId);
 
         if (customer == null) {
-            GetCustomerAccountsResult result = new GetCustomerAccountsResult(null);
-            System.out.println("No Customer Exists: " + result);
+            GetCustomerAccountsResult result = new GetCustomerAccountsResult().withError("No Customer Exists");
+            System.out.println(  result);
             return result;
         }
 
         List<Account> accounts = customer.getAccounts();
 
-        GetCustomerAccountsResult result = new GetCustomerAccountsResult(accounts);
-        System.out.println("Result: " + result);
+        GetCustomerAccountsResult result = new GetCustomerAccountsResult()
+                .withAccounts(accounts)
+                .withMessage("Success");
+        System.out.println( result);
         return result;
     }
 }

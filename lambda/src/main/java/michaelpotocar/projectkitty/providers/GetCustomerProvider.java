@@ -8,16 +8,15 @@ import michaelpotocar.projectkitty.requests.GetCustomerRequest;
 import michaelpotocar.projectkitty.results.GetCustomerResult;
 
 public class GetCustomerProvider implements RequestHandler<GetCustomerRequest, GetCustomerResult> {
-    public GetCustomerProvider() {
-    }
-
     public GetCustomerResult handleRequest(GetCustomerRequest input, Context context) {
         System.out.println("Input: " + input.toString());
         Long customerId = input.getCustomerId();
 
-        Customer customer = CustomerDao.getCustomer(customerId);
+        Customer customer = CustomerDao.get(customerId);
 
-        GetCustomerResult result = new GetCustomerResult(customer);
+        GetCustomerResult result = new GetCustomerResult()
+                .withCustomer(customer)
+                .withMessage("Success");
 
         System.out.println("Result: " + result);
         return result;

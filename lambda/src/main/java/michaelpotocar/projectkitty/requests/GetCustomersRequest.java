@@ -1,11 +1,11 @@
 package michaelpotocar.projectkitty.requests;
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 @NoArgsConstructor
 //@AllArgsConstructor
+@Data
+@With
 @ToString
 public class GetCustomersRequest {
 

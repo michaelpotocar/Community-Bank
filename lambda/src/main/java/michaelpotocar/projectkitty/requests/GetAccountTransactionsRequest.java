@@ -4,15 +4,11 @@ import lombok.*;
 
 @NoArgsConstructor
 @AllArgsConstructor
+@Data
+@With
 @ToString
 public class GetAccountTransactionsRequest {
-    @With
-    @Getter
-    @Setter
     private Long customerId;
-    @With
-    @Getter
-    @Setter
     private String accountId;
 
 }

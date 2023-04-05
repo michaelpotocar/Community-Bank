@@ -11,15 +11,12 @@ public class CustomerDao {
 
     static DynamoDBMapper ddbMapper = DynamoDbMapperProvider.getDynamoDbMapper();
 
-    public CustomerDao() {
-    }
-
-    public static Customer getCustomer(Long id) {
+    public static Customer get(Long id) {
         Customer customer = ddbMapper.load(Customer.class, id);
         return customer;
     }
 
-    public static List<Customer> getAllCustomers() {
+    public static List<Customer> getAll() {
         DynamoDBScanExpression scanExpression = new DynamoDBScanExpression();
         List<Customer> customers = ddbMapper.scan(Customer.class, scanExpression);
         return customers;

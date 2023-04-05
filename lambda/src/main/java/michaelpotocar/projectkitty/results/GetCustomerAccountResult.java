@@ -5,11 +5,12 @@ import michaelpotocar.projectkitty.dynamodb.model.Account;
 
 @NoArgsConstructor
 @AllArgsConstructor
+@Data
+@With
 @ToString
 public class GetCustomerAccountResult {
-    @With
-    @Getter
-    @Setter
     private Account account;
+    private String message;
+    private String error;
 
 }

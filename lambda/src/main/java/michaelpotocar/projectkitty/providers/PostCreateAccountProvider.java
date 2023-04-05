@@ -12,9 +12,6 @@ import java.util.Random;
 import java.util.stream.Collectors;
 
 public class PostCreateAccountProvider implements RequestHandler<PostCreateAccountRequest, PostCreateAccountResult> {
-    public PostCreateAccountProvider() {
-    }
-
     public PostCreateAccountResult handleRequest(PostCreateAccountRequest input, Context context) {
         System.out.println("Input: " + input.toString());
 
@@ -27,14 +24,14 @@ public class PostCreateAccountProvider implements RequestHandler<PostCreateAccou
             case "external":
                 break;
             default:
-                PostCreateAccountResult result = new PostCreateAccountResult(null, "Error: Account Type Is Invalid");
+                PostCreateAccountResult result = new PostCreateAccountResult().withError( "Account Type Is Invalid");
                 System.out.println("Result: " + result);
                 return result;
         }
 
-        Customer customer = CustomerDao.getCustomer(input.getCustomerId());
+        Customer customer = CustomerDao.get(input.getCustomerId());
         if(customer == null) {
-            PostCreateAccountResult result = new PostCreateAccountResult(null, "Error: Invalid Customer ID");
+            PostCreateAccountResult result = new PostCreateAccountResult().withError("Invalid Customer ID");
             System.out.println("Result: " + result);
             return result;
         }
@@ -84,13 +81,13 @@ public class PostCreateAccountProvider implements RequestHandler<PostCreateAccou
         boolean uniqueNickname = !customer.getAccounts().stream().map(a -> a.getNickname()).collect(Collectors.toSet()).contains(newAccount.getNickname());
 
         if(!uniqueIdNumber) {
-            PostCreateAccountResult result = new PostCreateAccountResult(null, "Error: Account ID Not Unique");
+            PostCreateAccountResult result = new PostCreateAccountResult().withError("Account ID Not Unique");
             System.out.println("Result: " + result);
             return result;
         }
 
         if(!uniqueNickname) {
-            PostCreateAccountResult result = new PostCreateAccountResult(null, "Error: Account Nickname Not Unique");
+            PostCreateAccountResult result = new PostCreateAccountResult().withError("Account Nickname Not Unique");
             System.out.println("Result: " + result);
             return result;
         }
@@ -99,9 +96,7 @@ public class PostCreateAccountProvider implements RequestHandler<PostCreateAccou
 
         CustomerDao.save(customer);
 
-
-
-        PostCreateAccountResult result = new PostCreateAccountResult(newAccount, "Account Created");
+        PostCreateAccountResult result = new PostCreateAccountResult().withAccount(newAccount).withMessage("Account Created");
         System.out.println("Result: " + result);
         return result;
     }

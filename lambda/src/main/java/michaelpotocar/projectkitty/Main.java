@@ -18,21 +18,50 @@ import michaelpotocar.projectkitty.results.*;
 public class Main {
 
     public static void main(String[] args) {
-
-        postCreateAccount();
-
+        getPendingPeerToPeerTransfer();
     }
 
-    public static void postTransfer() {
-        Long customerId = 637818676L;
-        String type = "standard";
-        String fundingAccount = "973891075646127000000001";
-        String targetAccount = "810077691050127000000001";
-        Long contactId = 0L;
-        Double amount = 1.0;
-        String memo = "";
 
-        PostTransferRequest request = new PostTransferRequest( customerId,  type,  fundingAccount,  targetAccount,  contactId,  amount,  memo );
+    public static void getPendingPeerToPeerTransfer() {
+        GetPendingPeerToPeerTransfersRequest request = new GetPendingPeerToPeerTransfersRequest()
+                .withCustomerId(589631133L);
+
+        GetPendingPeerToPeerTransfersResult result = (new GetPendingPeerToPeerTransfersProvider()).handleRequest(request, null);
+    }
+
+    public static void postStandardTransfer() {
+        PostTransferRequest request = new PostTransferRequest()
+                .withCustomerId(589631133L)
+                .withFundingAccountId("590761751601127000000001")
+                .withTargetAccountId("745844482971127000000001")
+                .withAmount(1.0)
+                .withType("standard")
+                .withMemo("testing");
+
+        PostTransferResult result = (new PostTransferProvider()).handleRequest(request, null);
+    }
+
+    public static void postCreditTransfer() {
+        PostTransferRequest request = new PostTransferRequest()
+                .withCustomerId(637818676L)
+                .withFundingAccountId("973891075646127000000001")
+                .withTargetAccountId("8755129424701580")
+                .withAmount(1.0)
+                .withType("credit")
+                .withMemo("testing");
+
+        PostTransferResult result = (new PostTransferProvider()).handleRequest(request, null);
+    }
+
+    public static void postP2PTransfer() {
+        PostTransferRequest request = new PostTransferRequest()
+                .withCustomerId(637818676L)
+                .withFundingAccountId("810077691050127000000001")
+                .withTargetContactId(589631133L)
+                .withAmount(1.0)
+                .withType("p2p")
+                .withMemo("testing");
+
         PostTransferResult result = (new PostTransferProvider()).handleRequest(request, null);
     }
 

@@ -15,7 +15,7 @@ import {
   TableBody,
 } from '@mui/material';
 
-function Customers() {
+export default function Customers() {
   const { api_id } = useContext(Context);
   const [loading, setLoading] = useState(true);
   const [customers, setCustomers] = useState("Loading");
@@ -91,6 +91,3 @@ function Customers() {
     </Grid>
   );
 };
-
-export default Customers;
-

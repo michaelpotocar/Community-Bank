@@ -7,11 +7,12 @@ import michaelpotocar.projectkitty.dynamodb.model.Customer;
 
 @NoArgsConstructor
 @AllArgsConstructor
+@Data
+@With
 @ToString
 public class GetCustomersResult {
-    @With
-    @Getter
-    @Setter
     private List<Customer> customers;
+    private String message;
+    private String error;
 
 }

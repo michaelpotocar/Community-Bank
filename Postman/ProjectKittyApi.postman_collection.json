@@ -1,0 +1,314 @@
+{
+	"info": {
+		"_postman_id": "4658435d-703d-482d-bb4f-801cf0b595a8",
+		"name": "ProjectKittyApi",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26433738"
+	},
+	"item": [
+		{
+			"name": "GetCustomers",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true,
+				"disabledSystemHeaders": {
+					"user-agent": true,
+					"accept": true,
+					"accept-encoding": true,
+					"connection": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/customers",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"customers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetCustomer",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true,
+				"disabledSystemHeaders": {
+					"user-agent": true,
+					"accept": true,
+					"accept-encoding": true,
+					"connection": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/customers/{{customerId}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"customers",
+						"{{customerId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetCustomerAccounts",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true,
+				"disabledSystemHeaders": {
+					"user-agent": true,
+					"accept": true,
+					"accept-encoding": true,
+					"connection": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/customers/{{customerId}}/accounts",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"customers",
+						"{{customerId}}",
+						"accounts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetCustomerAccount",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true,
+				"disabledSystemHeaders": {
+					"user-agent": true,
+					"accept": true,
+					"accept-encoding": true,
+					"connection": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/customers/{{customerId}}/accounts/{{accountId}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"customers",
+						"{{customerId}}",
+						"accounts",
+						"{{accountId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetAccountTransactions",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true,
+				"disabledSystemHeaders": {
+					"user-agent": true,
+					"accept": true,
+					"accept-encoding": true,
+					"connection": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/customers/{{customerId}}/accounts/{{accountId}}/transactions",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"customers",
+						"{{customerId}}",
+						"accounts",
+						"{{accountId}}",
+						"transactions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PostCreateAccount",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"user-agent": true,
+					"accept": true,
+					"accept-encoding": true,
+					"connection": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"type\": \"credit\",\n  \"nickname\": \"IOU\",\n  \"accountNumber\": \"2\",\n  \"routingNumber\": \"3\",\n  \"creditLimit\": \"4\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/customers/{{customerId}}/createaccount",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"customers",
+						"{{customerId}}",
+						"createaccount"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PostTransfer",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"user-agent": true,
+					"accept": true,
+					"accept-encoding": true,
+					"connection": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"type\": \"standard\",\n  \"fundingAccount\": \"{{accountId}}\",\n  \"targetAccount\": \"{{secondaryAccountId}}\",\n  \"contactId\": \"923739977\",\n  \"amount\": \"1\",\n  \"memo\": \"My Transfer\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/customers/{{customerId}}/transfer",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"customers",
+						"{{customerId}}",
+						"transfer"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "https://{{api_id}}.execute-api.us-west-2.amazonaws.com/prod",
+			"type": "string"
+		},
+		{
+			"key": "customerId",
+			"value": "119539015",
+			"type": "string"
+		},
+		{
+			"key": "accountId",
+			"value": "347304355899127000000001",
+			"type": "string"
+		},
+		{
+			"key": "transactionId",
+			"value": "1670244386",
+			"type": "string"
+		},
+		{
+			"key": "secondaryAccountId",
+			"value": "",
+			"type": "string"
+		}
+	]
+}

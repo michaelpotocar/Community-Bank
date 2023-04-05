@@ -16,7 +16,7 @@ import {
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
-function Error() {
+export default function Error() {
   const { api_id } = useContext(Context);
   const navigate = useNavigate();
   const location = useLocation();
@@ -48,5 +48,3 @@ function Error() {
     </Grid>
   );
 };
-
-export default Error;

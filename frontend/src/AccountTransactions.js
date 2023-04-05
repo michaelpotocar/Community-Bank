@@ -17,7 +17,7 @@ import {
 } from '@mui/material';
 import { currencyFormatted, wordFormatted } from './Utilities';
 
-function AccountTransactions() {
+export default function AccountTransactions() {
   const { api_id } = useContext(Context);
   const { customerId, accountId } = useParams();
   const [loading, setLoading] = useState([true, true]);
@@ -144,5 +144,3 @@ function AccountTransactions() {
     </Grid>
   );
 };
-
-export default AccountTransactions;
