@@ -37,7 +37,7 @@ export default function ReceivePayment() {
     }
 
     if (api_id !== '') {
-      axios.get(`https://${api_id}.execute-api.us-west-2.amazonaws.com/prod/customers/${customerId}/pendingpeertopeertransfers`)
+      axios.get(`https://${api_id}.execute-api.us-west-2.amazonaws.com/prod/customers/${customerId}/p2p`)
         .then(response => {
           setP2ps(response.data.p2ps);
           setLoading(loading => { return [loading[0], false]; });
@@ -49,7 +49,7 @@ export default function ReceivePayment() {
 
 
   const submitter = () => {
-    axios.post(`https://${api_id}.execute-api.us-west-2.amazonaws.com/prod/customers/${customerId}/p2p/${paymentField.submittedDateTime}`, {
+    axios.put(`https://${api_id}.execute-api.us-west-2.amazonaws.com/prod/customers/${customerId}/p2p/${paymentField}`, {
       targetAccountId: accountField,
     })
       .then((response) => {

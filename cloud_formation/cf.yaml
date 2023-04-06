@@ -452,3 +452,44 @@ Resources:
       SourceArn:
         Fn::Sub:
           "arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${ApiGateway}/*/*/*"
+
+  PutPendingPeerToPeerTransferLambda:
+    Type: AWS::Lambda::Function
+    Properties:
+      Handler: michaelpotocar.projectkitty.providers.PutPendingPeerToPeerTransferProvider::handleRequest
+      Role:
+        Fn::GetAtt: [ LambdaRole , "Arn" ]
+      Runtime: java11
+      Code:
+        S3Bucket: projectkitty
+        S3Key: "lambda-1.0-SNAPSHOT.zip"
+      MemorySize: 256
+      Timeout: 60
+
+  PutPendingPeerToPeerTransferLambdaVersion:
+    Type: AWS::Lambda::Version
+    Properties:
+      FunctionName:
+        Ref: PutPendingPeerToPeerTransferLambda
+
+  PutPendingPeerToPeerTransferLambdaAlias:
+    Type: AWS::Lambda::Alias
+    Properties:
+      FunctionName:
+        Ref: PutPendingPeerToPeerTransferLambda
+      FunctionVersion:
+        Fn::GetAtt: [ PutPendingPeerToPeerTransferLambdaVersion, Version ]
+      Name: prod
+      ProvisionedConcurrencyConfig:
+        ProvisionedConcurrentExecutions: 1
+
+  PutPendingPeerToPeerTransferPermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName:
+        Ref: PutPendingPeerToPeerTransferLambdaAlias
+      Principal: apigateway.amazonaws.com
+      SourceArn:
+        Fn::Sub:
+          "arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${ApiGateway}/*/*/*"

@@ -101,7 +101,7 @@ export default function CreateAccount() {
   };
 
   const submitter = () => {
-    axios.post(`https://${api_id}.execute-api.us-west-2.amazonaws.com/prod/customers/${customerId}/createaccount`, {
+    axios.post(`https://${api_id}.execute-api.us-west-2.amazonaws.com/prod/customers/${customerId}/accounts`, {
       type: accountTypeField,
       nickname: nicknameField,
       accountNumber: accountNumberField,
