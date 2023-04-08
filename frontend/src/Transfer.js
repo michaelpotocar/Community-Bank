@@ -1,48 +1,38 @@
-import { useState, useMemo, useContext } from 'react';
+import { useState, useMemo, useContext, useEffect } from 'react';
 import axios from 'axios';
 import Context from './Context';
-import { useParams, Link, Navigate, useNavigate } from 'react-router-dom';
-import {
-  Button,
-  Paper,
-  Grid,
-  Typography,
-  TableContainer,
-  Table,
-  TableHead,
-  TableRow,
-  TableCell,
-  TableBody,
-  FormControl,
-  InputLabel,
-  Select,
-  MenuItem,
-  TextField
-} from '@mui/material';
-import { styled } from '@mui/material/styles';
+import { useParams, Link, useNavigate } from 'react-router-dom';
+import { Button, Grid, Typography, FormControl, InputLabel, Select, MenuItem, TextField } from '@mui/material';
 import { currencyFormatted, wordFormatted } from './Utilities';
 
 export default function Transfer() {
   const { api_id } = useContext(Context);
   const { customerId } = useParams();
+
   const [loading, setLoading] = useState([true]);
-  const [customer, setCustomer] = useState('Loading');
+  const [customer, setCustomer] = useState({});
 
   const [transferTypeField, setTransferTypeField] = useState('');
-  const [fundingAccountField, setFundingAccountField] = useState('');
-  const [targetAccountField, setTargetAccountField] = useState('');
-  const [contactField, setContactField] = useState('');
-  const [amountField, setNicknameField] = useState('');
-  const [amountFieldError, setNicknameFieldError] = useState(false);
-  const [amountFieldErrorMessage, setNicknameFieldErrorMessage] = useState('');
-  const [memoField, setAcocuntNumberField] = useState('');
-  const [memoNumberFieldError, setAcocuntNumberFieldError] = useState(false);
-  const [memoNumberFieldErrorMessage, setAccountNumberFieldErrorMessage] = useState('');
-  const [routingNumberField, setRoutingNumberField] = useState('');
-  const [creditLimitField, setCreditLimitField] = useState(() => {
-    return Math.ceil(Math.random() * 7) * 500;
-  });
 
+  const [fundingAccountField, setFundingAccountField] = useState('');
+  const [fundingAccountFieldError, setFundingAccountFieldError] = useState(false);
+  const [fundingAccountFieldErrorMessage, setFundingAccountFieldErrorMessage] = useState('');
+
+  const [targetAccountField, setTargetAccountField] = useState('');
+  const [targetAccountFieldError, setTargetAccountFieldError] = useState(false);
+  const [targetAccountFieldErrorMessage, setTargetAccountFieldErrorMessage] = useState('');
+
+  const [targetContactField, setTargetContactField] = useState('');
+  const [targetContactFieldError, setTargetContactFieldError] = useState(false);
+  const [targetContactFieldErrorMessage, setTargetContactFieldErrorMessage] = useState('');
+
+  const [amountField, setAmountField] = useState('');
+  const [amountFieldError, setAmountFieldError] = useState(false);
+  const [amountFieldErrorMessage, setAmountFieldErrorMessage] = useState('');
+
+  const [memoField, setMemoField] = useState('');
+
+  const [submitDisabled, setSubmitDisabled] = useState(true);
   const navigate = useNavigate();
 
   useMemo(() => {
@@ -57,33 +47,96 @@ export default function Transfer() {
     }
   }, [api_id]);
 
-  const changeAmountField = (event) => {
-    const input = event.target.value;
-    setNicknameField(input);
-
-    const error = customer.accounts.map(account => account.nickname.trim().toLowerCase())
-      .includes(input.trim().toLowerCase());
-    if (error) {
-      setNicknameFieldError(true);
-      setNicknameFieldErrorMessage("You already have an account with that nickname");
-    } else {
-      setNicknameFieldError(false);
-      setNicknameFieldErrorMessage('');
+  function validateAmountField() {
+    const regex = /^\d+\.?\d{0,2}$/;
+    const regexPass = regex.test(amountField.trim());
+    if (!regexPass) {
+      setAmountFieldError(true);
+      setAmountFieldErrorMessage("Amount must be in form of XXX.xx");
+      return true;
     }
+
+    setAmountFieldError(false);
+    setAmountFieldErrorMessage('');
+    return false;
   };
 
-  const changeMemoField = (event) => {
-    const input = event.target.value;
-    setAcocuntNumberField(input);
+  function validateFundingAccountField() {
+    const validAccountIds = customer.accounts?.filter(account => ['checking', 'savings', 'external'].includes(account.type))
+      .map(account => account.accountId);
 
-  };
+    if (!validAccountIds?.includes(fundingAccountField)) {
+      setFundingAccountFieldError(true);
+      setFundingAccountFieldErrorMessage("Must Select a valid Account");
+      return true;
+    }
+
+    setFundingAccountFieldError(false);
+    setFundingAccountFieldErrorMessage('');
+    return false;
+  }
+
+  function validateTargetAccountField() {
+    let validAccountIds;
+    if (transferTypeField == 'standard') {
+      validAccountIds = customer.accounts?.filter(account => ['checking', 'savings', 'external'].includes(account.type))
+        .map(account => account.accountId);
+
+    } else if (transferTypeField == 'credit') {
+      validAccountIds = customer.accounts?.filter(account => ['credit'].includes(account.type))
+        .map(account => account.accountId);
+    }
+
+    if (!validAccountIds?.includes(targetAccountField)) {
+      setTargetAccountFieldError(true);
+      setTargetAccountFieldErrorMessage("Must Select a valid Account");
+      return true;
+    }
+
+    setTargetAccountFieldError(false);
+    setTargetAccountFieldErrorMessage('');
+    return false;
+  }
+
+  function validateTargetContactField() {
+    let validContactIds = customer.contacts?.map(contact => contact.id);
+
+    if (!validContactIds?.includes(targetContactField)) {
+      setTargetContactFieldError(true);
+      setTargetContactFieldErrorMessage("Must Select a valid Contact");
+      return true;
+    }
+
+    setTargetContactFieldError(false);
+    setTargetContactFieldErrorMessage('');
+    return false;
+  }
+
+  function validateSubmitButton() {
+    let invalidAmountField = validateAmountField();
+    let invalidFundingAccountField = validateFundingAccountField();
+    if (transferTypeField == 'standard' || transferTypeField == 'credit') {
+      let invalidTargetAccountField = validateTargetAccountField();
+      setSubmitDisabled(invalidAmountField || invalidFundingAccountField || invalidTargetAccountField);
+    } else if (transferTypeField == 'p2p') {
+      let invalidTargetContactField = validateTargetContactField();
+      setSubmitDisabled(invalidAmountField || invalidFundingAccountField || invalidTargetContactField);
+    } else {
+      setSubmitDisabled(true);
+    }
+  }
+
+  useEffect(() => {
+    validateSubmitButton();
+  });
+
 
   const submitter = () => {
     axios.post(`https://${api_id}.execute-api.us-west-2.amazonaws.com/prod/customers/${customerId}/transfer`, {
       type: transferTypeField,
       fundingAccountId: fundingAccountField,
       targetAccountId: targetAccountField,
-      targetContactId: contactField,
+      targetContactId: targetContactField,
       amount: amountField,
       memo: memoField
     })
@@ -147,16 +200,17 @@ export default function Transfer() {
             <Select
               value={fundingAccountField}
               label="Funding Account"
+              error={fundingAccountFieldError}
+              helperText={fundingAccountFieldErrorMessage}
               onChange={event => { setFundingAccountField(event.target.value); }}>
-              {customer.accounts.filter(account => ['checking', 'savings', 'external']
-                .includes(account.type)).map(account => {
-                  return (
-                    <MenuItem
-                      key={account.accountId}
-                      value={account.accountId}>
-                      {account.nickname} {wordFormatted(account.type)} {typeof account.balance == 'number' ? '- Available: ' + currencyFormatted(account.balance) : ""}
-                    </MenuItem>);
-                })}
+              {customer.accounts.filter(account => ['checking', 'savings', 'external'].includes(account.type) && account.accountId !== targetAccountField).map(account => {
+                return (
+                  <MenuItem
+                    key={account.accountId}
+                    value={account.accountId}>
+                    {account.nickname} {wordFormatted(account.type)} {typeof account.balance == 'number' ? '- Available: ' + currencyFormatted(account.balance) : ""}
+                  </MenuItem>);
+              })}
             </Select>
           </FormControl>
 
@@ -165,12 +219,12 @@ export default function Transfer() {
             <Select
               value={targetAccountField}
               label="Target Account"
-              onChange={event => {
-                setTargetAccountField(event.target.value);
-              }}>
+              error={targetAccountFieldError}
+              helperText={targetAccountFieldErrorMessage}
+              onChange={event => { setTargetAccountField(event.target.value); }}>
               {(() => {
                 if (transferTypeField == 'standard') {
-                  return customer.accounts.filter(account => ['checking', 'savings', 'external'].includes(account.type));
+                  return customer.accounts.filter(account => ['checking', 'savings', 'external'].includes(account.type) && account.accountId !== fundingAccountField);
                 } else if (transferTypeField == 'credit') {
                   return customer.accounts.filter(account => ['credit'].includes(account.type));
                 } else {
@@ -191,11 +245,11 @@ export default function Transfer() {
           {transferTypeField == 'p2p' && <FormControl fullWidth margin="normal">
             <InputLabel>Contact</InputLabel>
             <Select
-              value={contactField}
+              value={targetContactField}
               label="Contact"
-              onChange={event => {
-                setContactField(event.target.value);
-              }}>
+              error={targetContactFieldError}
+              helperText={targetContactFieldErrorMessage}
+              onChange={event => { setTargetContactField(event.target.value); }}>
               {customer.contacts.filter(() => true).map(contact => {
                 return (
                   <MenuItem
@@ -205,6 +259,7 @@ export default function Transfer() {
                   </MenuItem>
                 );
               })}
+
             </Select>
           </FormControl>}
 
@@ -215,23 +270,22 @@ export default function Transfer() {
               error={amountFieldError}
               helperText={amountFieldErrorMessage}
               value={amountField}
-              onChange={changeAmountField} />
+              onChange={(event) => { setAmountField(event.target.value); }} />
           </FormControl>
 
           <FormControl fullWidth margin="normal">
             <TextField
               label="Memo"
               variant="outlined"
-              error={memoNumberFieldError}
-              helperText={memoNumberFieldErrorMessage}
               value={memoField}
-              onChange={changeMemoField} />
+              onChange={(event) => { setMemoField(event.target.value); }} />
           </FormControl>
 
           <FormControl fullWidth margin="normal">
             <Button
               variant="contained"
-              onClick={submitter}>
+              onClick={submitter}
+              disabled={submitDisabled}>
               Submit
             </Button>
           </FormControl>

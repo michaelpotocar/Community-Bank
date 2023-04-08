@@ -276,23 +276,6 @@ Resources:
         Fn::Sub:
           "arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${ApiGateway}/*/*/*"
 
-  ApiGatewayDeployment:
-    Type: AWS::ApiGateway::Deployment
-    Properties:
-      RestApiId:
-        Ref: ApiGateway
-      StageName: prod
-
-  ApiGateway:
-    Type: AWS::ApiGateway::RestApi
-    Properties:
-      Name: ProjectKitty
-      Body:
-        Fn::Transform:
-          Name: AWS::Include
-          Parameters:
-            Location: s3://projectkitty/swagger.yaml
-
   GetPendingPeerToPeerTransfersLambda:
     Type: AWS::Lambda::Function
     Properties:
@@ -340,3 +323,20 @@ Resources:
       SourceArn:
         Fn::Sub:
           "arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${ApiGateway}/*/*/*"
+
+  ApiGatewayDeployment:
+    Type: AWS::ApiGateway::Deployment
+    Properties:
+      RestApiId:
+        Ref: ApiGateway
+      StageName: prod
+
+  ApiGateway:
+    Type: AWS::ApiGateway::RestApi
+    Properties:
+      Name: ProjectKitty
+      Body:
+        Fn::Transform:
+          Name: AWS::Include
+          Parameters:
+            Location: s3://projectkitty/swagger.yaml

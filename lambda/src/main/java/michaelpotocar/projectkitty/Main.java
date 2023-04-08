@@ -18,7 +18,7 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) {
-        postP2PTransfer();
+        postStandardTransfer();
     }
 
     public static void putPendingPeerToPeerTransfer() {
@@ -46,9 +46,9 @@ public class Main {
 
     public static void postStandardTransfer() {
         PostTransferRequest request = new PostTransferRequest()
-                .withCustomerId(589631133L)
-                .withFundingAccountId("590761751601127000000001")
-                .withTargetAccountId("745844482971127000000001")
+                .withCustomerId(637818676L)
+                .withFundingAccountId("973891075646127000000001")
+                .withTargetAccountId("973891075646127000000001")
                 .withAmount(1.0)
                 .withType("standard")
                 .withMemo("testing");

@@ -24,6 +24,11 @@ public class PostTransferProvider implements RequestHandler<PostTransferRequest,
             System.out.println(result);
             return result;
         }
+        if (input.getFundingAccountId().equals(input.getTargetAccountId())) {
+            result.setError("FundingAccountId cannot match TargetAccountId");
+            System.out.println(result);
+            return result;
+        }
         if (input.getAmount() == null) {
             result.setError("Invalid Amount");
             System.out.println(result);

@@ -1,27 +1,27 @@
-import { useState, useMemo, useContext } from 'react';
+import { useState, useMemo, useContext, useEffect } from 'react';
 import axios from 'axios';
 import Context from './Context';
 import { useParams, Link, useNavigate } from 'react-router-dom';
-import {
-  Button,
-  Grid,
-  Typography,
-  FormControl,
-  InputLabel,
-  Select,
-  MenuItem,
-} from '@mui/material';
+import { Button, Grid, Typography, FormControl, InputLabel, Select, MenuItem } from '@mui/material';
 import { currencyFormatted, wordFormatted } from './Utilities';
 
 export default function ReceivePayment() {
   const { api_id } = useContext(Context);
   const { customerId } = useParams();
+
   const [loading, setLoading] = useState([true, true]);
   const [customer, setCustomer] = useState({});
   const [p2ps, setP2ps] = useState([]);
 
   const [paymentField, setPaymentField] = useState('');
-  const [accountField, setAccountField] = useState('');
+  const [paymentFieldError, setPaymentFieldError] = useState(false);
+  const [paymentFieldErrorMessage, setPaymentFieldErrorMessage] = useState('');
+
+  const [targetAccountField, setTargetAccountField] = useState('');
+  const [targetAccountFieldError, setTargetAccountFieldError] = useState(false);
+  const [targetAccountFieldErrorMessage, setTargetAccountFieldErrorMessage] = useState('');
+
+  const [submitDisabled, setSubmitDisabled] = useState(true);
 
   const navigate = useNavigate();
 
@@ -47,10 +47,48 @@ export default function ReceivePayment() {
     }
   }, [api_id]);
 
+  function validatePaymentField() {
+    let validPaymentIds = p2ps?.map(p2p => p2p.transferId);
+
+    if (!validPaymentIds?.includes(paymentField)) {
+      setPaymentFieldError(true);
+      setPaymentFieldErrorMessage("Must Select a valid Payment");
+      return true;
+    }
+
+    setPaymentFieldError(false);
+    setPaymentFieldErrorMessage('');
+    return false;
+  }
+
+  function validateTargetAccountField() {
+    const validAccountIds = customer.accounts?.filter(account => ['checking', 'savings', 'external'].includes(account.type))
+      .map(account => account.accountId);
+
+    if (!validAccountIds?.includes(targetAccountField)) {
+      setTargetAccountFieldError(true);
+      setTargetAccountFieldErrorMessage("Must Select a valid Account");
+      return true;
+    }
+
+    setTargetAccountFieldError(false);
+    setTargetAccountFieldErrorMessage('');
+    return false;
+  }
+
+  function validateSubmitButton() {
+    let invalidPaymentField = validatePaymentField();
+    let invalidTargetAccountField = validateTargetAccountField();
+    setSubmitDisabled(invalidPaymentField || invalidTargetAccountField);
+  }
+
+  useEffect(() => {
+    validateSubmitButton();
+  });
 
   const submitter = () => {
     axios.put(`https://${api_id}.execute-api.us-west-2.amazonaws.com/prod/customers/${customerId}/p2p/${paymentField}`, {
-      targetAccountId: accountField,
+      targetAccountId: targetAccountField,
     })
       .then((response) => {
         navigate(`/customer/${customerId}`);
@@ -98,13 +136,18 @@ export default function ReceivePayment() {
             <Select
               value={paymentField}
               label="Pending Payments"
+              error={paymentFieldError}
+              helperText={paymentFieldErrorMessage}
               onChange={event => { setPaymentField(event.target.value); }}>
               {p2ps.map(p2p => {
                 return (
                   <MenuItem
                     key={p2p}
-                    value={p2p.transferId}>
-                    {currencyFormatted(p2p.amount)}
+                    value={p2p.transferId} >
+                    {(() => {
+                      const contact = customer.contacts.filter(contact => contact.id == p2p.fundingCustomerId)[0];
+                      return `${currencyFormatted(p2p.amount)} - ${contact.firstName} ${contact.lastName} - ${p2p.memo}`;
+                    })()}
                   </MenuItem>
                 );
               })}
@@ -114,9 +157,11 @@ export default function ReceivePayment() {
           <FormControl fullWidth margin="normal">
             <InputLabel>Depositing Account</InputLabel>
             <Select
-              value={accountField}
+              value={targetAccountField}
               label="Depositing Account"
-              onChange={event => { setAccountField(event.target.value); }}>
+              error={targetAccountFieldError}
+              helperText={targetAccountFieldErrorMessage}
+              onChange={event => { setTargetAccountField(event.target.value); }}>
               {customer.accounts.filter(account => ['checking', 'savings', 'external'].includes(account.type))
                 .map(account => {
                   return (
@@ -129,11 +174,11 @@ export default function ReceivePayment() {
             </Select>
           </FormControl>
 
-
           <FormControl fullWidth margin="normal">
             <Button
               variant="contained"
-              onClick={submitter}>
+              onClick={submitter}
+              disabled={submitDisabled}>
               Submit
             </Button>
           </FormControl>

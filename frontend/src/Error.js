@@ -1,20 +1,7 @@
-import { useState, useMemo, useContext, useEffect } from 'react';
-import axios from 'axios';
+import { useContext, useEffect } from 'react';
 import Context from './Context';
-import { useParams, Link, useNavigate, useLocation } from 'react-router-dom';
-import {
-  Button,
-  Paper,
-  Grid,
-  Typography,
-  TableContainer,
-  Table,
-  TableHead,
-  TableRow,
-  TableCell,
-  TableBody,
-} from '@mui/material';
-import { styled } from '@mui/material/styles';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { Grid, Typography } from '@mui/material';
 
 export default function Error() {
   const { api_id } = useContext(Context);
