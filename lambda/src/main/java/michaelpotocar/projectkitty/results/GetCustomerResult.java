@@ -12,5 +12,4 @@ public class GetCustomerResult {
     private Customer customer;
     private String message;
     private String error;
-
 }

@@ -11,15 +11,15 @@ import java.util.List;
 
 public class GetPendingPeerToPeerTransfersProvider implements RequestHandler<GetPendingPeerToPeerTransfersRequest, GetPendingPeerToPeerTransfersResult> {
     public GetPendingPeerToPeerTransfersResult handleRequest(GetPendingPeerToPeerTransfersRequest input, Context context) {
-        System.out.println("Input: " + input.toString());
-        Long customerId = input.getCustomerId();
+        System.out.println(input);
 
-        List<PeerToPeerTransfer> p2ps = PeerToPeerTransferDao.getPending(customerId);
+        List<PeerToPeerTransfer> p2ps = PeerToPeerTransferDao.getPending(input.getCustomerId());
 
         GetPendingPeerToPeerTransfersResult result = new GetPendingPeerToPeerTransfersResult()
                 .withP2ps(p2ps)
                 .withMessage("Success");
-        System.out.println( result);
+
+        System.out.println(result);
         return result;
     }
 }

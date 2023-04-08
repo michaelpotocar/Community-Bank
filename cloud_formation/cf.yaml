@@ -28,18 +28,18 @@ Resources:
       BillingMode: PAY_PER_REQUEST
       TableName: "Transactions"
 
-  sTable:
+  PeerToPeerTransfersTable:
     Type: AWS::DynamoDB::Table
     Properties:
       AttributeDefinitions:
         - AttributeName: "targetCustomerId"
           AttributeType: "N"
-        - AttributeName: "submittedDateTime"
+        - AttributeName: "transferId"
           AttributeType: "N"
       KeySchema:
         - AttributeName: "targetCustomerId"
           KeyType: "HASH"
-        - AttributeName: "submittedDateTime"
+        - AttributeName: "transferId"
           KeyType: "RANGE"
       BillingMode: PAY_PER_REQUEST
       TableName: "PeerToPeerTransfers"
@@ -120,30 +120,13 @@ Resources:
         S3Key: "lambda-1.0-SNAPSHOT.zip"
       MemorySize: 256
       Timeout: 60
-
-  GetCustomersLambdaVersion:
-    Type: AWS::Lambda::Version
-    Properties:
-      FunctionName:
-        Ref: GetCustomersLambda
-
-  GetCustomersLambdaAlias:
-    Type: AWS::Lambda::Alias
-    Properties:
-      FunctionName:
-        Ref: GetCustomersLambda
-      FunctionVersion:
-        Fn::GetAtt: [ GetCustomersLambdaVersion, Version ]
-      Name: prod
-      ProvisionedConcurrencyConfig:
-        ProvisionedConcurrentExecutions: 1
       
   GetCustomersPermission:
     Type: AWS::Lambda::Permission
     Properties:
       Action: lambda:InvokeFunction
       FunctionName:
-        Ref: GetCustomersLambdaAlias
+        Ref: GetCustomersLambda
       Principal: apigateway.amazonaws.com
       SourceArn:
         Fn::Sub:
@@ -162,29 +145,12 @@ Resources:
       MemorySize: 256
       Timeout: 60
 
-  GetCustomerLambdaVersion:
-    Type: AWS::Lambda::Version
-    Properties:
-      FunctionName:
-        Ref: GetCustomerLambda
-
-  GetCustomerLambdaAlias:
-    Type: AWS::Lambda::Alias
-    Properties:
-      FunctionName:
-        Ref: GetCustomerLambda
-      FunctionVersion:
-        Fn::GetAtt: [ GetCustomerLambdaVersion, Version ]
-      Name: prod
-      ProvisionedConcurrencyConfig:
-        ProvisionedConcurrentExecutions: 1
-
   GetCustomerPermission:
     Type: AWS::Lambda::Permission
     Properties:
       Action: lambda:InvokeFunction
       FunctionName:
-        Ref: GetCustomerLambdaAlias
+        Ref: GetCustomerLambda
       Principal: apigateway.amazonaws.com
       SourceArn:
         Fn::Sub:
@@ -203,29 +169,12 @@ Resources:
       MemorySize: 256
       Timeout: 60
 
-  GetCustomerAccountsLambdaVersion:
-    Type: AWS::Lambda::Version
-    Properties:
-      FunctionName:
-        Ref: GetCustomerAccountsLambda
-
-  GetCustomerAccountsLambdaAlias:
-    Type: AWS::Lambda::Alias
-    Properties:
-      FunctionName:
-        Ref: GetCustomerAccountsLambda
-      FunctionVersion:
-        Fn::GetAtt: [ GetCustomerAccountsLambdaVersion, Version ]
-      Name: prod
-      ProvisionedConcurrencyConfig:
-        ProvisionedConcurrentExecutions: 1
-
   GetCustomerAccountsPermission:
     Type: AWS::Lambda::Permission
     Properties:
       Action: lambda:InvokeFunction
       FunctionName:
-        Ref: GetCustomerAccountsLambdaAlias
+        Ref: GetCustomerAccountsLambda
       Principal: apigateway.amazonaws.com
       SourceArn:
         Fn::Sub:
@@ -244,29 +193,12 @@ Resources:
       MemorySize: 256
       Timeout: 60
 
-  GetCustomerAccountLambdaVersion:
-    Type: AWS::Lambda::Version
-    Properties:
-      FunctionName:
-        Ref: GetCustomerAccountLambda
-
-  GetCustomerAccountLambdaAlias:
-    Type: AWS::Lambda::Alias
-    Properties:
-      FunctionName:
-        Ref: GetCustomerAccountLambda
-      FunctionVersion:
-        Fn::GetAtt: [ GetCustomerAccountLambdaVersion, Version ]
-      Name: prod
-      ProvisionedConcurrencyConfig:
-        ProvisionedConcurrentExecutions: 1
-
   GetCustomerAccountPermission:
     Type: AWS::Lambda::Permission
     Properties:
       Action: lambda:InvokeFunction
       FunctionName:
-        Ref: GetCustomerAccountLambdaAlias
+        Ref: GetCustomerAccountLambda
       Principal: apigateway.amazonaws.com
       SourceArn:
         Fn::Sub:
@@ -285,29 +217,12 @@ Resources:
       MemorySize: 256
       Timeout: 60
 
-  GetAccountTransactionsLambdaVersion:
-    Type: AWS::Lambda::Version
-    Properties:
-      FunctionName:
-        Ref: GetAccountTransactionsLambda
-
-  GetAccountTransactionsLambdaAlias:
-    Type: AWS::Lambda::Alias
-    Properties:
-      FunctionName:
-        Ref: GetAccountTransactionsLambda
-      FunctionVersion:
-        Fn::GetAtt: [ GetAccountTransactionsLambdaVersion, Version ]
-      Name: prod
-      ProvisionedConcurrencyConfig:
-        ProvisionedConcurrentExecutions: 1
-
   GetAccountTransactionsPermission:
     Type: AWS::Lambda::Permission
     Properties:
       Action: lambda:InvokeFunction
       FunctionName:
-        Ref: GetAccountTransactionsLambdaAlias
+        Ref: GetAccountTransactionsLambda
       Principal: apigateway.amazonaws.com
       SourceArn:
         Fn::Sub:
@@ -326,29 +241,12 @@ Resources:
       MemorySize: 256
       Timeout: 60
 
-  PostCreateAccountLambdaVersion:
-    Type: AWS::Lambda::Version
-    Properties:
-      FunctionName:
-        Ref: PostCreateAccountLambda
-
-  PostCreateAccountLambdaAlias:
-    Type: AWS::Lambda::Alias
-    Properties:
-      FunctionName:
-        Ref: PostCreateAccountLambda
-      FunctionVersion:
-        Fn::GetAtt: [ PostCreateAccountLambdaVersion, Version ]
-      Name: prod
-      ProvisionedConcurrencyConfig:
-        ProvisionedConcurrentExecutions: 1
-
   PostCreateAccountPermission:
     Type: AWS::Lambda::Permission
     Properties:
       Action: lambda:InvokeFunction
       FunctionName:
-        Ref: PostCreateAccountLambdaAlias
+        Ref: PostCreateAccountLambda
       Principal: apigateway.amazonaws.com
       SourceArn:
         Fn::Sub:
@@ -367,29 +265,12 @@ Resources:
       MemorySize: 256
       Timeout: 60
 
-  PostTransferLambdaVersion:
-    Type: AWS::Lambda::Version
-    Properties:
-      FunctionName:
-        Ref: PostTransferLambda
-
-  PostTransferLambdaAlias:
-    Type: AWS::Lambda::Alias
-    Properties:
-      FunctionName:
-        Ref: PostTransferLambda
-      FunctionVersion:
-        Fn::GetAtt: [ PostTransferLambdaVersion, Version ]
-      Name: prod
-      ProvisionedConcurrencyConfig:
-        ProvisionedConcurrentExecutions: 1
-
   PostTransferPermission:
     Type: AWS::Lambda::Permission
     Properties:
       Action: lambda:InvokeFunction
       FunctionName:
-        Ref: PostTransferLambdaAlias
+        Ref: PostTransferLambda
       Principal: apigateway.amazonaws.com
       SourceArn:
         Fn::Sub:
@@ -425,29 +306,12 @@ Resources:
       MemorySize: 256
       Timeout: 60
 
-  GetPendingPeerToPeerTransfersLambdaVersion:
-    Type: AWS::Lambda::Version
-    Properties:
-      FunctionName:
-        Ref: GetPendingPeerToPeerTransfersLambda
-
-  GetPendingPeerToPeerTransfersLambdaAlias:
-    Type: AWS::Lambda::Alias
-    Properties:
-      FunctionName:
-        Ref: GetPendingPeerToPeerTransfersLambda
-      FunctionVersion:
-        Fn::GetAtt: [ GetPendingPeerToPeerTransfersLambdaVersion, Version ]
-      Name: prod
-      ProvisionedConcurrencyConfig:
-        ProvisionedConcurrentExecutions: 1
-
   GetPendingPeerToPeerTransfersPermission:
     Type: AWS::Lambda::Permission
     Properties:
       Action: lambda:InvokeFunction
       FunctionName:
-        Ref: GetPendingPeerToPeerTransfersLambdaAlias
+        Ref: GetPendingPeerToPeerTransfersLambda
       Principal: apigateway.amazonaws.com
       SourceArn:
         Fn::Sub:
@@ -466,29 +330,12 @@ Resources:
       MemorySize: 256
       Timeout: 60
 
-  PutPendingPeerToPeerTransferLambdaVersion:
-    Type: AWS::Lambda::Version
-    Properties:
-      FunctionName:
-        Ref: PutPendingPeerToPeerTransferLambda
-
-  PutPendingPeerToPeerTransferLambdaAlias:
-    Type: AWS::Lambda::Alias
-    Properties:
-      FunctionName:
-        Ref: PutPendingPeerToPeerTransferLambda
-      FunctionVersion:
-        Fn::GetAtt: [ PutPendingPeerToPeerTransferLambdaVersion, Version ]
-      Name: prod
-      ProvisionedConcurrencyConfig:
-        ProvisionedConcurrentExecutions: 1
-
   PutPendingPeerToPeerTransferPermission:
     Type: AWS::Lambda::Permission
     Properties:
       Action: lambda:InvokeFunction
       FunctionName:
-        Ref: PutPendingPeerToPeerTransferLambdaAlias
+        Ref: PutPendingPeerToPeerTransferLambda
       Principal: apigateway.amazonaws.com
       SourceArn:
         Fn::Sub:

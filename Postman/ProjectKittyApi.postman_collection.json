@@ -214,14 +214,14 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/customers/{{customerId}}/createaccount",
+					"raw": "{{baseUrl}}/customers/{{customerId}}/accounts",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"customers",
 						"{{customerId}}",
-						"createaccount"
+						"accounts"
 					]
 				}
 			},
@@ -242,7 +242,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"type\": \"standard\",\n  \"fundingAccount\": \"{{accountId}}\",\n  \"targetAccount\": \"{{secondaryAccountId}}\",\n  \"contactId\": \"923739977\",\n  \"amount\": \"1\",\n  \"memo\": \"My Transfer\"\n}",
+					"raw": "{\n  \"type\": \"p2p\",\n  \"fundingAccountId\": \"{{accountId}}\",\n  \"targetContactId\": \"{{contactId}}\",\n  \"amount\": \"1\",\n  \"memo\": \"My p2p Transfer\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -258,6 +258,96 @@
 						"customers",
 						"{{customerId}}",
 						"transfer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetPendingPeerToPeerTransfer",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const transferId = pm.response.json().p2ps[0].transferId;",
+							"",
+							"pm.collectionVariables.set(\"transferId\", transferId);",
+							"",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true,
+				"disabledSystemHeaders": {
+					"user-agent": true,
+					"accept": true,
+					"accept-encoding": true,
+					"connection": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/customers/{{contactId}}/p2p",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"customers",
+						"{{contactId}}",
+						"p2p"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PutP2p",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"user-agent": true,
+					"accept": true,
+					"accept-encoding": true,
+					"connection": true
+				}
+			},
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"targetAccountId\": \"{{contactAccountId}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/customers/{{contactId}}/p2p/{{transferId}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"customers",
+						"{{contactId}}",
+						"p2p",
+						"{{transferId}}"
 					]
 				}
 			},
@@ -292,12 +382,12 @@
 		},
 		{
 			"key": "customerId",
-			"value": "119539015",
+			"value": "589631133",
 			"type": "string"
 		},
 		{
 			"key": "accountId",
-			"value": "347304355899127000000001",
+			"value": "590761751601127000000001",
 			"type": "string"
 		},
 		{
@@ -307,7 +397,22 @@
 		},
 		{
 			"key": "secondaryAccountId",
-			"value": "",
+			"value": "745844482971127000000001",
+			"type": "string"
+		},
+		{
+			"key": "contactId",
+			"value": "637818676",
+			"type": "string"
+		},
+		{
+			"key": "transferId",
+			"value": "1680742574",
+			"type": "string"
+		},
+		{
+			"key": "contactAccountId",
+			"value": "973891075646127000000001",
 			"type": "string"
 		}
 	]

@@ -15,5 +15,4 @@ public class PostTransferRequest {
     private Long targetContactId;
     private Double amount;
     private String memo;
-
 }

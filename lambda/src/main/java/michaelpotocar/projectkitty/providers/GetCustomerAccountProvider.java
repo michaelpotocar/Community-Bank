@@ -8,35 +8,37 @@ import michaelpotocar.projectkitty.dynamodb.model.Customer;
 import michaelpotocar.projectkitty.requests.GetCustomerAccountRequest;
 import michaelpotocar.projectkitty.results.GetCustomerAccountResult;
 
-import java.util.List;
 import java.util.stream.Collectors;
 
 public class GetCustomerAccountProvider implements RequestHandler<GetCustomerAccountRequest, GetCustomerAccountResult> {
     public GetCustomerAccountResult handleRequest(GetCustomerAccountRequest input, Context context) {
-        System.out.println("Input: " + input.toString());
-        Long customerId = input.getCustomerId();
-        String accountId = input.getAccountId();
+        System.out.println(input);
+        GetCustomerAccountResult result = new GetCustomerAccountResult();
 
-        Customer customer = CustomerDao.get(customerId);
-
+        Customer customer = CustomerDao.get(input.getCustomerId());
         if (customer == null) {
-            GetCustomerAccountResult result = new GetCustomerAccountResult().withError("No Customer Exists");
+            result.setError("Invalid CustomerId");
             System.out.println(result);
             return result;
         }
 
-        List<Account> accounts = customer.getAccounts().stream().filter(a -> a.getAccountId().equals(accountId)).collect(Collectors.toList());
-
-        if (accounts.size() == 0) {
-            GetCustomerAccountResult result = new GetCustomerAccountResult();
-            System.out.println( result);
+        Account account = null;
+        try {
+            account = customer.getAccounts()
+                    .stream()
+                    .filter(a -> a.getAccountId().equals(input.getAccountId()))
+                    .collect(Collectors.toList())
+                    .get(0);
+        } catch (IndexOutOfBoundsException e) {
+            result.setError("Invalid AccountId");
+            System.out.println(result);
             return result;
         }
 
-        GetCustomerAccountResult result = new GetCustomerAccountResult()
-                .withAccount(accounts.get(0))
-                .withMessage("Success");
-        System.out.println("Result: " + result);
+        result.setAccount(account);
+        result.setMessage("Success");
+
+        System.out.println(result);
         return result;
 
     }

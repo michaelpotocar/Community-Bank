@@ -8,10 +8,9 @@ import michaelpotocar.projectkitty.dynamodb.model.Transaction;
 @Data
 @With
 @ToString
-public class PutP2pResult {
+public class PutPendingPeerToPeerTransferResult {
     private Transaction targetTransaction;
     private String message;
     private String error;
-
 }
 

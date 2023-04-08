@@ -14,5 +14,4 @@ public class PostCreateAccountRequest {
     private Long accountNumber;
     private Long routingNumber;
     private Long creditLimit;
-
 }

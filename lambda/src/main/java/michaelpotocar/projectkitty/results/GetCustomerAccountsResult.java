@@ -14,5 +14,4 @@ public class GetCustomerAccountsResult {
     private List<Account> accounts;
     private String message;
     private String error;
-
 }

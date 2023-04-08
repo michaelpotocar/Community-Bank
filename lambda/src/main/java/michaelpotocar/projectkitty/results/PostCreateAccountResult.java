@@ -12,6 +12,5 @@ public class PostCreateAccountResult {
     private Account account;
     private String message;
     private String error;
-
 }
 

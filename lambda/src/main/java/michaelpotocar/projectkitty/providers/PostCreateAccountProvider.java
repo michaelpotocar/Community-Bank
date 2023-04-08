@@ -8,96 +8,97 @@ import michaelpotocar.projectkitty.dynamodb.model.Customer;
 import michaelpotocar.projectkitty.requests.PostCreateAccountRequest;
 import michaelpotocar.projectkitty.results.PostCreateAccountResult;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 
 public class PostCreateAccountProvider implements RequestHandler<PostCreateAccountRequest, PostCreateAccountResult> {
     public PostCreateAccountResult handleRequest(PostCreateAccountRequest input, Context context) {
-        System.out.println("Input: " + input.toString());
+        System.out.println(input);
 
-        switch (input.getType()) {
-            case "checking":
-            case "savings":
-                break;
-            case "credit":
-                break;
-            case "external":
-                break;
-            default:
-                PostCreateAccountResult result = new PostCreateAccountResult().withError( "Account Type Is Invalid");
-                System.out.println("Result: " + result);
-                return result;
-        }
+        PostCreateAccountResult result = new PostCreateAccountResult();
 
-        Customer customer = CustomerDao.get(input.getCustomerId());
-        if(customer == null) {
-            PostCreateAccountResult result = new PostCreateAccountResult().withError("Invalid Customer ID");
-            System.out.println("Result: " + result);
+        List<String> accountTypes = Arrays.asList("checking", "savings", "credit", "external");
+        if (!accountTypes.contains(input.getType())) {
+            result
+                    .setError("Invalid Account Type");
+            System.out.println(result);
             return result;
         }
 
-        Account newAccount = new Account();
-        newAccount.setType(input.getType());
-        newAccount.setNickname(input.getNickname());
+        Customer customer = CustomerDao.get(input.getCustomerId());
+        if (customer == null) {
+            result
+                    .setError("Invalid CustomerId");
+            System.out.println(result);
+            return result;
+        }
 
-        Random random;
-        long lowerBound;
-        long upperBound;
-        Long newAccountNumber;
+        Account newAccount = new Account()
+                .withType(input.getType())
+                .withNickname(input.getNickname());
+
+        long standardLowerBound = 100_000_000_000L;
+        long standardUpperBound = 999_999_999_999L;
+        long standardRoutingNumber = 127_000_000_001L;
+        long creditLowerBound = 1_000_000_000_000_000L;
+        long creditUpperBound = 9_999_999_999_999_999L;
+
+        Random random = new Random();
+        long newStandardAccountNumber = standardLowerBound + (long) (random.nextDouble() * (standardUpperBound - standardLowerBound));
+        long newCreditAccountNumber = creditLowerBound + (long) (random.nextDouble() * (creditUpperBound - creditLowerBound));
 
         switch (input.getType()) {
             case "checking":
             case "savings":
-                random = new Random();
-                lowerBound = 100_000_000_000L;
-                upperBound = 999_999_999_999L;
-                newAccountNumber = lowerBound + (long) (random.nextDouble() * (upperBound - lowerBound));
-
-                newAccount.setAccountId(newAccountNumber + "127000000001");
-                newAccount.setAccountNumber(newAccountNumber);
-                newAccount.setRoutingNumber(input.getRoutingNumber());
+                newAccount.setAccountId(String.valueOf(newStandardAccountNumber) + standardRoutingNumber);
+                newAccount.setAccountNumber(newStandardAccountNumber);
+                newAccount.setRoutingNumber(standardRoutingNumber);
                 newAccount.setBalance(0.0);
                 break;
             case "credit":
-                random = new Random();
-                lowerBound = 1_000_000_000_000_000L;
-                upperBound = 9_999_999_999_999_999L;
-                newAccountNumber = lowerBound + (long) (random.nextDouble() * (upperBound - lowerBound));
-
-                newAccount.setAccountId(newAccountNumber.toString());
-                newAccount.setAccountNumber(newAccountNumber);
+                newAccount.setAccountId(String.valueOf(newCreditAccountNumber));
+                newAccount.setAccountNumber(newCreditAccountNumber);
                 newAccount.setCreditLimit(input.getCreditLimit());
                 newAccount.setBalance(0.0);
                 break;
             case "external":
-                newAccount.setAccountId(input.getAccountNumber().toString() + input.getRoutingNumber().toString());
+                newAccount.setAccountId(String.valueOf(input.getAccountNumber()) + input.getRoutingNumber());
                 newAccount.setAccountNumber(input.getAccountNumber());
                 newAccount.setRoutingNumber(input.getRoutingNumber());
                 break;
         }
 
+        boolean idNumberAlreadyExists = customer.getAccounts()
+                .stream()
+                .map(a -> a.getAccountId())
+                .collect(Collectors.toSet())
+                .contains(newAccount.getAccountId());
+        boolean nicknameAlreadyExists = customer.getAccounts()
+                .stream()
+                .map(a -> a.getNickname())
+                .collect(Collectors.toSet())
+                .contains(newAccount.getNickname());
 
-        boolean uniqueIdNumber = !customer.getAccounts().stream().map(a -> a.getAccountId()).collect(Collectors.toSet()).contains(newAccount.getAccountId());
-        boolean uniqueNickname = !customer.getAccounts().stream().map(a -> a.getNickname()).collect(Collectors.toSet()).contains(newAccount.getNickname());
-
-        if(!uniqueIdNumber) {
-            PostCreateAccountResult result = new PostCreateAccountResult().withError("Account ID Not Unique");
-            System.out.println("Result: " + result);
+        if (idNumberAlreadyExists) {
+            result.setError("AccountId Already In Use");
+            System.out.println(result);
             return result;
         }
 
-        if(!uniqueNickname) {
-            PostCreateAccountResult result = new PostCreateAccountResult().withError("Account Nickname Not Unique");
-            System.out.println("Result: " + result);
+        if (nicknameAlreadyExists) {
+            result.setError("Account Nickname Already In Use");
+            System.out.println(result);
             return result;
         }
 
         customer.getAccounts().add(newAccount);
-
         CustomerDao.save(customer);
+        result.setAccount(newAccount);
+        result.setMessage("Account Created");
 
-        PostCreateAccountResult result = new PostCreateAccountResult().withAccount(newAccount).withMessage("Account Created");
-        System.out.println("Result: " + result);
+        System.out.println(result);
         return result;
     }
 }

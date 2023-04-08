@@ -1,12 +1,8 @@
-
 package michaelpotocar.projectkitty;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
-import java.time.Instant;
-import java.util.ArrayList;
-import java.util.List;
-
 import michaelpotocar.projectkitty.dynamodb.DynamoDbMapperProvider;
+import michaelpotocar.projectkitty.dynamodb.dao.PeerToPeerTransferDao;
 import michaelpotocar.projectkitty.dynamodb.model.Account;
 import michaelpotocar.projectkitty.dynamodb.model.Customer;
 import michaelpotocar.projectkitty.dynamodb.model.CustomerStub;
@@ -15,10 +11,29 @@ import michaelpotocar.projectkitty.providers.*;
 import michaelpotocar.projectkitty.requests.*;
 import michaelpotocar.projectkitty.results.*;
 
+import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
+
 public class Main {
 
     public static void main(String[] args) {
-        getPendingPeerToPeerTransfer();
+        postP2PTransfer();
+    }
+
+    public static void putPendingPeerToPeerTransfer() {
+        Long customerId = 637818676L;
+        Long submittedDateTime = PeerToPeerTransferDao
+                .getPending(customerId)
+                .get(0)
+                .getTransferId();
+
+        PutPendingPeerToPeerTransferRequest request = new PutPendingPeerToPeerTransferRequest()
+                .withCustomerId(customerId)
+                .withTransferId(submittedDateTime)
+                .withTargetAccountId("973891075646127000000001");
+
+        PutPendingPeerToPeerTransferResult result = (new PutPendingPeerToPeerTransferProvider()).handleRequest(request, null);
     }
 
 
@@ -54,13 +69,14 @@ public class Main {
     }
 
     public static void postP2PTransfer() {
+
         PostTransferRequest request = new PostTransferRequest()
-                .withCustomerId(637818676L)
-                .withFundingAccountId("810077691050127000000001")
-                .withTargetContactId(589631133L)
+                .withCustomerId(589631133L)
+                .withFundingAccountId("590761751601127000000001")
+                .withTargetContactId(637818676L)
                 .withAmount(1.0)
                 .withType("p2p")
-                .withMemo("testing");
+                .withMemo("My p2p Transfer");
 
         PostTransferResult result = (new PostTransferProvider()).handleRequest(request, null);
     }

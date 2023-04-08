@@ -1,46 +1,35 @@
-import { useState, useMemo, useContext } from 'react';
+import { useState, useMemo, useContext, useEffect } from 'react';
 import axios from 'axios';
 import Context from './Context';
-import { useParams, Link, Navigate, useNavigate } from 'react-router-dom';
-import {
-  Button,
-  Paper,
-  Grid,
-  Typography,
-  TableContainer,
-  Table,
-  TableHead,
-  TableRow,
-  TableCell,
-  TableBody,
-  FormControl,
-  InputLabel,
-  Select,
-  MenuItem,
-  TextField
-} from '@mui/material';
-import { styled } from '@mui/material/styles';
+import { useParams, Link, useNavigate } from 'react-router-dom';
+import { Button, Grid, Typography, FormControl, InputLabel, Select, MenuItem, TextField } from '@mui/material';
 
 export default function CreateAccount() {
   const { api_id } = useContext(Context);
   const { customerId } = useParams();
+
   const [loading, setLoading] = useState([true]);
-  const [customer, setCustomer] = useState('Loading');
+  const [customer, setCustomer] = useState({});
 
   const [accountTypeField, setAccountTypeField] = useState('');
+
   const [nicknameField, setNicknameField] = useState('');
   const [nicknameFieldError, setNicknameFieldError] = useState(false);
   const [nicknameFieldErrorMessage, setNicknameFieldErrorMessage] = useState('');
-  const [accountNumberField, setAcocuntNumberField] = useState('');
-  const [accountNumberFieldError, setAcocuntNumberFieldError] = useState(false);
+
+  const [accountNumberField, setAccountNumberField] = useState('');
+  const [accountNumberFieldError, setAccountNumberFieldError] = useState(false);
   const [accountNumberFieldErrorMessage, setAccountNumberFieldErrorMessage] = useState('');
+
   const [routingNumberField, setRoutingNumberField] = useState('');
   const [routingNumberFieldError, setRoutingNumberFieldError] = useState(false);
   const [routingNumberFieldErrorMessage, setRoutingNumberFieldErrorMessage] = useState('');
-  const [creditLimitField, setCreditLimitField] = useState(() => {
-    return Math.ceil(Math.random() * 7) * 500;
-  });
 
+  const [creditLimitField, setCreditLimitField] = useState(() => { return Math.ceil(Math.random() * 7) * 500; });
+  const [creditLimitFieldError, setCreditLimitFieldError] = useState(false);
+  const [creditLimitFieldErrorMessage, setCreditLimitFieldErrorMessage] = useState('');
+
+  const [submitDisabled, setSubmitDisabled] = useState(true);
   const navigate = useNavigate();
 
   useMemo(() => {
@@ -55,50 +44,89 @@ export default function CreateAccount() {
     }
   }, [api_id]);
 
-  const changeNicknameField = (event) => {
-    const input = event.target.value;
-    setNicknameField(input);
-
-    const error = customer.accounts.map(account => account.nickname.trim().toLowerCase())
-      .includes(input.trim().toLowerCase());
-    if (error) {
+  function validateNicknameField() {
+    const regex = /^[a-zA-Z0-9 ]{3,16}$/;
+    const regexPass = regex.test(nicknameField.trim());
+    if (!regexPass) {
       setNicknameFieldError(true);
-      setNicknameFieldErrorMessage("You already have an account with that nickname");
-    } else {
-      setNicknameFieldError(false);
-      setNicknameFieldErrorMessage('');
+      setNicknameFieldErrorMessage("Nickname must be 3-16 characters.");
+      return true;
     }
+
+    const originalityCheck = !customer.accounts.map(account => account.nickname.trim().toLowerCase())
+      .includes(nicknameField.trim().toLowerCase());
+    if (!originalityCheck) {
+      setNicknameFieldError(true);
+      setNicknameFieldErrorMessage("Nickname must original.");
+      return true;
+    }
+
+    setNicknameFieldError(false);
+    setNicknameFieldErrorMessage('');
+    return false;
   };
 
-  const changeAccountNumberField = (event) => {
-    const input = event.target.value;
-    setAcocuntNumberField(input);
-
-    const positiveIntegerRegex = /^\d{0,16}$/;
-    const error = !positiveIntegerRegex.test(input);
-    if (error) {
-      setAcocuntNumberFieldError(true);
-      setAccountNumberFieldErrorMessage("Can only contain up to sixteen digits");
-    } else {
-      setAcocuntNumberFieldError(false);
-      setAccountNumberFieldErrorMessage('');
+  function validateCreditLimitField() {
+    const regex = /^\d{3,6}$/;
+    const regexPass = regex.test(creditLimitField);
+    if (!regexPass) {
+      setCreditLimitFieldError(true);
+      setCreditLimitFieldErrorMessage("Credit Limit must be 3-6 decimals.");
+      return true;
     }
+
+    setCreditLimitFieldError(false);
+    setCreditLimitFieldErrorMessage('');
+    return false;
   };
 
-  const changeRoutingNumberField = (event) => {
-    const input = event.target.value;
-    setRoutingNumberField(input);
+  function validateAccountNumberField() {
+    const regex = /^\d{6,16}$/;
+    const regexPass = regex.test(accountNumberField);
+    if (!regexPass) {
+      setAccountNumberFieldError(true);
+      setAccountNumberFieldErrorMessage("Account Number must be 6-16 decimals.");
+      return true;
+    }
 
-    const positiveIntegerRegex = /^\d{0,16}$/;
-    const error = !positiveIntegerRegex.test(input);
-    if (error) {
+    setAccountNumberFieldError(false);
+    setAccountNumberFieldErrorMessage('');
+    return false;
+  };
+
+  function validateRoutingNumberField() {
+    const regex = /^\d{9}$/;
+    const regexPass = regex.test(routingNumberField);
+    if (!regexPass) {
       setRoutingNumberFieldError(true);
-      setRoutingNumberFieldErrorMessage("Can only contain up to sixteen digits");
-    } else {
-      setRoutingNumberFieldError(false);
-      setRoutingNumberFieldErrorMessage('');
+      setRoutingNumberFieldErrorMessage("Routing Number must be 9 decimals.");
+      return true;
     }
+
+    setRoutingNumberFieldError(false);
+    setRoutingNumberFieldErrorMessage('');
+    return false;
   };
+
+  function validateSubmitButton() {
+    let invalidNickname = validateNicknameField();
+    if (accountTypeField == 'savings' || accountTypeField == 'checking') {
+      setSubmitDisabled(invalidNickname);
+    } else if (accountTypeField == 'credit') {
+      let invalidCreditLimit = validateCreditLimitField();
+      setSubmitDisabled(invalidNickname || invalidCreditLimit);
+    } else if (accountTypeField == 'external') {
+      let invalidAccountNumber = validateAccountNumberField();
+      let invalidRoutingNumber = validateRoutingNumberField();
+      setSubmitDisabled(invalidNickname || invalidAccountNumber || invalidRoutingNumber);
+    } else {
+      setSubmitDisabled(true);
+    }
+  }
+
+  useEffect(() => {
+    validateSubmitButton();
+  });
 
   const submitter = () => {
     axios.post(`https://${api_id}.execute-api.us-west-2.amazonaws.com/prod/customers/${customerId}/accounts`, {
@@ -154,9 +182,7 @@ export default function CreateAccount() {
             <Select
               value={accountTypeField}
               label="Account Type"
-              onChange={event => {
-                setAccountTypeField(event.target.value);
-              }}>
+              onChange={(event) => { setAccountTypeField(event.target.value); }} >
               <MenuItem value={"savings"}>Savings</MenuItem>
               <MenuItem value={"checking"}>Checking</MenuItem>
               <MenuItem value={"credit"}>Credit</MenuItem>
@@ -171,7 +197,7 @@ export default function CreateAccount() {
               error={nicknameFieldError}
               helperText={nicknameFieldErrorMessage}
               value={nicknameField}
-              onChange={changeNicknameField} />
+              onChange={(event) => { setNicknameField(event.target.value); }} />
           </FormControl>
 
           {accountTypeField == 'external' &&
@@ -182,7 +208,7 @@ export default function CreateAccount() {
                 error={accountNumberFieldError}
                 helperText={accountNumberFieldErrorMessage}
                 value={accountNumberField}
-                onChange={changeAccountNumberField} />
+                onChange={(event) => { setAccountNumberField(event.target.value.trim()); }} />
             </FormControl>}
 
           {accountTypeField == 'external' &&
@@ -193,7 +219,7 @@ export default function CreateAccount() {
                 error={routingNumberFieldError}
                 helperText={routingNumberFieldErrorMessage}
                 value={routingNumberField}
-                onChange={changeRoutingNumberField} />
+                onChange={(event) => { setRoutingNumberField(event.target.value.trim()); }} />
             </FormControl>}
 
           {accountTypeField == 'credit' &&
@@ -201,6 +227,8 @@ export default function CreateAccount() {
               <TextField
                 label="Credit Limit"
                 variant="outlined"
+                error={creditLimitFieldError}
+                helperText={creditLimitFieldErrorMessage}
                 disabled={true}
                 value={creditLimitField} />
             </FormControl>}
@@ -208,7 +236,8 @@ export default function CreateAccount() {
           <FormControl fullWidth margin="normal">
             <Button
               variant="contained"
-              onClick={submitter}>
+              onClick={submitter}
+              disabled={submitDisabled}>
               Submit
             </Button>
           </FormControl>

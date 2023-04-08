@@ -18,6 +18,7 @@ public class CustomerStub {
     String firstName;
     @DynamoDBAttribute(attributeName = "lastName")
     String lastName;
+
     @DynamoDBIgnore
     public String getFullName() {
         return String.format("%s %s", this.getFirstName(), this.getLastName());

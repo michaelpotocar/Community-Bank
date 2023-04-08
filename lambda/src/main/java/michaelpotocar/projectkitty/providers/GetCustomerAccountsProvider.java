@@ -12,23 +12,22 @@ import java.util.List;
 
 public class GetCustomerAccountsProvider implements RequestHandler<GetCustomerAccountsRequest, GetCustomerAccountsResult> {
     public GetCustomerAccountsResult handleRequest(GetCustomerAccountsRequest input, Context context) {
-        System.out.println("Input: " + input.toString());
-        Long customerId = input.getCustomerId();
+        System.out.println(input);
 
-        Customer customer = CustomerDao.get(customerId);
-
+        Customer customer = CustomerDao.get(input.getCustomerId());
         if (customer == null) {
-            GetCustomerAccountsResult result = new GetCustomerAccountsResult().withError("No Customer Exists");
-            System.out.println(  result);
+            GetCustomerAccountsResult result = new GetCustomerAccountsResult()
+                    .withError("Invalid CustomerId");
+            System.out.println(result);
             return result;
         }
 
         List<Account> accounts = customer.getAccounts();
-
         GetCustomerAccountsResult result = new GetCustomerAccountsResult()
                 .withAccounts(accounts)
                 .withMessage("Success");
-        System.out.println( result);
+
+        System.out.println(result);
         return result;
     }
 }

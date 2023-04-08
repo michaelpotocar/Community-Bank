@@ -14,5 +14,4 @@ public class GetPendingPeerToPeerTransfersResult {
     private List<PeerToPeerTransfer> p2ps;
     private String message;
     private String error;
-
 }

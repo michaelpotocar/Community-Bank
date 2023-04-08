@@ -14,5 +14,4 @@ public class GetAccountTransactionsResult {
     private List<Transaction> transactions;
     private String message;
     private String error;
-
 }

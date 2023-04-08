@@ -7,8 +7,8 @@ import lombok.*;
 @Data
 @With
 @ToString
-public class PutP2pRequest {
+public class PutPendingPeerToPeerTransferRequest {
     private Long customerId;
     private String targetAccountId;
-    private Long submittedDateTime;
+    private Long transferId;
 }

@@ -15,7 +15,7 @@ paths:
         httpMethod: "POST"
         uri:
           Fn::Sub:
-            "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${GetCustomersLambda}/invocations"
+            "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${GetCustomersLambda.Arn}/invocations"
         responses:
           default:
             statusCode: "200"
@@ -42,7 +42,7 @@ paths:
         httpMethod: "POST"
         uri:
           Fn::Sub:
-            "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${GetCustomerLambda}/invocations"
+            "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${GetCustomerLambda.Arn}/invocations"
         responses:
           default:
             statusCode: "200"
@@ -72,7 +72,7 @@ paths:
         httpMethod: "POST"
         uri:
           Fn::Sub:
-            "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${GetCustomerAccountsLambda}/invocations"
+            "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${GetCustomerAccountsLambda.Arn}/invocations"
         responses:
           default:
             statusCode: "200"
@@ -101,7 +101,7 @@ paths:
         httpMethod: "POST"
         uri:
           Fn::Sub:
-            "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${PostCreateAccountLambda}/invocations"
+            "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${PostCreateAccountLambda.Arn}/invocations"
         responses:
           default:
             statusCode: "200"
@@ -168,7 +168,7 @@ paths:
         httpMethod: "POST"
         uri:
           Fn::Sub:
-            "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${GetCustomerAccountLambda}/invocations"
+            "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${GetCustomerAccountLambda.Arn}/invocations"
         responses:
           default:
             statusCode: "200"
@@ -202,7 +202,7 @@ paths:
         httpMethod: "POST"
         uri:
           Fn::Sub:
-            "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${GetAccountTransactionsLambda}/invocations"
+            "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${GetAccountTransactionsLambda.Arn}/invocations"
         responses:
           default:
             statusCode: "200"
@@ -232,7 +232,7 @@ paths:
         httpMethod: "POST"
         uri:
           Fn::Sub:
-            "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${PostTransferLambda}/invocations"
+            "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${PostTransferLambda.Arn}/invocations"
         responses:
           default:
             statusCode: "200"
@@ -295,7 +295,7 @@ paths:
         httpMethod: "POST"
         uri:
           Fn::Sub:
-            "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${GetPendingPeerToPeerTransfersLambda}/invocations"
+            "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${GetPendingPeerToPeerTransfersLambda.Arn}/invocations"
         responses:
           default:
             statusCode: "200"
@@ -306,7 +306,7 @@ paths:
             \n}"
         passthroughBehavior: "when_no_templates"
         type: "aws"
-  /customers/{customerId}/p2p/{paymentId}:
+  /customers/{customerId}/p2p/{transferId}:
     put:
       consumes:
       - "application/json"
@@ -315,7 +315,7 @@ paths:
         in: "path"
         required: true
         type: "string"
-      - name: "paymentId"
+      - name: "transferId"
         in: "path"
         required: true
         type: "string"
@@ -329,7 +329,7 @@ paths:
         httpMethod: "POST"
         uri:
           Fn::Sub:
-            "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${PutPendingPeerToPeerTransferLambda}/invocations"
+            "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${PutPendingPeerToPeerTransferLambda.Arn}/invocations"
         responses:
           default:
             statusCode: "200"
@@ -337,7 +337,7 @@ paths:
               method.response.header.Access-Control-Allow-Origin: "'*'"
         requestTemplates:
           application/json: "{\n    \"customerId\": \"$input.params('customerId')\"\
-            ,\n    \"paymentId\": \"$input.params('paymentId')\",\n    \"targetAccountId\"\
+            ,\n    \"transferId\": \"$input.params('transferId')\",\n    \"targetAccountId\"\
             : $input.json('$.targetAccountId')\n}\n\n"
         passthroughBehavior: "when_no_templates"
         type: "aws"
@@ -349,7 +349,7 @@ paths:
         in: "path"
         required: true
         type: "string"
-      - name: "paymentId"
+      - name: "transferId"
         in: "path"
         required: true
         type: "string"
@@ -364,14 +364,14 @@ paths:
             Access-Control-Allow-Headers:
               type: "string"
       x-amazon-apigateway-integration:
+        type: "mock"
         responses:
           default:
             statusCode: "200"
             responseParameters:
-              method.response.header.Access-Control-Allow-Methods: "'OPTIONS,POST'"
+              method.response.header.Access-Control-Allow-Methods: "'OPTIONS,PUT'"
               method.response.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
               method.response.header.Access-Control-Allow-Origin: "'*'"
         requestTemplates:
           application/json: "{\"statusCode\": 200}"
         passthroughBehavior: "when_no_match"
-        type: "mock"

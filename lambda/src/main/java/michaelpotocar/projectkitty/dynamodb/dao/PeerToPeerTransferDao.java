@@ -5,7 +5,6 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBQueryExpression;
 import michaelpotocar.projectkitty.dynamodb.DynamoDbMapperProvider;
 import michaelpotocar.projectkitty.dynamodb.model.PeerToPeerTransfer;
 
-import java.util.Collections;
 import java.util.List;
 
 public class PeerToPeerTransferDao {

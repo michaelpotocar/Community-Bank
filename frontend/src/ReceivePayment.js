@@ -103,7 +103,7 @@ export default function ReceivePayment() {
                 return (
                   <MenuItem
                     key={p2p}
-                    value={p2p.submittedDateTime}>
+                    value={p2p.transferId}>
                     {currencyFormatted(p2p.amount)}
                   </MenuItem>
                 );

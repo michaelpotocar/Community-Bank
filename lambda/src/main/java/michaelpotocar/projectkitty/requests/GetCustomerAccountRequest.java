@@ -10,5 +10,4 @@ import lombok.*;
 public class GetCustomerAccountRequest {
     private Long customerId;
     private String accountId;
-
 }

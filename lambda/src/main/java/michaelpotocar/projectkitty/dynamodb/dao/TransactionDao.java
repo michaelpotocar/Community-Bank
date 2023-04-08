@@ -2,10 +2,10 @@ package michaelpotocar.projectkitty.dynamodb.dao;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBQueryExpression;
-import java.util.List;
-
 import michaelpotocar.projectkitty.dynamodb.DynamoDbMapperProvider;
 import michaelpotocar.projectkitty.dynamodb.model.Transaction;
+
+import java.util.List;
 
 public class TransactionDao {
 

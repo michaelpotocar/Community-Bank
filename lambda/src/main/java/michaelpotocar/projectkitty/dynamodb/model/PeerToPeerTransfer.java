@@ -1,4 +1,3 @@
-
 package michaelpotocar.projectkitty.dynamodb.model;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
@@ -16,8 +15,8 @@ import lombok.*;
 public class PeerToPeerTransfer {
     @DynamoDBHashKey(attributeName = "targetCustomerId")
     private Long targetCustomerId;
-    @DynamoDBRangeKey(attributeName = "submittedDateTime")
-    private Long submittedDateTime;
+    @DynamoDBRangeKey(attributeName = "transferId")
+    private Long transferId;
     @DynamoDBAttribute(attributeName = "fundingCustomerId")
     private Long fundingCustomerId;
     @DynamoDBAttribute(attributeName = "amount")

@@ -11,7 +11,7 @@ import java.util.List;
 
 public class GetAccountTransactionsProvider implements RequestHandler<GetAccountTransactionsRequest, GetAccountTransactionsResult> {
     public GetAccountTransactionsResult handleRequest(GetAccountTransactionsRequest input, Context context) {
-        System.out.println("Input: " + input.toString());
+        System.out.println(input);
         String accountId = input.getAccountId();
 
         List<Transaction> transactions = TransactionDao.get(accountId);

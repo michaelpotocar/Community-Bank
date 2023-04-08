@@ -8,7 +8,5 @@ import lombok.*;
 @With
 @ToString
 public class GetCustomerRequest {
-
     private Long customerId;
-
 }

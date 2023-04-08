@@ -2,10 +2,10 @@ package michaelpotocar.projectkitty.dynamodb.dao;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBScanExpression;
-import java.util.List;
-
 import michaelpotocar.projectkitty.dynamodb.DynamoDbMapperProvider;
 import michaelpotocar.projectkitty.dynamodb.model.Customer;
+
+import java.util.List;
 
 public class CustomerDao {
 
