@@ -1,43 +1,280 @@
-# Learn and Be Curious Project Files
+# Community Bank Design Document
 
-Welcome to your Learn and Be Curious Project Repository! As you already know, Learn and Be Curious is a unique experience from your other sprints here at Bloomtech. The most significant difference is that instead of being given a partially built project with mastery tasks that you need to complete, you will be creating a project from scratch, putting it onto AWS, and presenting your work.
+## 1. Problem Statement
 
-We strongly recommend you review this repository's contents before you do any serious planning. Inside, you will find project requirements, templates, and guides that will help you get off to a great start. The requirements for your project are high-level by design. Your project should be unique and something you would be proud to share with others. 
-  
-## How to Use this Repository
+Traditional banking institutions have long been criticized for their lack of transparency, high fees, and outdated technology. Customers are often frustrated by the slow and bureaucratic processes involved in opening and managing their bank accounts, and the opaque fee structures that can make it difficult to understand the true cost of their financial transactions. Furthermore, many people are excluded from the traditional banking system altogether, either because they lack the necessary credit history or because they cannot meet the minimum balance requirements or other restrictions.
 
-All project files that you use should be inside this repository. If you're working on a team, all team members should have access to the same repository so you can share your files in one place.
+Community Bank aims to solve these problems by providing a modern, transparent, and inclusive banking experience that is accessible to everyone. Through its innovative technology, Community Bank will streamline account opening and management processes, making it easier for customers to understand and control their finances. In addition, Community Bank will also offer an innovative peer-to-peer payments service. 
 
-As we mentioned above, we first recommend becoming familiar with the contents of this repository. If you have questions about the requirements of this project, feel free to reach out to the instructor to get any clarification.
+## 2. Top Questions to Resolve in Review
 
-We've included a template Java project and webpages. Feel free to use these examples as references as you build out your own project.
+1. What parameters are sensitive and need to be sent in the request body?
 
-## Deadlines
+2. Which java classes can be combined in DynamoDB under a common table?
 
-All project deadlines can be found in the [rubric](sample_files/project_documents/rubric.md).
-  
-## What Files are in This Repository?
+3. If GET request body cannot be used for transmitting sensitive data, should we use POST/PUT requests? 
 
-#### [Design Document](sample_files/project_documents/design_document.md)
+## 3. Use Cases
 
-The design document is what you need to complete before you start coding. This document lays out what you will be building and how you will build it, and the more you put into it, the easier your implementation will be.
+1. As a customer, I want to create new accounts including checking, savings, and up to one credit account with a given nickname.
 
-#### [Project Rubric](sample_files/project_documents/rubric.md)
+2. As a customer, I want to add external accounts with given checking and routing numbers.
 
-The rubric contains the requirements for your project. You will fill out the rubric to show that your project successfully covers all the requirements.
+3. As a customer, I want to see a summary of my checking, savings and credit accounts.
 
-#### [Final Presentation Outline](sample_files/project_documents/final_presentation_outline.pdf)
+4. As a customer, I want to see balances and transactions with a given accountID.
 
-This outline lays out what we expect to see in your final presentation. The outline is more of a guideline, so feel free to do things in a different order and put your style on your presentation. 
+5. As a customer, I want to make and schedule payments/transfers between checking accounts, savings accounts, credit accounts, external accounts, and friends with a given source account ID, a destination account type, and a destination account ID or account holder ID.
 
-#### [Accomplishment Tracking](sample_files/project_documents/accomplishment_tracking_template.md)
+6. As a customer, I want to deposit pending payments from my friends into my account with a given payment ID and account ID.
 
-We encourage you to keep track of your accomplishments throughout your time in Learn and Be Curious. This experience will give you plenty to share during interviews, and having accomplishments written down will help you remember highlights you can share.
+## 4. Project Scope
 
-#### [Team Charter](sample_files/project_documents/team_charter.md)
+### 4.1. In Scope
 
-If you are working with a team, you must complete a team charter. This document will establish team norms and expectations, such as how you should communicate your work, how the team will create deadlines, what each person wants to get out of this experience, etc. Building your team charter will help your team work more effectively throughout this project.
+* Viewing account and transaction history information
+* Create internal accounts and link external accounts
+* Making transfers to checking, savings, credit, external accounts, and friends
+* Accepting pending transfers from friends
 
-#### [Reflection](sample_files/project_documents/reflection.md)
+### 4.2. Out of Scope
 
-You will complete your reflection in Canvas, but feel free to see what questions we may ask here.
+* Adding new customers
+* Changing customer information
+* Adding/Removing friends
+* Depositing funds from external accounts
+* Process payments that have been scheduled for a later date
+
+# 5. Proposed Architecture Overview
+
+This initial iteration will provide the minimum lovable product (MLP) including creating and retrieving Accounts, viewing their details, making payments, and accepting pending payments.
+
+We will use API Gateway and Lambda to create seven endpoints (`Get Accounts`, `Post Accounts` `Get Transactions`, `Get Contacts`, `Get PendingPayments`, `Post Payment` and `Put PendingPayments`) that will handle the creation, update and retrieval of accounts and payments to satisfy our requirements.
+
+We will store customers, accounts, transactions, and pending payments in a tables in DynamoDB. 
+
+Community Bank will also provide a web interface for users to manage their accounts. A main page will provide a summary view of their accounts, with links to get more details let them create new accounts, submit payments, and accept pending payments.
+
+# 6. API
+
+## 6.1. Public Models
+
+```
+// Customer
+
+String name;
+List<InternalAccount> internalAccounts;
+InternalAccount creditAcount;
+List<ExternalAccount> externalAccounts;
+List<Customer> friends;
+```
+
+```
+// InternalAccount
+
+Customer customer;
+Integer accountNumber;
+String type;
+String nickName;
+List<Transaction> transactions;
+```
+
+```
+// CreditAccount
+
+Customer customer;
+Integer accountNumber;
+Integer creditLimit;
+String nickName;
+List<Transaction> transactions;
+```
+
+```
+// ExternalAccount
+
+Customer customer;
+Integer accountNumber;
+Integer routingNumber;
+String nickName;
+```
+
+```
+// Transaction
+
+Account account;
+Integer submittedDateTime;
+Integer completedDateTime;
+Double amount;
+String memo;
+```
+
+```
+// Transfer
+
+Customer customer;
+Account sourceAccount;
+Account destinationAccount;
+Integer submittedDateTime;
+Integer completedDateTime;
+Double amount;
+String memo;
+```
+
+```
+// PendingPayment
+
+Customer fromCustomer;
+Customer toCustomer;
+Account fromAccount;
+Account toAccount;
+Integer submittedDateTime;
+Integer completedDateTime;
+Double amount;
+String memo;
+```
+
+## 6.1 *Get Accounts Endpoint*
+
+* Accepts `GET` requests to `/customers/accounts`
+* Accepts a request body customer ID and returns the related accounts.
+    * If the given customer ID is not found, will throw a
+      `CustomerNotFoundException`
+
+![](project_documents/PlantUML/GetAccountSummary.png)
+
+## 6.2 *Post Accounts Endpoint*
+
+* Accepts `POST` requests to `/customers/accounts`
+* Accepts a request body customer ID, nickname, type, and routing/account number if type == 'external' and creates a related account.
+    * If the given customer ID is not found, will throw a
+      `CustomerNotFoundException`
+    * If the given account nickname already exists, will throw a
+      `AccountNameAlreadyExistsException`
+    * If the given type is not valid, will throw a
+      `InvalidTypeException`
+    * If type == 'external' and missing routing/account number, will throw a
+      `MissingRoutingOrAccountNumberException`
+    * If type == 'credit' and a credit account already exists, will throw a
+      `CreditAccountAlreadyExistsException`
+
+![](project_documents/PlantUML/CreateAccount.png)
+
+## 6.3 *Get Transactions Endpoint*
+
+* Accepts `GET` requests to `/customers/accounts/transactions`
+* Accepts a request body customer ID and account ID and returns the related transactions.
+    * If the given customer ID is not found, will throw a
+      `CustomerNotFoundException`
+    * If the given account ID is not found, will throw a
+      `AccountNotFoundException`
+
+![](project_documents/PlantUML/GetAccountDetails.png)
+
+## 6.4 *Get Contacts Endpoint*
+
+* Accepts `GET` requests to `/customers/contacts`
+* Accepts a request body customer ID and returns the related contacts.
+    * If the given customer ID is not found, will throw a
+      `CustomerNotFoundException`
+
+## 6.5 *Get PendingPayments Endpoint*
+
+* Accepts `GET` requests to `/customers/pendingpayments`
+* Accepts a request body customer ID and returns the pending peer to peer payments.
+    * If the given customer ID is not found, will throw a
+      `CustomerNotFoundException`
+
+![](project_documents/PlantUML/AcceptPendingPayments.png)
+
+## 6.6 *Post Payment Endpoint*
+
+* Accepts `POST` requests to `/customers/payments`
+* Accepts a request body sender customer ID, source account ID, amount, type, memo, and recipient customer ID if type == 'peertopeer' to submit a payment.
+    * If the given sender customer ID is not found, will throw a
+      `SenderNotFoundException`
+    * If the given account ID is not found, will throw a
+      `AccountNotFoundException`
+    * If the given recipient customer ID is not found, will throw a
+      `RecipientNotFoundException`
+    * If the given type is not valid, will throw a
+      `InvalidTypeException`
+    * If the given recipient is not a contact of the sender, will throw a
+      `RecipientNotAContactException`
+
+![](project_documents/PlantUML/CreatePayment.png)
+
+## 6.7 *Put PendingPayments Endpoint*
+
+* Accepts `PUT` requests to `/customers/pendingpayments`
+* Accepts a request body payment ID and account ID to accept a peer to peer transfer.
+    * If the given customer ID is not found, will throw a
+      `CustomerNotFoundException` 
+    * If the given payment ID is not found, will throw a
+      `PaymentNotFoundException`
+    * If the given payment has already been accepted, will throw a
+      `PaymentAlreadyAcceptedException`
+
+![](project_documents/PlantUML/AcceptPendingPayments.png)
+
+# 7. Tables
+
+### 7.1 `Customers`
+
+```
+customerId // partition key, string
+internalAccounts // list
+creditAcount // list
+externalAccounts // list
+friends // list
+```
+
+### 7.2 `Account`
+
+```
+customer // partition key, string
+accountNumber // sort key, string
+type // string
+nickName // string
+creditLimit // number
+```
+
+### 7.3 `Transaction`
+
+```
+account // partition key, string 
+submittedDateTime // sort key, number
+completedDateTime // number
+amount // number
+memo // string
+```
+
+### 7.4 `Transfer`
+
+```
+destinationCustomerID // partition key, string
+sourceCustomerID // sort key, string
+destinationAccount // string
+sourceAccount // string
+submittedDateTime // number
+completedDateTime // number
+amount // number
+memo // string
+```
+
+# 8. Pages
+
+![](project_documents/GUI/Slide1.png)
+
+![](project_documents/GUI/Slide2.png)
+
+![](project_documents/GUI/Slide3.png)
+
+![](project_documents/GUI/Slide4.png)
+
+![](project_documents/GUI/Slide5.png)
+
+![](project_documents/GUI/Slide6.png)
+
+![](project_documents/GUI/Slide7.png)
+
+![](project_documents/GUI/Slide8.png)
